@@ -80,8 +80,8 @@
     <div id="container">
         <div id="map"></div>
         <div id="sidebar">
-            from: <input id="from"><br>
-            to: <input id="to"><br>
+            from: <input id="from" onfocus="this.value=''"><br>
+            to: <input id="to" onfocus="this.value=''"><br>
             <input type="button" value="▶" onclick="stop(); go()">
             <input type="button" value="⇅" onclick="stop(); reverse(); go()">
             <input type="button" value="✕" onclick="stop();"><br>
