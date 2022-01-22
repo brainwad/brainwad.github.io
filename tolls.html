@@ -80,15 +80,26 @@
     <div id="container">
         <div id="map"></div>
         <div id="sidebar">
-            from: <input id="from" onfocus="this.value=''"><br>
-            to: <input id="to" onfocus="this.value=''"><br>
-            <input type="button" value="▶" onclick="stop(); go()">
-            <input type="button" value="⇅" onclick="stop(); reverse(); go()">
-            <input type="button" value="✕" onclick="stop();"><br>
-            ⌛$<input id=hour-cost value="70" type=number onchange="render_efficient_frontier()">/hr
-            ⛽$<input id=fuel-cost value="1.90" type=number step="0.01" onchange="render_efficient_frontier()">/L
-            🚗<input id=fuel-efficiency value="8.0" type=number step="0.1"
-                onchange="render_efficient_frontier()">L/100km
+            <form>
+                <datalist id="address">
+                    <option>39a Annangrove Rd, Kenthurst</option>
+                    <option>9 Marsden Cl, Bossley Park</option>
+                    <option>157 Hawkesbury Rd, Westmead</option>
+                    <option>85 Calandra Ave, Quakers Hill</option>
+                    <option>22 Gadigal Ave, Zetland</option>
+                    <option>37 Morley Ave, Rosebery</option>
+                    <option>361 Miller St, Camaray</option>
+                </datalist>
+                from: <input id="from" list="address" onfocus="this.value=''"><br>
+                to: <input id="to" list="address" onfocus="this.value=''"><br>
+                <input type="button" value="▶" onclick="stop(); go()">
+                <input type="button" value="⇅" onclick="stop(); reverse(); go()">
+                <input type="button" value="✕" onclick="stop();"><br>
+                ⌛$<input id=hour-cost value="70" type=number onchange="render_efficient_frontier()">/hr
+                ⛽$<input id=fuel-cost value="1.90" type=number step="0.01" onchange="render_efficient_frontier()">/L
+                🚗<input id=fuel-efficiency value="8.0" type=number step="0.1"
+                    onchange="render_efficient_frontier()">L/100km
+            </form>
             <p id=progress></p>
             <ul id=results></ul>
         </div>
