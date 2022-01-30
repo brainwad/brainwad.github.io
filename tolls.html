@@ -90,8 +90,9 @@
                     <option>37 Morley Ave, Rosebery</option>
                     <option>361 Miller St, Camaray</option>
                 </datalist>
-                from: <input id="from" list="address" autocomplete="on" onfocus="this.value=''"><br>
-                to: <input id="to" list="address" autocomplete="on" onfocus="this.value=''"><br>
+                from: <input id="from" list="address" autocomplete="on" placeholder="current location"
+                    onfocus="this.value=''; this.placeholder='current location'"><br>
+                to: <input id="to" list="address" autocomplete="on" onfocus="this.value=''; this.placeholder=''"><br>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
                 <input type="button" value="✕" onclick="stop();"><br>
@@ -157,18 +158,32 @@
                 document.getElementById("results").innerHTML = "";
                 map.removeObjects(map.getObjects());
                 bounding_box = null;
-                //alert(`going from ${from} to ${to}`);
-                searchService.autosuggest({ q: document.getElementById("from").value, at: '-33.85,151' }, (result) => {
-                    from = result.items[0];
-                    document.getElementById("from").value = from.title;
-                    searchService.autosuggest({ q: document.getElementById("to").value, at: '-33.85,151' }, (result) => {
-                        to = result.items[0];
-                        document.getElementById("to").value = to.title;
-                        tried_avoids = [[]];
-                        routes = [];
-                        pending_requests = [calculateRoute(from, to, [], false, handle_route), calculateRoute(from, to, [], true, handle_route)];
+
+                continuation = function () {
+                    searchService.autosuggest({ q: document.getElementById("from").value, at: '-33.85,151' }, (result) => {
+                        from = result.items[0];
+                        document.getElementById("from").value = from.title;
+                        searchService.autosuggest({ q: document.getElementById("to").value, at: '-33.85,151' }, (result) => {
+                            to = result.items[0];
+                            document.getElementById("to").value = to.title;
+                            tried_avoids = [[]];
+                            routes = [];
+                            pending_requests = [calculateRoute(from, to, [], false, handle_route), calculateRoute(from, to, [], true, handle_route)];
+                        }, alert);
                     }, alert);
-                }, alert);
+                }
+                if (document.getElementById("from").value && document.getElementById("to").value)  {
+                    continuation()
+                } else if (document.getElementById("to").value) {
+                    document.getElementById("from").placeholder = "Geolocating..."
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => { document.getElementById("from").value = `${position.coords.latitude.toFixed(7)}, ${position.coords.longitude.toFixed(7)}`; continuation() },
+                        (error) => { document.getElementById("from").placeholder = error.message },
+                        { enableHighAccuracy: true }
+                    );
+                } else {
+                    document.getElementById("to").placeholder = "enter a destination :)"
+                }
             }
 
             function calculateRoute(from, to, avoid_links, avoid_tolls, handle_route) {
