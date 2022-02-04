@@ -68,6 +68,7 @@
         #graph {
             width: 100%;
             height: 8em;
+            margin: -1em 0;
         }
 
         #progress {
@@ -135,15 +136,17 @@
         var routes = [];
         var tried_avoids = [];
         var pending_requests = [];
+        var pending_timeouts = [];
         var successful_requests = 0;
 
         var stop = function () {
+            var requests_to_cancel = pending_requests.slice()
+            pending_requests = []
             for (request of pending_requests) {
-                try {
-                    request.cancel();
-                } catch (error) {
-                    // ignore all errors
-                }
+                request.cancel();
+            }
+            for (timeout of pending_timeouts) {
+                clearTimeout(timeout);
             }
             from = null;
             to = null;
@@ -151,6 +154,7 @@
             routes = [];
             tried_avoids = [];
             pending_requests = [];
+            pending_timeouts = [];
             successful_requests = 0;
         }
 
@@ -204,11 +208,31 @@
                 'waypoint0': `street!!${from.position.lat},${from.position.lng}`,
                 'waypoint1': `street!!${to.position.lat},${to.position.lng}`
             }, (result) => {
-                if (result.response.route.length) {
+                if (result.response.route.length && pending_requests.length) {
                     result.response.route[0].avoid_links = avoid_links;
                     handle_route(result.response.route[0])
                 } else {
                     console.error(result)
+                }
+            }, (error) => {
+                if (pending_requests.length) {
+                    var urls = error.message.match(/https?:\/\/[^ ]*/)
+                    if (urls) {
+                        for ([i, r] of pending_requests.entries()) {
+                            if (r.data == urls[0]) {
+                                pending_timeouts.push(setTimeout(() => {
+                                    if (pending_requests.length) {
+                                        var request = calculateRoute(from, to, pending_requests[i].avoid, false, handle_route);
+                                        request.retries = pending_requests[i].retries + 1;
+                                        request.avoid = pending_requests[i].avoid;
+                                        pending_requests[i] = request;
+                                    }
+                                }, 1000 * Math.pow(2, r.retries)));
+                                console.log("retrying after", Math.pow(2, r.retries), "seconds:", r)
+                                break;
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -254,7 +278,7 @@
                 // Special case for M4 East - name continues for a single link after the toll ends
                 if (toll_roads.length && toll_roads[toll_roads.length - 1].name == "Westconnex M4" &&
                     toll_roads[toll_roads.length - 1].exit == "Westconnex M4" &&
-                    link.linkId == toll_roads[toll_roads.length - 1].key_links[1].nextLink) {
+                    last_roadName == "Westconnex M4" && link.roadName == "Dobroyd Pde") {
                     toll_roads[toll_roads.length - 1].exit = link.roadName
                 }
                 // fix blank exits
@@ -464,7 +488,10 @@
                         new_avoid.sort();
                         if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
                             tried_avoids.push(new_avoid);
-                            pending_requests.push(calculateRoute(from, to, new_avoid, false, handle_route));
+                            var request = calculateRoute(from, to, new_avoid, false, handle_route);
+                            request.avoid = new_avoid;
+                            request.retries = 0;
+                            pending_requests.push(request);
                         }
                     }
                 }
@@ -538,6 +565,7 @@
         }
 
         function render_graph(frontier_routes, best_route) {
+            if (frontier_routes.length < 2) return;
             document.getElementById("graph").style = "";
             all_routes = {
                 x: routes.map(x => x.summary.trafficTime),
