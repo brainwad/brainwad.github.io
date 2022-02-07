@@ -60,9 +60,13 @@
             }
         }
 
+        label {
+            display: flex
+        }
+
         #from,
         #to {
-            width: 100%;
+            flex-grow: 1;
         }
 
         #graph {
@@ -95,16 +99,17 @@
                     <option>37 Morley Ave, Rosebery</option>
                     <option>361 Miller St, Camaray</option>
                 </datalist>
-                from: <input id="from" list="address" autocomplete="on" placeholder="current location"
-                    onfocus="this.value=''; this.placeholder='current location'"><br>
-                to: <input id="to" list="address" autocomplete="on" onfocus="this.value=''; this.placeholder=''"><br>
+                <label>from: <input id="from" list="address" autocomplete="on" placeholder="current location"
+                        onfocus="this.value=''; this.placeholder='current location'"></label>
+                <label>to: <input id="to" list="address" autocomplete="on"
+                        onfocus="this.value=''; this.placeholder=''"></label>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
-                <input type="button" value="✕" onclick="stop();"><br>
-                ⌛$<input id=hour-cost value="70" type=number onchange="render_efficient_frontier()">/hr
-                ⛽$<input id=fuel-cost value="1.90" type=number step="0.01" onchange="render_efficient_frontier()">/L
+                <input type="button" value="✕" onclick="stop();">
+                ⌛$<input id=hour-cost value="70" type=number onchange="render_efficient_frontier()">
+                ⛽$<input id=fuel-cost value="1.90" type=number step="0.01" onchange="render_efficient_frontier()">
                 🚗<input id=fuel-efficiency value="8.0" type=number step="0.1"
-                    onchange="render_efficient_frontier()">L/100km
+                    onchange="render_efficient_frontier()">L
             </form>
             <p id=progress></p>
             <div id=graph style="display:none"></div>
@@ -218,7 +223,7 @@
                 if (pending_requests.length) {
                     var urls = error.message.match(/https?:\/\/[^ ]*/)
                     if (urls) {
-                        for ([i, r] of pending_requests.entries()) {
+                        for (var [i, r] of pending_requests.entries()) {
                             if (r.data == urls[0]) {
                                 pending_timeouts.push(setTimeout(() => {
                                     if (pending_requests.length) {
