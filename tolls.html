@@ -108,8 +108,7 @@
                 <input type="button" value="✕" onclick="stop();">
                 ⌛$<input id=hour-cost value="70" type=number onchange="render_efficient_frontier()">
                 ⛽$<input id=fuel-cost value="1.90" type=number step="0.01" onchange="render_efficient_frontier()">
-                🚗<input id=fuel-efficiency value="8.0" type=number step="0.1"
-                    onchange="render_efficient_frontier()">L
+                🚗<input id=fuel-efficiency value="8.0" type=number step="0.1" onchange="render_efficient_frontier()">L
             </form>
             <p id=progress></p>
             <div id=graph style="display:none"></div>
@@ -122,6 +121,10 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js-colormaps.js"></script>
     <script>
+        var handle_enter = ({ key }) => { if (key === "Enter") { stop(); go(); } }
+        document.getElementById("from").addEventListener("keypress", handle_enter);
+        document.getElementById("to").addEventListener("keypress", handle_enter);
+
         var platform = new H.service.Platform({ 'apikey': 'FQjeRTZuEwVJJVdKqIAMIbOZyg1qNcEKu6IsYbtCsGs' });
         var maptypes = platform.createDefaultLayers();
         var map = new H.Map(
