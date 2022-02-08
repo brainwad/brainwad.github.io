@@ -468,7 +468,7 @@
                     route.toll += road.toll;
                 }
             }
-            if (route.summary.flags.includes("tollroad") && !route.toll) {
+            if (route.summary.flags && route.summary.flags.includes("tollroad") && !route.toll) {
                 console.error("missing toll!")
                 console.error(route)
             }
