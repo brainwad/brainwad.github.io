@@ -102,9 +102,10 @@
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
                 <input type="button" value="✕" onclick="stop();">
-                ⌛$<input id=hour-cost value="70" min="0" type=number style="width:3.6em" onchange="render_efficient_frontier()">
-                ⛽$<input id=fuel-cost value="1.90" min="0" type=number step="0.01" style="width:4.1em" onchange="render_efficient_frontier()">
-                🚗<input id=fuel-efficiency value="8.0" min="0" type=number step="0.1" style="width:3.6em" onchange="render_efficient_frontier()">L
+                ⌛$<input id=hour-cost value="70" min="0" type=number style="width:3.6em"
+                    onchange="render_efficient_frontier()">/hr
+                ⛽$<input id=fuel-cost value="1.90" min="0" type=number step="0.01" style="width:4.1em"
+                    onchange="render_efficient_frontier()">/L
             </form>
             <p id=progress></p>
             <div id=graph style="display:none"></div>
@@ -200,14 +201,15 @@
             return routingService.calculateRoute({
                 'alternatives': 0,
                 'avoidLinks': avoid_links,
-                'jsonAttributes': 41,
+                'jsonAttributes': 73, //41,
                 'language': 'en_GB',
                 'legattributes': 'all',
                 'linkattributes': 'all',
                 'maneuverattributes': 'none',
                 'metricSystem': 'metric',
                 'mode': `fastest;car;traffic:enabled${avoid_tolls ? ";tollroad:-3" : ""}`,
-                'routeattributes': 'none,sh,wp,sm,bb,lg,no,li,tx,la',
+                'routeattributes': 'all',
+                'returnelevation': true,
                 'transportMode': 'car',
                 'waypoint0': `street!!${from.position.lat},${from.position.lng}`,
                 'waypoint1': `street!!${to.position.lat},${to.position.lng}`
@@ -472,8 +474,57 @@
             }
         }
 
+        // Fuel efficiency curves (mph => mpg) for various road slopes for a compact (gasoline) car.
+        // Source: https://scholarworks.unr.edu/bitstream/handle/11714/2809/Chkaiban_unr_0139M_12501.pdf
+        // Digitised with https://apps.automeris.io/wpd/
+        const fuel_efficiency_curves = [
+            // Downhill
+            { 0: 0, 1: 3, 5: 21, 10: 51, 15: 86, 20: 125, 25: 167, 30: 203, 35: 230, 40: 240, 45: 235, 50: 215, 55: 185, 60: 153, 65: 123, 70: 95, 75: 73, 80: 57, 85: 44, 90: 36, },
+            { 0: 0, 1: 3, 5: 14, 10: 24, 15: 34, 20: 42, 25: 52, 30: 61, 35: 69, 40: 74, 45: 76, 50: 75, 55: 71, 60: 66, 65: 60, 70: 54, 75: 48, 80: 43, 85: 40, 90: 38, },
+            { 0: 0, 1: 9, 5: 18, 10: 24, 15: 28, 20: 32, 25: 37, 30: 43, 35: 48, 40: 51, 45: 53, 50: 53, 55: 51, 60: 48, 65: 45, 70: 41, 75: 38, 80: 34, 85: 32, 90: 30, },
+            // Uphill
+            { 0: 0, 1: 8, 5: 17, 10: 25, 15: 31, 20: 36, 25: 40, 30: 44, 35: 48, 40: 50, 45: 51, 50: 49, 55: 47, 60: 45, 65: 42, 70: 38, 75: 35, 80: 32, 85: 30, 90: 28, },
+            { 0: 0, 1: 7, 5: 15, 10: 21, 15: 25, 20: 29, 25: 33, 30: 36, 35: 38, 40: 39, 45: 40, 50: 39, 55: 38, 60: 36, 65: 33, 70: 31, 75: 29, 80: 27, 85: 25, 90: 24, },
+            { 0: 0, 1: 8, 5: 13, 10: 18, 15: 21, 20: 24, 25: 26, 30: 28, 35: 29, 40: 30, 45: 30, 50: 30, 55: 28, 60: 27, 65: 26, 70: 24, 75: 23, 80: 22, 85: 21, 90: 20, },
+            { 0: 0, 1: 7, 5: 12, 10: 15, 15: 18, 20: 19, 25: 21, 30: 22, 35: 23, 40: 23, 45: 23, 50: 23, 55: 22, 60: 22, 65: 21, 70: 20, 75: 19, 80: 18, 85: 18, 90: 17, },
+            { 0: 0, 1: 7, 5: 10, 10: 13, 15: 14, 20: 15, 25: 17, 30: 18, 35: 18, 40: 18, 45: 18, 50: 18, 55: 18, 60: 17, 65: 17, 70: 16, 75: 15, 80: 15, 85: 14, 90: 13, },
+            { 0: 0, 1: 6, 5: 9, 10: 11, 15: 12, 20: 12, 25: 13, 30: 14, 35: 14, 40: 14, 45: 15, 50: 15, 55: 14, 60: 14, 65: 14, 70: 13, 75: 12, 80: 12, 85: 11, 90: 10, }
+        ]
 
-        var handle_route = function (route) {
+        function interpolate_curve(curve, x) {
+            var keys = Object.keys(curve).sort();
+            if (keys[0] >= x) return curve[keys[0]];
+            for (var [i, k] of keys.entries()) {
+                if (k >= x) {
+                    var k_ = keys[i - 1];
+                    return curve[k_] + (curve[k] - curve[k_]) * (x - parseFloat(k_)) / (parseFloat(k) - parseFloat(k_));
+                }
+            }
+            return curve[keys[keys.length - 1]];
+        }
+
+        function calculate_fuel(route) {
+            route.fuel = 0;
+            for (var link of route.leg[0].link) {
+                if (!link.length) continue;
+                var altitude_diff = link.shape.length ? link.shape[link.shape.length - 1] - link.shape[2] : 0;
+                var gradient = altitude_diff / link.length;
+                var gradient_class =
+                    gradient < -0.025 ? 0 :
+                        gradient < -0.005 ? 1 :
+                            gradient < 0 ? 2 :
+                                gradient < 0.005 ? 3 :
+                                    gradient < 0.025 ? 4 :
+                                        gradient < 0.045 ? 5 :
+                                            gradient < 0.065 ? 6 :
+                                                gradient < 0.085 ? 7 : 8;
+                var mpg = interpolate_curve(fuel_efficiency_curves[gradient_class],
+                    2.23694 * (link.dynamicSpeedInfo.trafficSpeed ? link.dynamicSpeedInfo.trafficSpeed : link.dynamicSpeedInfo.baseSpeed ? link.dynamicSpeedInfo.baseSpeed : link.speedLimit))
+                route.fuel += 2.35215 / mpg * link.length / 1000;
+            }
+        }
+
+        function handle_route(route) {
             successful_requests += 1;
             if (route.note.length) {
                 console.error(route.note);
@@ -481,6 +532,7 @@
             // Skip results that have the exact polylines seen before
             if (routes.every((val, index) => !arrayEquals(val.shape, route.shape))) {
                 calculate_tolls(route);
+                calculate_fuel(route);
                 routes.push(route);
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
@@ -514,9 +566,7 @@
             var max_toll_and_fuel = 1000000;
             var frontier_routes = []
             for (route of routes) {
-                route.fuel_cost = route.summary.distance *
-                    document.getElementById("fuel-cost").valueAsNumber *
-                    document.getElementById("fuel-efficiency").valueAsNumber / 100000;
+                route.fuel_cost = route.fuel * document.getElementById("fuel-cost").valueAsNumber;
                 route.time_cost = route.summary.trafficTime / 3600 * document.getElementById("hour-cost").valueAsNumber;
                 route.cost = route.toll + route.fuel_cost + route.time_cost;
             }
@@ -539,8 +589,6 @@
             }
 
             document.getElementById("results").innerHTML = "";
-            var frontier_polylines = []
-            var bounding_box = null;
             for (route of frontier_routes) {
                 route.color = rgbToHex(evaluate_cmap(0.9 * (frontier_routes[0].toll ? route.toll / frontier_routes[0].toll : 0), 'gist_rainbow', false));
                 renderResult(route);
@@ -548,8 +596,10 @@
 
             render_graph(frontier_routes, frontier_routes_sorted_by_cost[0]);
 
+            var frontier_polylines = []
+            var bounding_box = null;
             for (const route of frontier_routes_sorted_by_cost.reverse()) {
-                let polyline = new H.map.Polyline(H.geo.LineString.fromLatLngArray(route.shape),
+                let polyline = new H.map.Polyline(new H.geo.LineString(route.shape),
                     { style: { strokeColor: route.color, lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2 } });
                 frontier_polylines.push(polyline);
                 bounding_box = bounding_box ? bounding_box.mergeRect(polyline.getBoundingBox()) : polyline.getBoundingBox();
@@ -561,7 +611,7 @@
         }
 
         function renderResult(route) {
-            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)} min · $${(route.toll + route.fuel_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)} km via ${route.label.join(", ")}`
+            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)} min · $${(route.toll + route.fuel_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)} km · ${route.fuel.toFixed(2)} L<br>via ${route.label.join(", ")}`
                 // + `<br><tt>${JSON.stringify(route.toll_roads)}</tt></li>`
                 + `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
