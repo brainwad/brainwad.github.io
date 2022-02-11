@@ -563,23 +563,24 @@
 
         function render_efficient_frontier() {
             var fastest_time = 0;
-            var max_toll_and_fuel = 1000000;
+            var max_money_cost = 1000000;
             var frontier_routes = []
             for (route of routes) {
                 route.fuel_cost = route.fuel * document.getElementById("fuel-cost").valueAsNumber;
                 route.time_cost = route.summary.trafficTime / 3600 * document.getElementById("hour-cost").valueAsNumber;
-                route.cost = route.toll + route.fuel_cost + route.time_cost;
+                route.money_cost = route.fuel_cost + route.toll;
+                route.cost = route.money_cost + route.time_cost;
             }
-            while (max_toll_and_fuel > 0) {
+            while (max_money_cost > 0) {
                 var best_route = null;
                 for (route of routes) {
-                    if ((route.toll + route.fuel_cost) < max_toll_and_fuel && (!best_route || route.summary.trafficTime < best_route.summary.trafficTime)) {
+                    if (route.money_cost < max_money_cost && (!best_route || route.summary.trafficTime < best_route.summary.trafficTime)) {
                         best_route = route;
                     }
                 }
                 if (!best_route) break;
                 frontier_routes.push(best_route);
-                max_toll_and_fuel = best_route.toll + best_route.fuel_cost;
+                max_money_cost = best_route.money_cost;
             }
 
             var frontier_routes_sorted_by_cost = frontier_routes.slice()
@@ -590,7 +591,10 @@
 
             document.getElementById("results").innerHTML = "";
             for (route of frontier_routes) {
-                route.color = rgbToHex(evaluate_cmap(0.9 * (frontier_routes[0].toll ? route.toll / frontier_routes[0].toll : 0), 'gist_rainbow', false));
+                route.color = rgbToHex(evaluate_cmap(0.9 * (
+                    (route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) /
+                    Math.max(frontier_routes[0].money_cost - frontier_routes[frontier_routes.length - 1].money_cost, 2)
+                ), 'gist_rainbow', false));
                 renderResult(route);
             }
 
@@ -611,7 +615,7 @@
         }
 
         function renderResult(route) {
-            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)} min · $${(route.toll + route.fuel_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)} km · ${route.fuel.toFixed(2)} L<br>via ${route.label.join(", ")}`
+            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)} min · $${(route.money_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)} km · ${route.fuel.toFixed(2)} L<br>via ${route.label.join(", ")}`
                 // + `<br><tt>${JSON.stringify(route.toll_roads)}</tt></li>`
                 + `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
@@ -623,7 +627,7 @@
             document.getElementById("graph").style = "";
             all_routes = {
                 x: routes.map(x => x.summary.trafficTime),
-                y: routes.map(x => parseFloat((x.fuel_cost + x.toll).toFixed(2))),
+                y: routes.map(x => parseFloat((x.money_cost).toFixed(2))),
                 mode: 'markers',
                 marker: {
                     color: '#ffffff',
@@ -633,7 +637,7 @@
             }
             frontier_line = {
                 x: frontier_routes.map(x => x.summary.trafficTime),
-                y: frontier_routes.map(x => x.fuel_cost + x.toll),
+                y: frontier_routes.map(x => x.money_cost),
                 mode: 'lines',
                 line: {
                     color: '#444',
@@ -643,7 +647,7 @@
             frontier_points = frontier_routes.map(r => {
                 return {
                     x: [r.summary.trafficTime],
-                    y: [r.fuel_cost + r.toll],
+                    y: [r.money_cost],
                     mode: 'markers',
                     marker: { color: r.color, size: r.cost_rank == 0 ? 10 : 5 }
                 }
@@ -661,23 +665,15 @@
                 shapes: [{
                     type: 'line',
                     x0: frontier_routes[0].summary.trafficTime,
-                    y0: best_route.fuel_cost + best_route.toll + (best_route.summary.trafficTime - frontier_routes[0].summary.trafficTime) * document.getElementById("hour-cost").valueAsNumber / 3600,
-                    x1: best_route.summary.trafficTime + (best_route.fuel_cost + best_route.toll - frontier_routes[frontier_routes.length - 1].fuel_cost - frontier_routes[frontier_routes.length - 1].toll) / document.getElementById("hour-cost").valueAsNumber * 3600,
-                    y1: frontier_routes[frontier_routes.length - 1].fuel_cost + frontier_routes[frontier_routes.length - 1].toll,
+                    y0: best_route.money_cost + (best_route.summary.trafficTime - frontier_routes[0].summary.trafficTime) * document.getElementById("hour-cost").valueAsNumber / 3600,
+                    x1: best_route.summary.trafficTime + (best_route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) / document.getElementById("hour-cost").valueAsNumber * 3600,
+                    y1: frontier_routes[frontier_routes.length - 1].money_cost,
                     line: {
                         color: "white",
                         width: 1,
                         dash: 'dot'
                     }
                 }],
-                // xaxis: {
-                //     range: [0.99*frontier_routes[0].summary.trafficTime, 1.01*frontier_routes[frontier_routes.length-1].summary.trafficTime]
-                // },
-                // yaxis: {
-                //     range: [
-                //         0.95*(frontier_routes[frontier_routes.length - 1].fuel_cost + frontier_routes[frontier_routes.length - 1].toll),
-                //         1.05*(frontier_routes[0].fuel_cost + frontier_routes[0].toll)]
-                // },
                 showlegend: false,
             }, { staticPlot: true });
         }
