@@ -121,6 +121,9 @@
         var handle_enter = ({ key }) => { if (key === "Enter") { stop(); go(); } }
         document.getElementById("from").addEventListener("keypress", handle_enter);
         document.getElementById("to").addEventListener("keypress", handle_enter);
+        var handle_input = (e) => { if (e.inputType == "insertReplacementText" && document.getElementById("to").value) { stop(); go(); } }
+        document.getElementById("from").addEventListener("input", handle_input);
+        document.getElementById("to").addEventListener("input", handle_input);
 
         var platform = new H.service.Platform({ 'apikey': 'FQjeRTZuEwVJJVdKqIAMIbOZyg1qNcEKu6IsYbtCsGs' });
         var maptypes = platform.createDefaultLayers();
