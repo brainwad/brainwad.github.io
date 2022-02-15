@@ -626,7 +626,10 @@
         }
 
         function render_graph(frontier_routes, best_route) {
-            if (frontier_routes.length < 2) return;
+            if (frontier_routes.length < 2) {
+                document.getElementById("graph").style = "display:none";
+                return;
+            }
             document.getElementById("graph").style = "";
             all_routes = {
                 x: routes.map(x => x.summary.trafficTime),
