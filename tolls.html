@@ -86,18 +86,16 @@
         <div id="map"></div>
         <div id="sidebar">
             <form>
-                <datalist id="address">
-                    <option>39a Annangrove Rd, Kenthurst</option>
-                    <option>9 Marsden Cl, Bossley Park</option>
-                    <option>157 Hawkesbury Rd, Westmead</option>
-                    <option>85 Calandra Ave, Quakers Hill</option>
-                    <option>22 Gadigal Ave, Zetland</option>
-                    <option>37 Morley Ave, Rosebery</option>
-                    <option>361 Miller St, Camaray</option>
+                <datalist id="from_address">
+                    <option>current location</option>
+                    <option>from contacts...</option>
                 </datalist>
-                <label>from: <input id="from" list="address" autocomplete="on" placeholder="current location"
+                <datalist id="to_address">
+                    <option>from contacts...</option>
+                </datalist>
+                <label>from: <input id="from" list="from_address" autocomplete="on" placeholder="current location"
                         onfocus="this.value=''; this.placeholder='current location'"></label>
-                <label>to: <input id="to" list="address" autocomplete="on"
+                <label>to: <input id="to" list="to_address" autocomplete="on"
                         onfocus="this.value=''; this.placeholder=''"></label>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
@@ -118,10 +116,32 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js-colormaps.js"></script>
     <script>
-        var handle_enter = ({ key }) => { if (key === "Enter") { stop(); go(); } }
+        var handle_enter = ({ key }) => { if (key === "Enter" && document.getElementById("to").value) { stop(); go(); } }
         document.getElementById("from").addEventListener("keypress", handle_enter);
         document.getElementById("to").addEventListener("keypress", handle_enter);
-        var handle_input = (e) => { if (e.inputType == "insertReplacementText" && document.getElementById("to").value) { stop(); go(); } }
+        var handle_input = async (e) => {
+            if (e.inputType == "insertReplacementText") {
+                if (e.target.id == "from" && e.data == "current location") {
+                    e.target.value = "";
+                } else if (e.data == "from contacts...") {
+                    if ('contacts' in navigator &&
+                        'ContactsManager' in window &&
+                        (await navigator.contacts.getProperties()).includes("address")) {
+                        const contacts = await navigator.contacts.select(["address"], {});
+                        if (contacts.length && contacts[0].address.length && contacts[0].address[0].addressLine.length) {
+                            e.target.value = contacts[0].address[0].addressLine.replace("\n", ", ");
+                        } else {
+                            e.target.value = "";
+                        }
+                    } else {
+                        e.target.value = "";
+                    }
+                }
+                if (document.getElementById("to").value) {
+                    stop(); go();
+                }
+            }
+        }
         document.getElementById("from").addEventListener("input", handle_input);
         document.getElementById("to").addEventListener("input", handle_input);
 
@@ -618,7 +638,7 @@
         }
 
         function render_result(route) {
-            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)}′ (${route.summary.baseTime > route.summary.trafficTime? "" : "+"}${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · $${(route.money_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)}km · ${route.fuel.toFixed(2)}L<br>via ${route.label.join(", ")}`
+            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)}′ (${route.summary.baseTime > route.summary.trafficTime ? "" : "+"}${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · $${(route.money_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)}km · ${route.fuel.toFixed(2)}L<br>via ${route.label.join(", ")}`
                 // + `<br><tt>${JSON.stringify(route.toll_roads)}</tt></li>`
                 + `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
