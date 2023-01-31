@@ -124,17 +124,15 @@
                 if (e.target.id == "from" && e.data == "current location") {
                     e.target.value = "";
                 } else if (e.target.value == "from contacts...") {
+                    e.target.value = "";
                     if ('contacts' in navigator &&
                         'ContactsManager' in window &&
                         (await navigator.contacts.getProperties()).includes("address")) {
                         const contacts = await navigator.contacts.select(["address"], {});
+                        alert(JSON.stringify(contacts));
                         if (contacts.length && contacts[0].address.length && contacts[0].address[0].addressLine.length) {
                             e.target.value = contacts[0].address[0].addressLine.replace("\n", ", ");
-                        } else {
-                            e.target.value = "";
                         }
-                    } else {
-                        e.target.value = "";
                     }
                 }
                 if (document.getElementById("to").value) {
