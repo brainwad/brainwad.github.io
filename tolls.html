@@ -93,10 +93,8 @@
                 <datalist id="to_address">
                     <option>from contacts...</option>
                 </datalist>
-                <label>from: <input id="from" list="from_address" autocomplete="on" placeholder="current location"
-                        onfocus="this.value=''; this.placeholder='current location'"></label>
-                <label>to: <input id="to" list="to_address" autocomplete="on"
-                        onfocus="this.value=''; this.placeholder=''"></label>
+                <label>from: <input id="from" list="from_address" autocomplete="on" placeholder="current location"></label>
+                <label>to: <input id="to" list="to_address" autocomplete="on"></label>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
                 <input type="button" value="✕" onclick="stop();">
@@ -123,13 +121,12 @@
             if (!(e instanceof InputEvent) || e.inputType == "insertReplacementText") {
                 if (e.target.id == "from" && e.data == "current location") {
                     e.target.value = "";
-                } else if (e.target.value == "from contacts...") {
+                } else if (e.data == "from contacts...") {
                     e.target.value = "";
                     if ('contacts' in navigator &&
                         'ContactsManager' in window &&
                         (await navigator.contacts.getProperties()).includes("address")) {
                         const contacts = await navigator.contacts.select(["address"], {});
-                        alert(JSON.stringify(contacts));
                         if (contacts.length && contacts[0].address.length && contacts[0].address[0].addressLine.length) {
                             e.target.value = contacts[0].address[0].addressLine.map((x) => x.replaceAll("\n", ", ")).join(", ");
                         }
