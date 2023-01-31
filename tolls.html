@@ -119,9 +119,9 @@
         document.getElementById("to").addEventListener("keypress", handle_enter);
         var handle_input = async (e) => {
             if (!(e instanceof InputEvent) || e.inputType == "insertReplacementText") {
-                if (e.target.id == "from" && e.data == "current location") {
+                if (e.target.id == "from" && e.target.value == "current location") {
                     e.target.value = "";
-                } else if (e.data == "from contacts...") {
+                } else if (e.target.value == "from contacts...") {
                     e.target.value = "";
                     if ('contacts' in navigator &&
                         'ContactsManager' in window &&
