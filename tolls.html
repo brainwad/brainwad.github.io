@@ -120,10 +120,10 @@
         document.getElementById("from").addEventListener("keypress", handle_enter);
         document.getElementById("to").addEventListener("keypress", handle_enter);
         var handle_input = async (e) => {
-            if (e.inputType == "insertReplacementText") {
+            if (!(e instanceof InputEvent) || e.inputType == "insertReplacementText") {
                 if (e.target.id == "from" && e.data == "current location") {
                     e.target.value = "";
-                } else if (e.data == "from contacts...") {
+                } else if (e.target.value == "from contacts...") {
                     if ('contacts' in navigator &&
                         'ContactsManager' in window &&
                         (await navigator.contacts.getProperties()).includes("address")) {
