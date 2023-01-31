@@ -383,41 +383,41 @@
                         break;
                     case "Cross City Tunnel":
                         if (road.exit == "Cahill Expy") {
-                            road.toll = 2.86;
+                            road.toll = 3.07;
                         } else {
-                            road.toll = 6.06;
+                            road.toll = 6.50;
                         }
                         break;
                     case "Eastern Distributor":
-                        road.toll = 8.56;
+                        road.toll = 8.94;
                         break;
                     case "Falcon St (ramp)":
-                        road.toll = 1.76
+                        road.toll = 1.89;
                         break;
                     case "Lane Cove Tunnel":
-                        road.toll = 3.52;
+                        road.toll = 3.77;
                         break;
                     case "M2 Hills Mtwy":
                         if (["Westlink M7", "Abbot Rd", "Old Windsor Rd"].includes(road.entry) && road.exit == "Windsor Rd") {
-                            road.toll = 2.99
+                            road.toll = 3.20;
                         } else if (["Westlink M7", "Abbot Rd", "Old Windsor Rd"].includes(road.exit) && road.entry == "Windsor Rd") {
-                            road.toll = 2.99
+                            road.toll = 3.20;
                         } else if (["Westlink M7", "Abbot Rd", "Old Windsor Rd", "Windsor Rd"].includes(road.entry) && road.exit == "Cumberland Hwy") {
-                            road.toll = 4.22
+                            road.toll = 4.53;
                         } else if (["Westlink M7", "Abbot Rd", "Old Windsor Rd", "Windsor Rd"].includes(road.exit) && road.entry == "Cumberland Hwy") {
-                            road.toll = 4.22
+                            road.toll = 4.53;
                         } else if (["Westlink M7", "Abbot Rd", "Old Windsor Rd", "Windsor Rd"].includes(road.entry) && road.exit == "Northconnex") {
-                            road.toll = 4.22
+                            road.toll = 4.53;
                         } else if (["Westlink M7", "Abbot Rd", "Old Windsor Rd", "Windsor Rd"].includes(road.exit) && road.entry == "Northconnex") {
-                            road.toll = 4.22
+                            road.toll = 4.53;
                         } else if (["Delhi Rd, Lane Cove Tunnel"].includes(road.exit) && road.entry == "Lane Cove Rd") {
-                            road.toll = 2.50
+                            road.toll = 2.68;
                         } else if (["Delhi Rd, Lane Cove Tunnel, Lane Cove Rd"].includes(road.entry) && road.exit == "Talavera Rd") {
-                            road.toll = 4.22
+                            road.toll = 4.52;
                         } else if (["Delhi Rd, Lane Cove Tunnel, Lane Cove Rd"].includes(road.exit) && road.entry == "Christie Rd") {
-                            road.toll = 4.22
+                            road.toll = 4.52;
                         } else {
-                            road.toll = 8.45
+                            road.toll = 9.05;
                         }
                         break;
                     case "M5 East Fwy":
@@ -425,61 +425,61 @@
                             case "South Western Mtwy":
                             case "King Georges Rd":
                                 switch (road.exit) {
-                                    case "Bexley Rd": road.toll = 3.16; break;
-                                    case "Princes Hwy": road.toll = 5.97; break;
-                                    case "Marsh St": road.toll = 6.13; break;
-                                    default: road.toll = 7.23; break;
+                                    case "Bexley Rd": road.toll = 3.49; break;
+                                    case "Princes Hwy": road.toll = 6.59; break;
+                                    case "Marsh St": road.toll = 6.77; break;
+                                    default: road.toll = 7.98; break;
                                 }
                                 break;
                             case "Kingsgrove Rd":
                                 switch (road.exit) {
-                                    case "Princes Hwy": road.toll = 4.77; break;
-                                    case "Marsh St": road.toll = 4.93; break;
-                                    default: road.toll = 6.06; break;
+                                    case "Princes Hwy": road.toll = 5.27; break;
+                                    case "Marsh St": road.toll = 5.45; break;
+                                    default: road.toll = 6.69; break;
                                 }
                                 break;
                             case "Bexley Rd":
-                                road.toll = 3.16;
+                                road.toll = 3.49;
                                 break;
                             case "Princes Hwy":
                                 switch (road.exit) {
-                                    case "Kingsgrove Rd": road.toll = 4.77; break;
-                                    default: road.toll = 5.97; break;
+                                    case "Kingsgrove Rd": road.toll = 5.45; break;
+                                    default: road.toll = 6.77; break;
                                 }
                                 break;
                             case "Marsh St":
                                 switch (road.exit) {
-                                    case "Kingsgrove Rd": road.toll = 4.93; break;
-                                    default: road.toll = 6.13; break;
+                                    case "Kingsgrove Rd": road.toll = 5.45; break;
+                                    default: road.toll = 6.77; break;
                                 }
                                 break;
                             case "M5 East Fwy":
                                 switch (road.exit) {
-                                    case "Kingsgrove Rd": road.toll = 6.06; break;
-                                    default: road.toll = 7.23; break;
+                                    case "Kingsgrove Rd": road.toll = 6.69; break;
+                                    default: road.toll = 7.98; break;
                                 }
                                 break;
                             default:
-                                road.toll = 7.23;
+                                road.toll = 7.98;
                         }
                         break;
                     case "Northconnex":
-                        road.toll = 8.44;
+                        road.toll = 9.06;
                         break;
                     case "South Western Mtwy":
-                        road.toll = 4.97;
+                        road.toll = 5.32;
                         break;
                     case "Sydney Harbour Tunnel":
                         road.toll = 4;
                         break;
                     case "Westconnex M4":
-                        road.toll = Math.min(8.87, 1.48 + 0.0005477 * road.distance)
+                        road.toll = Math.min(9.41, 1.57 + 0.0005814 * road.distance)
                         break;
                     case "Westconnex M8":
-                        road.toll = 7.52;
+                        road.toll = 7.98;
                         break;
                     case "Westlink M7":
-                        road.toll = Math.min(8.59, .0004293 * road.distance)
+                        road.toll = Math.min(9.21, .0004606 * road.distance)
                         break;
                 }
                 if (road.toll) {
