@@ -1,0 +1,4743 @@
+{
+  "motorways": [
+    {
+      "motorwayRef": "NCX",
+      "motorwayName": "NorthConnex",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "NXTP1",
+          "gantryName": "NXTP1 (TP1A) – M2 to NCX",
+          "motorwayRef": "NCX",
+          "motorwayName": "NorthConnex",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.758044,
+          "longitude": 151.048115,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 906
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 2717
+            }
+          ]
+        },
+        {
+          "gantryRef": "NXTP4",
+          "gantryName": "NXTP4 (TP1B) – PHR to NCX",
+          "motorwayRef": "NCX",
+          "motorwayName": "NorthConnex",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.756056,
+          "longitude": 151.047986,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 906
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 2717
+            }
+          ]
+        },
+        {
+          "gantryRef": "NXTP2",
+          "gantryName": "NXTP2 (TP2A) – NCX to M2",
+          "motorwayRef": "NCX",
+          "motorwayName": "NorthConnex",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.759454,
+          "longitude": 151.04636,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 906
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 2717
+            }
+          ]
+        },
+        {
+          "gantryRef": "NXTP3",
+          "gantryName": "NXTP3 (TP2B) – NCX to PHR",
+          "motorwayRef": "NCX",
+          "motorwayName": "NorthConnex",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.756122,
+          "longitude": 151.04844,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 906
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 2717
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "LCT",
+      "motorwayName": "Lane Cove Tunnel",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "FLW",
+          "gantryName": "FLW - Falcon St NB/LCT WB",
+          "motorwayRef": "LCT",
+          "motorwayName": "Lane Cove Tunnel",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8286,
+          "longitude": 151.214,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 189
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 636
+            }
+          ]
+        },
+        {
+          "gantryRef": "FSB/FNB",
+          "gantryName": "FSB/FNB - Falcon St Southbound Exit and Northbound Entry Ramp",
+          "motorwayRef": "LCT",
+          "motorwayName": "Lane Cove Tunnel",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8285,
+          "longitude": 151.215,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 189
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 636
+            }
+          ]
+        },
+        {
+          "gantryRef": "LCE/W-1",
+          "gantryName": "LCE-1 - Lane Cove Tunnel Eastbound and Westbound",
+          "motorwayRef": "LCT",
+          "motorwayName": "Lane Cove Tunnel",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8017,
+          "longitude": 151.145,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 377
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1272
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "CCT",
+      "motorwayName": "Cross City Tunnel",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "CCT-001/2",
+          "gantryName": "CCT-001/2 - Eastbound and Westbound Mainline",
+          "motorwayRef": "CCT",
+          "motorwayName": "Cross City Tunnel",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8743,
+          "longitude": 151.21,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 650
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1300
+            }
+          ]
+        },
+        {
+          "gantryRef": "CCT-003",
+          "gantryName": "CCT-003 - Sir John Young Crescent",
+          "motorwayRef": "CCT",
+          "motorwayName": "Cross City Tunnel",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8706,
+          "longitude": 151.217,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 307
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 613
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "ED",
+      "motorwayName": "Eastern Distributor",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "ED-A/B",
+          "gantryName": "ED-A/B - Main Plaza (Woolloomooloo)",
+          "motorwayRef": "ED",
+          "motorwayName": "Eastern Distributor",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8695,
+          "longitude": 151.218,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 894
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1788
+            }
+          ]
+        },
+        {
+          "gantryRef": "ED-C",
+          "gantryName": "ED-C - William Street Ramp",
+          "motorwayRef": "ED",
+          "motorwayName": "Eastern Distributor",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.8755,
+          "longitude": 151.217,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 894
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1788
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "M2",
+      "motorwayName": "Hills M2",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "M2-1A/2B/1C",
+          "gantryName": "M2-1A/2B/1C - North Ryde Plaza",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.7672,
+          "longitude": 151.114,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 905
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 2717
+            }
+          ]
+        },
+        {
+          "gantryRef": "M2-2A/B",
+          "gantryName": "M2-2A/B - Pennant Hills Rd Ramp",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.7591,
+          "longitude": 151.046,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 453
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1359
+            }
+          ]
+        },
+        {
+          "gantryRef": "M2-3A",
+          "gantryName": "M2-3A - Christie Road",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.7731,
+          "longitude": 151.121,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 452
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1359
+            }
+          ]
+        },
+        {
+          "gantryRef": "M2-3B",
+          "gantryName": "M2-3B - Herring Road",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.7746,
+          "longitude": 151.123,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 452
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1359
+            }
+          ]
+        },
+        {
+          "gantryRef": "M2-4A/B",
+          "gantryName": "M2-4A/B - Windsor Road",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.7683,
+          "longitude": 150.997,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 320
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 961
+            }
+          ]
+        },
+        {
+          "gantryRef": "M2-5A",
+          "gantryName": "M2 - Lane Cove Road",
+          "motorwayRef": "M2",
+          "motorwayName": "Hills M2",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.782046,
+          "longitude": 151.133615,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 268
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 804
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "M5",
+      "motorwayName": "M5 South-West",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Fixed",
+      "gantries": [
+        {
+          "gantryRef": "M5-HV1-12",
+          "gantryName": "M5-HV 01 to 12 - Hammondville Main Plaza",
+          "motorwayRef": "M5",
+          "motorwayName": "M5 South-West",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.9473,
+          "longitude": 150.9659,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 532
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1595
+            }
+          ]
+        },
+        {
+          "gantryRef": "M5-HL21-24",
+          "gantryName": "M5-HL 21 to 24 - Henry Lawson Drive",
+          "motorwayRef": "M5",
+          "motorwayName": "M5 South-West",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.9444,
+          "longitude": 150.985,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 532
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1595
+            }
+          ]
+        },
+        {
+          "gantryRef": "M5-RR31-34",
+          "gantryName": "M5-RR 31 to 34 - River Rd",
+          "motorwayRef": "M5",
+          "motorwayName": "M5 South-West",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.9412,
+          "longitude": 151.019,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 532
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1595
+            }
+          ]
+        },
+        {
+          "gantryRef": "M5-FR41-44",
+          "gantryName": "M5-FR 41 to 44 - Fairford Rd",
+          "motorwayRef": "M5",
+          "motorwayName": "M5 South-West",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Fixed",
+          "latitude": -33.9405,
+          "longitude": 151.036,
+          "charges": [
+            {
+              "vehicleClass": "A",
+              "chargeInCents": 532
+            },
+            {
+              "vehicleClass": "B",
+              "chargeInCents": 1595
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "M7",
+      "motorwayName": "M7",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Distance",
+      "gantries": [
+        {
+          "gantryRef": "M7-1A/1B",
+          "gantryName": "M7-1A/B - M5 Interchange",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.9432,
+          "longitude": 150.878,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 913
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2739
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 851
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2553
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 684
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2052
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 496
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1488
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 249
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 747
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 145
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 435
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-2A/B/C/D",
+          "gantryName": "M7-2A/B/C/D - Bernera Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.9331,
+          "longitude": 150.869,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 768
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2304
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 706
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2118
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 539
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1617
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 351
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1053
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 104
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 312
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 145
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 435
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-3A/B/C/D",
+          "gantryName": "M7-3A/B/C/D - Cowpasture Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.9189,
+          "longitude": 150.853,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 877
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2631
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 664
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1992
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 602
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1806
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 435
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1305
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 247
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 741
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 104
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 312
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 249
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 747
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-4A/B/C/D",
+          "gantryName": "M7-4A/B/C/D - Elizabeth Dve",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8772,
+          "longitude": 150.843,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 247
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 741
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 351
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1053
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 496
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1488
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-4B",
+          "gantryName": "M7-4B - Villers Road Entry",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8704,
+          "longitude": 150.846,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 713
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2139
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 572
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1716
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 358
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1074
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 296
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 888
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 129
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 387
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-5A/B/C/D",
+          "gantryName": "M7-5A/B/C/D - Horsley Dve",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8423,
+          "longitude": 150.855,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 889
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2667
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 584
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1752
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 443
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1329
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 229
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 687
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 167
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 501
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 188
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 564
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 435
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1305
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 539
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1617
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 684
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2052
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-6A/B/C/D",
+          "gantryName": "M7-6A/B/C/D - Old Wallgrove Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.813,
+          "longitude": 150.852,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 821
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2463
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 723
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2169
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 417
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1251
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 276
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 828
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 62
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 186
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 167
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 501
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 355
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1065
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 602
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1806
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 706
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2118
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 851
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2553
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-7A/B/C/D",
+          "gantryName": "M7-7A/B/C/D - M4 Interchange",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.798,
+          "longitude": 150.854,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 906
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2718
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 759
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2277
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 661
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1983
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 355
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1065
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 214
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 642
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 62
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 186
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 229
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 687
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 417
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1251
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 664
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1992
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 768
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2304
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 913
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2739
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-8A/B",
+          "gantryName": "M7-8A/B - Great Western Hwy",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7899,
+          "longitude": 150.856,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 860
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2580
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 713
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2139
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 615
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1845
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 310
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 930
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9A/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 168
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 504
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-9A/D",
+          "gantryName": "M7-9A/D - Woodstock Ave",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7626,
+          "longitude": 150.847,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 168
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 504
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 214
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 642
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 276
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 828
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 443
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1329
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 631
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1893
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 877
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2631
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-9B/C",
+          "gantryName": "M7-9B/C - Power St",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7507,
+          "longitude": 150.846,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 649
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1947
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 502
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1506
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 403
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1209
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 98
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 294
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-10A/B/C/D",
+          "gantryName": "M7-10A/B/C/D - Richmond Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7332,
+          "longitude": 150.85,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 551
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1653
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 404
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1212
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 305
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 915
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9B/C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 98
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 294
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 310
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 930
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 355
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1065
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 417
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1251
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 584
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1752
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 772
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2316
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-11A/B",
+          "gantryName": "M7-11A/B - Quakers Hill Pwy",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.734,
+          "longitude": 150.878,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 433
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1299
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 286
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 858
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 188
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 564
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-12A/B",
+          "gantryName": "M7-12A/B - Sunnyholt Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7387,
+          "longitude": 150.919,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 245
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 735
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-13A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 99
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 297
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-11A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 188
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 564
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 305
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 915
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9B/C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 403
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1209
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 615
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1845
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 661
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1983
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 723
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2169
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 889
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2667
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-13A/B",
+          "gantryName": "M7-13A/B - Norwest Blvd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7444,
+          "longitude": 150.937,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 99
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 297
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-11A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 286
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 858
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 404
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1212
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9B/C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 502
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1506
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 713
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2139
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 759
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2277
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 821
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2463
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-14A/B",
+          "gantryName": "M7-14A/B - Old Windsor Rd",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7571,
+          "longitude": 150.957,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-15A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 79
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 237
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "M7-15A/B",
+          "gantryName": "M7-15A/B - M2 Interchange",
+          "motorwayRef": "M7",
+          "motorwayName": "M7",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.7642,
+          "longitude": 150.963,
+          "exitGantries": [
+            {
+              "gantryRef": "M7-14A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 79
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 237
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-12A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 245
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 735
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-11A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 433
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1299
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-10A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 551
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1653
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-9B/C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 649
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1947
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 860
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2580
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-7A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 906
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2718
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-6A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-5A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-4A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-3A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-2A/B/C/D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-1A/1B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 921
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2763
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "SHB",
+      "motorwayName": "Sydney Harbour Bridge",
+      "motorwayProvider": "E-Toll",
+      "chargeType": "TimeofDay",
+      "gantries": [
+        {
+          "gantryRef": "SHMILS",
+          "gantryName": "SHMILS - Bridge (Milsons Point)",
+          "motorwayRef": "SHB",
+          "motorwayName": "Sydney Harbour Bridge",
+          "motorwayProvider": "E-Toll",
+          "chargeType": "TimeofDay",
+          "latitude": -33.8454,
+          "longitude": 151.212,
+          "charges": [
+            {
+              "startTime": "0000",
+              "endTime": "0630",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0630",
+              "endTime": "0930",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 400
+            },
+            {
+              "startTime": "0930",
+              "endTime": "1600",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 300
+            },
+            {
+              "startTime": "1600",
+              "endTime": "1900",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 400
+            },
+            {
+              "startTime": "1900",
+              "endTime": "2400",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0000",
+              "endTime": "0800",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0800",
+              "endTime": "2000",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 300
+            },
+            {
+              "startTime": "2000",
+              "endTime": "2400",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 250
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "SHT",
+      "motorwayName": "Sydney Harbour Tunnel",
+      "motorwayProvider": "E-Toll",
+      "chargeType": "TimeofDay",
+      "gantries": [
+        {
+          "gantryRef": "SHTUN",
+          "gantryName": "SHTUN - Tunnel Nth (Sydney)",
+          "motorwayRef": "SHT",
+          "motorwayName": "Sydney Harbour Tunnel",
+          "motorwayProvider": "E-Toll",
+          "chargeType": "TimeofDay",
+          "latitude": -33.8404,
+          "longitude": 151.211,
+          "charges": [
+            {
+              "startTime": "0000",
+              "endTime": "0630",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0630",
+              "endTime": "0930",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 400
+            },
+            {
+              "startTime": "0930",
+              "endTime": "1600",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 300
+            },
+            {
+              "startTime": "1600",
+              "endTime": "1900",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 400
+            },
+            {
+              "startTime": "1900",
+              "endTime": "2400",
+              "dayOfWeek": "WEEKDAY",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0000",
+              "endTime": "0800",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 250
+            },
+            {
+              "startTime": "0800",
+              "endTime": "2000",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 300
+            },
+            {
+              "startTime": "2000",
+              "endTime": "2400",
+              "dayOfWeek": "WEEKEND",
+              "chargeInCents": 250
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "motorwayRef": "WCX",
+      "motorwayName": "WestConnex (M4, M5, M8)",
+      "motorwayProvider": "Transurban Linkt",
+      "chargeType": "Distance",
+      "gantries": [
+        {
+          "gantryRef": "TP01B",
+          "gantryName": "M4 Mainline (Church St)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.82729,
+          "longitude": 151.00338
+        },
+        {
+          "gantryRef": "TP01A",
+          "gantryName": "M4 Mainline (Church St)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.82712,
+          "longitude": 151.00334,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 941
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2824
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 941
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2824
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP23A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 726
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2179
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP12",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 588
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1765
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP09",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 487
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1460
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP05",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 416
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1247
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP02A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 266
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 797
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP02B",
+          "gantryName": "James Ruse Drive",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.82879,
+          "longitude": 151.02027,
+          "exitGantries": [
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 266
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 797
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP02A",
+          "gantryName": "James Ruse Drive",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.82875,
+          "longitude": 151.02021
+        },
+        {
+          "gantryRef": "TP03",
+          "gantryName": "James Ruse Drive",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.83102,
+          "longitude": 151.02095,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 833
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2498
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 833
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2498
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP23A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 617
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1852
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP12",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 480
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1439
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP09",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 378
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1134
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP05",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 307
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 921
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP04",
+          "gantryName": "James Ruse Drive",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.83177,
+          "longitude": 151.02045
+        },
+        {
+          "gantryRef": "TP05",
+          "gantryName": "Silverwater Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.84162,
+          "longitude": 151.04231
+        },
+        {
+          "gantryRef": "TP06",
+          "gantryName": "Silverwater Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.84198,
+          "longitude": 151.04181,
+          "exitGantries": [
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 307
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 921
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 416
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1247
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP07",
+          "gantryName": "Silverwater Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.84286,
+          "longitude": 151.04498,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1091
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3272
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 683
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2048
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 683
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2048
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP23A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 467
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1402
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP12",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 330
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 989
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP09",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 228
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 684
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP08",
+          "gantryName": "Silverwater Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.84387,
+          "longitude": 151.04536
+        },
+        {
+          "gantryRef": "TP09",
+          "gantryName": "Hill Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.84897,
+          "longitude": 151.05312
+        },
+        {
+          "gantryRef": "TP10",
+          "gantryName": "Hill Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8513,
+          "longitude": 151.05644,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1020
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3059
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 612
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1835
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 612
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1835
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP23A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 397
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1190
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP12",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 259
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 776
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP11",
+          "gantryName": "Hill Road",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.85116,
+          "longitude": 151.05469,
+          "exitGantries": [
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 228
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 684
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 378
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1134
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 487
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1460
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP12",
+          "gantryName": "Homebush Bay Drive",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.85628,
+          "longitude": 151.0689
+        },
+        {
+          "gantryRef": "TP13",
+          "gantryName": "Homebush Bay Drive (N/B)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8569,
+          "longitude": 151.06794,
+          "exitGantries": [
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 330
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 989
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 480
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1439
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 588
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1765
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP14B",
+          "gantryName": "Homebush Bay Drive (S/B)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.85674,
+          "longitude": 151.06798,
+          "exitGantries": [
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 330
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 989
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 480
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1439
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 588
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1765
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP21",
+          "gantryName": "Homebush Bay Dr",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.85706,
+          "longitude": 151.07322,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 918
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2754
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 510
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1530
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 510
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1530
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP23A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 295
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 884
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP22",
+          "gantryName": "Homebush Bay Dr",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.85803,
+          "longitude": 151.07244
+        },
+        {
+          "gantryRef": "TP23B",
+          "gantryName": "Concord/Strath",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.86328,
+          "longitude": 151.08482,
+          "exitGantries": [
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 295
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 884
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 467
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1402
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 617
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1852
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 726
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2179
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP23A",
+          "gantryName": "Concord/Strath",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.86321,
+          "longitude": 151.08487
+        },
+        {
+          "gantryRef": "TP24B",
+          "gantryName": "Concord/Strath",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.86429,
+          "longitude": 151.09354
+        },
+        {
+          "gantryRef": "TP24A",
+          "gantryName": "Concord/Strath",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.86415,
+          "longitude": 151.09354,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 780
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2341
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP25A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 372
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1116
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP26A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 372
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1116
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP25B",
+          "gantryName": "Haberfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.87548,
+          "longitude": 151.13458,
+          "exitGantries": [
+            {
+              "gantryRef": "TP24B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 372
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1116
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 510
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1530
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 683
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2048
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 833
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2498
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 941
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2824
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP25A",
+          "gantryName": "Haberfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.8752,
+          "longitude": 151.13431
+        },
+        {
+          "gantryRef": "TP26B",
+          "gantryName": "Ashfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.88083,
+          "longitude": 151.13174,
+          "exitGantries": [
+            {
+              "gantryRef": "TP24B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 372
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1116
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 510
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1530
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 683
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2048
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 833
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2498
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 941
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2824
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP26A",
+          "gantryName": "Ashfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.88071,
+          "longitude": 151.13201
+        },
+        {
+          "gantryRef": "TP31A",
+          "gantryName": "Haberfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.87516,
+          "longitude": 151.13462,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP39A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 565
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1695
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP31B",
+          "gantryName": "Haberfield",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.87524,
+          "longitude": 151.13471
+        },
+        {
+          "gantryRef": "TP39A",
+          "gantryName": "St Peters",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.91316,
+          "longitude": 151.18055
+        },
+        {
+          "gantryRef": "TP39B",
+          "gantryName": "St Peters",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.91306,
+          "longitude": 151.18028,
+          "exitGantries": [
+            {
+              "gantryRef": "TP31B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 565
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1695
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP24B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 780
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2341
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 918
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2754
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1091
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3272
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP46B",
+          "gantryName": "King Georges Rd (M5E)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.94268,
+          "longitude": 151.07795,
+          "exitGantries": [
+            {
+              "gantryRef": "TP44A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 349
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1047
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP43",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 659
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1978
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 677
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2030
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP41A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP31B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP24B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP46A",
+          "gantryName": "King Georges Rd (M5E Mainline)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.94285,
+          "longitude": 151.07818,
+          "exitGantries": [
+            {
+              "gantryRef": "TP44A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 349
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1047
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP43",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 659
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1978
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 677
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2030
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP41A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP31B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP24B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP22",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP08",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP04",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP01B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 1111
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 3332
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP46C",
+          "gantryName": "King Georges Rd (M5E Mainline)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.94293,
+          "longitude": 151.07821
+        },
+        {
+          "gantryRef": "TP46D",
+          "gantryName": "King Georges Rd (M5E)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.94314,
+          "longitude": 151.07838
+        },
+        {
+          "gantryRef": "TP45A",
+          "gantryName": "Kingsgrove Rd (M5E) Entry",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93737,
+          "longitude": 151.10292,
+          "exitGantries": [
+            {
+              "gantryRef": "TP43",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 527
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1581
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 545
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1635
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP42A",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 669
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2007
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP45B",
+          "gantryName": "Kingsgrove Rd (M5E) Exit",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93753,
+          "longitude": 151.10301
+        },
+        {
+          "gantryRef": "TP44B",
+          "gantryName": "Bexley Rd (M5E)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93647,
+          "longitude": 151.10938,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 349
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1047
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 349
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1047
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP44A",
+          "gantryName": "Bexley Rd (M5E)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93622,
+          "longitude": 151.10928
+        },
+        {
+          "gantryRef": "TP43",
+          "gantryName": "Princes Highway (M5E)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93612,
+          "longitude": 151.14935
+        },
+        {
+          "gantryRef": "TP42A",
+          "gantryName": "General Holmes Drive (M5W Mainline)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93844,
+          "longitude": 151.15391
+        },
+        {
+          "gantryRef": "TP42C",
+          "gantryName": "General Holmes Drive (M5W Mainline)",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93848,
+          "longitude": 151.15384,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP45B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 669
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2007
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP42B",
+          "gantryName": "Marsh St",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93715,
+          "longitude": 151.15244
+        },
+        {
+          "gantryRef": "TP42D",
+          "gantryName": "Marsh St",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.93741,
+          "longitude": 151.15221,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 677
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2030
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 677
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2030
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP45B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 545
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 1635
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "gantryRef": "TP41A",
+          "gantryName": "St Peters (M8) Exit",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.91577,
+          "longitude": 151.17522
+        },
+        {
+          "gantryRef": "TP41B",
+          "gantryName": "St Peters (M8) Entry",
+          "motorwayRef": "WCX",
+          "motorwayName": "WestConnex (M4, M5, M8)",
+          "motorwayProvider": "Transurban Linkt",
+          "chargeType": "Distance",
+          "latitude": -33.91602,
+          "longitude": 151.17541,
+          "exitGantries": [
+            {
+              "gantryRef": "TP46C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            },
+            {
+              "gantryRef": "TP46D",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 798
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 2395
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
