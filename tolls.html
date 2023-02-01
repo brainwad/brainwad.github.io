@@ -426,7 +426,7 @@
                 // fix broken names
                 if (link.roadName == "Light Horse Intr" || link.roadName == "M7 Cycleway") {
                     link.roadName = "Westlink M7";
-                } else if (link.roadName == "M4 East" || link.roadName == "Western Mtwy") {
+                } else if (link.roadName == "M4 East" || (link.flags.includes("tollroad") && link.roadName == "Western Mtwy")) {
                     link.roadName = "Westconnex M4";
                 } else if (link.roadName == "High St" && current_toll_road && current_toll_road.name == "Cahill Expy") {
                     link.roadName = "Cahill Expy";
