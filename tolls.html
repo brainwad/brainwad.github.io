@@ -727,7 +727,7 @@
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
-                document.removeChild(a);
+                document.body.removeChild(a);
             }
             li.innerHTML += 
                 `${(route.summary.trafficTime / 60).toFixed(0)}′ ` +
