@@ -113,6 +113,7 @@
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js-colormaps.js"></script>
+    <script src='togpx.js'></script>
     <script>
         // From https://opendata.transport.nsw.gov.au/node/7407/exploreapi#!/pricing/getData. Cannot be loaded on the fly due to CORS :(
         var toll_data;
@@ -160,6 +161,7 @@
         var to;
         var bounding_box;
         var routes = [];
+        var frontier_routes = [];
         var tried_avoids = [];
         var pending_requests = [];
         var pending_timeouts = [];
@@ -660,7 +662,7 @@
         function render_efficient_frontier() {
             var fastest_time = 0;
             var max_money_cost = 1000000;
-            var frontier_routes = []
+            frontier_routes = []
             for (route of routes) {
                 route.fuel_cost = route.fuel * document.getElementById("fuel-cost").valueAsNumber;
                 route.time_cost = route.summary.trafficTime / 3600 * document.getElementById("hour-cost").valueAsNumber;
@@ -711,10 +713,34 @@
         }
 
         function render_result(route) {
-            document.getElementById("results").innerHTML += `<li class=rank${route.cost_rank} style="color: ${route.color}">${(route.summary.trafficTime / 60).toFixed(0)}′ (${route.summary.baseTime > route.summary.trafficTime ? "" : "+"}${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · $${(route.money_cost).toFixed(2)} · ${(route.summary.distance / 1000).toFixed(1)}km · ${route.fuel.toFixed(2)}L<br>via ${route.label.join(", ")}`
-                + `<br><small>${(route.toll ? route.toll_roads : [])
+            var li = document.createElement("li");
+            li.className = `rank${route.cost_rank}`;
+            li.style = `color: ${route.color}`;
+            li.onclick = () => {
+                const gpx = togpx(new H.geo.LineString(route.shape).toGeoJSON());
+                const blob = new Blob([gpx], {type: "application/gpx+xml"});
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'route.gpx';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.removeChild(a);
+            }
+            li.innerHTML += 
+                `${(route.summary.trafficTime / 60).toFixed(0)}′ ` +
+                `(${route.summary.baseTime > route.summary.trafficTime ? "" : "+"}` +
+                `${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · ` +
+                `$${(route.money_cost).toFixed(2)} · ` +
+                `${(route.summary.distance / 1000).toFixed(1)}km · ` +
+                `${route.fuel.toFixed(2)}L<br>via ${route.label.join(", ")}` +
+                `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
-                    .map(x => `${is_fixed_rate_tollway(x.name) ? x.name : [x.entry, x.name, x.exit].join(" › ")} · \$${x.toll.toFixed(2)}`).join("<br>")}</small></li>`
+                    .map(x => `${is_fixed_rate_tollway(x.name) ? x.name : [x.entry, x.name, x.exit].join(" › ")} · ` +
+                `\$${x.toll.toFixed(2)}`).join("<br>")}</small>`
+            document.getElementById("results").appendChild(li);
         }
 
         function render_graph(frontier_routes, best_route) {
