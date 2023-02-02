@@ -166,6 +166,7 @@
         var pending_requests = [];
         var pending_timeouts = [];
         var successful_requests = 0;
+        var start_time;
 
         var stop = function () {
             var requests_to_cancel = pending_requests.slice()
@@ -192,6 +193,7 @@
             document.getElementById("graph").style = "display: none";
             map.removeObjects(map.getObjects());
             bounding_box = null;
+            start_time = new Date();
 
             continuation = function () {
                 searchService.autosuggest({ q: document.getElementById("from").value, at: '-33.85,151' }, (result) => {
@@ -420,7 +422,6 @@
             var last_roadName;
             var current_toll_road = null;
             var mid_toll_split = false;
-            var start_time = new Date();
             for (var link of route.leg[0].link) {
                 if (!link.flags) {
                     link.flags = []
@@ -723,7 +724,8 @@
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = 'route.gpx';
+                a.download = `route-${start_time.toISOString().replaceAll(/[:-T]/g, '').slice(0, 14)}-` +
+                    `${Array.from(frontier_routes.entries()).filter(([i, r]) => r == route)[0][0]}.gpx`;
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
