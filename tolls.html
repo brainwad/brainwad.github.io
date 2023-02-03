@@ -143,7 +143,10 @@
         document.getElementById("from").addEventListener("input", handle_input);
         document.getElementById("to").addEventListener("input", handle_input);
 
-        var platform = new H.service.Platform({ 'apikey': 'FQjeRTZuEwVJJVdKqIAMIbOZyg1qNcEKu6IsYbtCsGs' });
+        while (!localStorage.getItem("HERE_API_KEY")) {
+            localStorage.setItem("HERE_API_KEY", prompt("(Required) HERE Maps API Key:"))
+        }
+        var platform = new H.service.Platform({ 'apikey': localStorage.getItem("HERE_API_KEY") });
         var maptypes = platform.createDefaultLayers();
         var map = new H.Map(
             document.getElementById('map'),
