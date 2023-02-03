@@ -144,7 +144,10 @@
         document.getElementById("to").addEventListener("input", handle_input);
 
         while (!localStorage.getItem("HERE_API_KEY")) {
-            localStorage.setItem("HERE_API_KEY", prompt("(Required) HERE Maps API Key:"))
+            var input = prompt("(Required) HERE Maps API Key:");
+            if (input) {
+                localStorage.setItem("HERE_API_KEY", input);
+            }
         }
         var platform = new H.service.Platform({ 'apikey': localStorage.getItem("HERE_API_KEY") });
         var maptypes = platform.createDefaultLayers();
