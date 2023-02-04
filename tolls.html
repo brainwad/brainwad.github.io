@@ -263,8 +263,8 @@
                                         request.avoid = pending_requests[i].avoid;
                                         pending_requests[i] = request;
                                     }
-                                }, 1000 * Math.pow(2, r.retries)));
-                                console.log("retrying after", Math.pow(2, r.retries), "seconds:", r)
+                                }, 1000 * (r.retries + 1)));
+                                console.log("retrying after", r.retries + 1, "seconds:", r)
                                 break;
                             }
                         }
