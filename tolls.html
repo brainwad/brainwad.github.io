@@ -143,6 +143,21 @@
         document.getElementById("from").addEventListener("input", handle_input);
         document.getElementById("to").addEventListener("input", handle_input);
 
+        function set_value_from_local_storage(id) {
+            if (localStorage.getItem("tolls-" + id)) {
+                document.getElementById(id).value = localStorage.getItem("tolls-" + id);
+            }
+        }
+        function save_value_to_local_storage(e) {
+            if (e.target.value) {
+                localStorage.setItem("tolls-" + e.target.id, e.target.value);
+            }
+        }
+        set_value_from_local_storage("hour-cost");
+        set_value_from_local_storage("fuel-cost");
+        document.getElementById("hour-cost").addEventListener("change", save_value_to_local_storage)
+        document.getElementById("fuel-cost").addEventListener("change", save_value_to_local_storage)
+
         while (!localStorage.getItem("HERE_API_KEY")) {
             var input = prompt("(Required) HERE Maps API Key:");
             if (input) {
