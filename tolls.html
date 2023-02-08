@@ -660,7 +660,7 @@
                     current_toll_road.links.push(link);
                     current_toll_road.distance += link.length;
                     // fill road name if not yet seen (because prior links had no name)
-                    if (link.roadName && link.roadName != current_toll_road.entry && !current_toll_road.name) {
+                    if (link.roadName && !current_toll_road.name) {
                         current_toll_road.name = link.roadName;
                     }
                 }
