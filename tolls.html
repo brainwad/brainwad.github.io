@@ -117,6 +117,11 @@
         // From https://opendata.transport.nsw.gov.au/node/7407/exploreapi#!/pricing/getData. Cannot be loaded on the fly due to CORS :(
         var toll_data;
         fetch("./tolls.json").then(async (r) => toll_data = await r.json());
+
+        // Hard-coded values for M4-M8 tunnel
+        const m4_m8_tunnel_time = 600;
+        const m4_m8_tunnel_length = 9000;
+
         var handle_enter = ({ key }) => { if (key === "Enter" && document.getElementById("to").value) { stop(); go(); } }
         document.getElementById("from").addEventListener("keypress", handle_enter);
         document.getElementById("to").addEventListener("keypress", handle_enter);
@@ -176,6 +181,9 @@
             });
         var searchService = platform.getSearchService();
         var routingService = platform.getRoutingService();
+        var matrixUrl = routingService.getUrl().clone();
+        matrixUrl.setHost("matrix." + matrixUrl.getHost());
+        matrixUrl.setPath(matrixUrl.getPath() + "/calculatematrix.json");
 
         var from;
         var to;
@@ -184,26 +192,23 @@
         var frontier_routes = [];
         var tried_avoids = [];
         var pending_requests = [];
-        var pending_timeouts = [];
         var successful_requests = 0;
         var start_time;
 
         var stop = function () {
-            var requests_to_cancel = pending_requests.slice()
-            pending_requests = []
-            for (request of pending_requests) {
-                request.cancel();
-            }
-            for (timeout of pending_timeouts) {
-                clearTimeout(timeout);
-            }
+            start_time = null;
             from = null;
             to = null;
             bounding_box = null;
             routes = [];
             tried_avoids = [];
-            pending_requests = [];
-            pending_timeouts = [];
+            var requests_to_cancel = pending_requests.slice()
+            pending_requests = []
+            for (request of requests_to_cancel) {
+                try {
+                    request.cancel();
+                } catch (e) {}
+            }
             successful_requests = 0;
         }
 
@@ -224,7 +229,9 @@
                         document.getElementById("to").value = to.title;
                         tried_avoids = [[]];
                         routes = [];
-                        pending_requests = [calculateRoute(from, to, [], false, handle_route), calculateRoute(from, to, [], true, handle_route)];
+                        pending_requests = [undefined]
+                        calculateRoute(from, to, [], true, handle_route).then((r) => {pending_requests.push(r); render_progress()});
+                        calculateRoute(from, to, [], false, handle_route).then((r) => {pending_requests.push(r); render_progress()});
                     }, alert);
                 }, alert);
             }
@@ -242,8 +249,8 @@
             }
         }
 
-        function calculateRoute(from, to, avoid_links, avoid_tolls, handle_route) {
-            return routingService.calculateRoute({
+        async function calculateRoute(from, to, avoid_links, avoid_tolls, handle_route) {
+            var params = {
                 'alternatives': 0,
                 'avoidLinks': avoid_links,
                 'jsonAttributes': 73, //41,
@@ -256,30 +263,157 @@
                 'routeattributes': 'all',
                 'returnelevation': true,
                 'transportMode': 'car',
-                'waypoint0': `street!!${from.position.lat},${from.position.lng}`,
-                'waypoint1': `street!!${to.position.lat},${to.position.lng}`
-            }, (result) => {
+                'waypoint0': `street!!${from.position.lat},${from.position.lng}`
+            };
+            var best_tunnel_entrance;
+            var best_tunnel_exit;
+            if (avoid_tolls) {
+                // Can skip tunnel hack when avoiding tolls, since we will never take the tunnel anyway.
+                params = Object.assign(params, {
+                    'waypoint1': `street!!${to.position.lat},${to.position.lng}`
+                });
+            } else {
+                // Hack in the M4-M8 tunnel by doing a matrix call between 
+                // [route start, exits of M4-M8 tunnel] and [route end, entrances of M4-M8 tunnel],
+                // and doing a 3-leg request if it would be quicker to go from route start to tunnel
+                // to route end (using fixed time estimate of 600 s for the tunnel).
+                var url = matrixUrl.clone().mergeQuery({
+                    'avoidLinks': avoid_links,
+                    'metricSystem': 'metric',
+                    'mode': 'fastest;car;traffic:enabled',
+                    'summaryAttributes': 'traveltime',
+                    'transportMode': 'car',
+                    'start0': `street!!${from.position.lat},${from.position.lng}`,
+                    'destination0': `street!!${to.position.lat},${to.position.lng}`
+                })
+                // Add tunnel start/destinations to request, but only if they aren't in avoid_links
+                // and there is at least one viable counterpart in the same direction (north/south).
+                var start_ix = 1;
+                var destination_ix = 1;
+                // Southbound
+                const tunnel_sb_entrances = [
+                    // "+839595129", // Wattle St
+                    "-1276841567", // M4
+                ].filter(x => !avoid_links.includes(x));
+                const tunnel_sb_exits = [
+                    "-1330165350", // Gardeners Rd
+                    "+1279334634", // Euston Rd
+                    "-1276632917", // M8
+                ].filter(x => !avoid_links.includes(x));
+                if (tunnel_sb_entrances.length && tunnel_sb_exits.length) {
+                    for (link_id of tunnel_sb_entrances) {
+                        url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
+                    }
+                    for (link_id of tunnel_sb_exits) {
+                        url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
+                    }
+                }
+                var first_nb_start_ix = start_ix;
+                var first_nb_destination_ix = destination_ix;
+                // Northbound
+                const tunnel_nb_entrances = [
+                    "+1285362605", // Gardeners Rd
+                    "-1276621977", // Euston Rd
+                    "+1276607539", // M8
+                ].filter(x => !avoid_links.includes(x));
+                const tunnel_nb_exits = [
+                    // "-1209767630", // Wattle St
+                    "+1275494703", // M4
+                ].filter(x => !avoid_links.includes(x));
+                if (tunnel_nb_entrances.length && tunnel_nb_exits.length) {
+                    for (link_id of tunnel_nb_entrances) {
+                        url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
+                    }
+                    for (link_id of tunnel_nb_exits) {
+                        url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
+                    }
+                }
+                if (url.getQuery().hasOwnProperty('start1') && url.getQuery().hasOwnProperty('destination1')) {
+                    var response;
+                    var sleep_time = 0;
+                    while (pending_requests.length && (!response || response.status == 429)) {
+                        if (sleep_time > 0) {
+                            console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
+                            console.log(url.getQuery());
+                        }
+                        await new Promise(resolve => {
+                            const pre_sleep_start_time = start_time;
+                            setTimeout(() => {
+                                if (start_time && start_time == pre_sleep_start_time) {
+                                    resolve()
+                                } else {
+                                    throw new Error("timeout aborted")
+                                }
+                            }, (sleep_time++) * 1000)
+                        });
+                        try {
+                            response = await fetch(url);
+                        } catch (e) {
+                            if (!e.message.match(/NetworkError/)) {
+                                break;
+                            }
+                        }
+                    }
+                    if (response) {
+                        const matrix = (await response.json()).response.matrixEntry;
+                        var best_time = matrix[0].summary.travelTime;
+                        for (var first_leg of matrix.filter(x => x.startIndex == 0 && x.destinationIndex != 0)) {
+                            const is_south_bound = first_leg.destinationIndex < first_nb_destination_ix;
+                            for (var second_leg of matrix.filter(x => x.destinationIndex == 0 &&
+                                x.startIndex != 0 &&
+                                (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
+                                if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
+                                    best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
+                                    best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (best_tunnel_entrance && best_tunnel_exit) {
+                params = Object.assign(params,
+                    {
+                        'waypoint1': best_tunnel_entrance,
+                        'waypoint2': best_tunnel_exit,
+                        'waypoint3': `street!!${to.position.lat},${to.position.lng}`
+                    });
+            } else {
+                params = Object.assign(params,
+                    {
+                        'waypoint1': `street!!${to.position.lat},${to.position.lng}`
+                    });
+            }
+            return routingService.calculateRoute(params, (result) => {
                 if (result.response.route.length && pending_requests.length) {
                     result.response.route[0].avoid_links = avoid_links;
                     handle_route(result.response.route[0])
                 } else {
                     console.error(result)
                 }
-            }, (error) => {
+            }, async (error) => {
                 if (pending_requests.length) {
                     var urls = error.message.match(/https?:\/\/[^ ]*/)
                     if (urls) {
                         for (var [i, r] of pending_requests.entries()) {
                             if (r.data == urls[0]) {
-                                pending_timeouts.push(setTimeout(() => {
-                                    if (pending_requests.length) {
-                                        var request = calculateRoute(from, to, pending_requests[i].avoid, false, handle_route);
-                                        request.retries = pending_requests[i].retries + 1;
-                                        request.avoid = pending_requests[i].avoid;
-                                        pending_requests[i] = request;
-                                    }
-                                }, 1000 * (r.retries + 1)));
-                                console.log("retrying after", r.retries + 1, "seconds:", r)
+                                console.log(`Sleeping before computing route for "${r.retries + 1} seconds`)
+                                console.log(r);
+                                await new Promise(resolve => {
+                                    const pre_sleep_start_time = start_time;
+                                    setTimeout(() => {
+                                        if (start_time && start_time == pre_sleep_start_time) {
+                                            resolve()
+                                        } else {
+                                            throw new Error("timeout aborted")
+                                        }
+                                    }, (r.retries + 1) * 1000)
+                                });
+                                calculateRoute(from, to, pending_requests[i].avoid, avoid_tolls, handle_route).then((request) => {
+                                    request.retries = pending_requests[i].retries + 1;
+                                    request.avoid = pending_requests[i].avoid;
+                                    pending_requests[i] = request;
+                                });
                                 break;
                             }
                         }
@@ -450,13 +584,13 @@
                 if (link.roadName == "Light Horse Intr" || link.roadName == "M7 Cycleway") {
                     link.roadName = "Westlink M7";
                 } else if (link.roadName == "M4 East" || (link.flags.includes("tollroad") && link.roadName == "Western Mtwy")) {
-                    link.roadName = "Westconnex M4";
+                    link.roadName = "Westconnex";
                 } else if (link.roadName == "High St" && current_toll_road && current_toll_road.name == "Cahill Expy") {
                     link.roadName = "Cahill Expy";
                 } else if (link.roadNumber == "M8") {
-                    link.roadName = "Westconnex M8"
+                    link.roadName = "Westconnex"
                 } else if (link.roadName == "Edward Ln" && link.flags.includes("tollroad")) {
-                    link.roadName = "Westconnex M4"
+                    link.roadName = "Westconnex"
                 } else if (link.roadName == "Norwest Blvd" && link.flags.includes("tollroad")) {
                     link.roadName = "Westlink M7"
                 } else if (link.roadName == "Pennant Hills Rd" && link.flags.includes("tollroad")) {
@@ -464,9 +598,9 @@
                 }
 
                 // Special case for M4 East - name continues for a single link after the toll ends
-                if (toll_roads.length && toll_roads[toll_roads.length - 1].name == "Westconnex M4" &&
-                    toll_roads[toll_roads.length - 1].exit == "Westconnex M4" &&
-                    last_roadName == "Westconnex M4" && link.roadName == "Dobroyd Pde") {
+                if (toll_roads.length && toll_roads[toll_roads.length - 1].name == "Westconnex" &&
+                    toll_roads[toll_roads.length - 1].exit == "Westconnex" &&
+                    last_roadName == "Westconnex" && link.roadName == "Dobroyd Pde") {
                     toll_roads[toll_roads.length - 1].exit = link.roadName
                 }
                 // fix blank exits
@@ -483,7 +617,7 @@
                         current_toll_road.name = "Falcon St (ramp)"
                     }
                     // Special case for M4 East Parramatta Rd - there are 2 exits, the old one and the new one.
-                    if (current_toll_road.name == "Westconnex M4" && current_toll_road.links.filter(x => x.flags.includes("tunnel")).length) {
+                    if (current_toll_road.name == "Westconnex" && current_toll_road.links.filter(x => x.flags.includes("tunnel")).length) {
                         if (current_toll_road.exit == "Parramatta Rd") {
                             current_toll_road.exit += " (tunnel)"
                         }
@@ -501,7 +635,7 @@
                     }
 
                     // Special cases for short sections of M5 East just after M8 and M2 just before Lane Cove Tunnel
-                    if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex M8" || current_toll_road.exit == "Westconnex M8")) &&
+                    if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
                         !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd")) {
                         toll_roads.push(current_toll_road);
                     }
@@ -523,7 +657,7 @@
                     current_toll_road.links.push(link);
                     current_toll_road.distance += link.length;
                     // fill road name if not yet seen (because prior links had no name)
-                    if (link.roadName && !current_toll_road.name) {
+                    if (link.roadName && link.roadName != current_toll_road.entry && !current_toll_road.name) {
                         current_toll_road.name = link.roadName;
                     }
                 }
@@ -573,8 +707,7 @@
                         }
                         break;
                     case "M5 East Fwy":
-                    case "Westconnex M4":
-                    case "Westconnex M8":
+                    case "Westconnex":
                         var gantries = infer_distance_gantries(get_toll_data_for("WCX"), road);
                         road.toll = get_distance_toll_between(get_toll_data_for("WCX"), gantries[0].gantryRef, gantries[1].gantryRef);
                         break;
@@ -647,12 +780,22 @@
             successful_requests += 1;
             if (route.note.length) {
                 console.error(route.note);
+                console.log(route);
+            }
+            if (route.leg.length == 3) {
+                route.leg[0].link = route.leg[0].link.concat(route.leg[2].link);
+                route.shape = route.leg[0].shape.concat(route.leg[2].shape);
+                route.summary.baseTime = route.leg[0].baseTime + m4_m8_tunnel_time + route.leg[2].baseTime
+                route.summary.trafficTime = route.leg[0].trafficTime + m4_m8_tunnel_time + route.leg[2].trafficTime
+                route.summary.travelTime = route.leg[0].travelTime + m4_m8_tunnel_time + route.leg[2].travelTime
+                route.summary.distance = route.leg[0].length + m4_m8_tunnel_length + route.leg[2].length
             }
             // Skip results that have the exact polylines seen before
             if (routes.every((val, index) => !arrayEquals(val.shape, route.shape))) {
                 calculate_tolls(route);
                 calculate_fuel(route);
                 routes.push(route);
+                render_efficient_frontier();
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
                     for (links of road.key_links) {
@@ -663,14 +806,15 @@
                         new_avoid.sort();
                         if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
                             tried_avoids.push(new_avoid);
-                            var request = calculateRoute(from, to, new_avoid, false, handle_route);
-                            request.avoid = new_avoid;
-                            request.retries = 0;
-                            pending_requests.push(request);
+                            calculateRoute(from, to, new_avoid, false, handle_route).then((request) => {
+                                request.avoid = new_avoid;
+                                request.retries = 0;
+                                pending_requests.push(request);
+                                render_progress();
+                            })
                         }
                     }
                 }
-                render_efficient_frontier();
             }
             render_progress();
         }
@@ -703,7 +847,7 @@
         }
 
         function render_progress() {
-            document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${pending_requests.length} combinations tried.<br>` +
+            document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${pending_requests.length - 1} combinations tried.<br>` +
                 `${routes.length} unique routes discovered.</b>`;
         }
 
