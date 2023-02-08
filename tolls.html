@@ -93,8 +93,11 @@
                 <datalist id="to_address">
                     <option>from contacts...</option>
                 </datalist>
-                <label>from: <input id="from" list="from_address" autocomplete="on" placeholder="current location"><input type="button" value="✕" onclick="document.getElementById('from').value='';"></label>
-                <label>to: <input id="to" list="to_address" autocomplete="on"><input type="button" value="✕" onclick="document.getElementById('to').value='';"></label>
+                <label>from: <input id="from" list="from_address" autocomplete="on"
+                        placeholder="current location"><input type="button" value="✕"
+                        onclick="document.getElementById('from').value='';"></label>
+                <label>to: <input id="to" list="to_address" autocomplete="on"><input type="button" value="✕"
+                        onclick="document.getElementById('to').value='';"></label>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
                 <input type="button" value="✕" onclick="stop();">
@@ -449,12 +452,12 @@
             if (filtered_charges.length != 1) return;
             return filtered_charges[0].chargeInCents / 100;
         }
-        
+
         function get_distance_toll_between(motorway_toll_data, entry_gantry_code, exit_gantry_code) {
             console.assert(motorway_toll_data.chargeType == "Distance", "not a distance tolled motorway!");
             filtered_gantries = motorway_toll_data.gantries.filter(x => x.gantryRef == entry_gantry_code);
             if (filtered_gantries.length != 1) return;
-            if (!filtered_gantries[0].exitGantries) {console.log(filtered_gantries[0])}
+            if (!filtered_gantries[0].exitGantries) { console.log(filtered_gantries[0]) }
             filtered_exits = filtered_gantries[0].exitGantries.filter(x => x.gantryRef == exit_gantry_code);
             if (filtered_exits.length != 1) return;
             filtered_charges = filtered_exits[0].charge.filter(x => x.vehicleClass == "A");
@@ -479,8 +482,8 @@
                 for (link of toll_road.links) {
                     for (var i = 0; i < link.shape.length; i += 3) {
                         var lat = link.shape[i];
-                        var lng = link.shape[i+1];
-                        var dist_sq = (lat - gantry.latitude)**2 + (lng - gantry.longitude)**2;
+                        var lng = link.shape[i + 1];
+                        var dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                         if (!best_dist_sq || best_dist_sq > dist_sq) {
                             best_gantry = gantry;
                             best_dist_sq = dist_sq;
@@ -499,8 +502,8 @@
                 for (link of toll_road.links) {
                     for (var i = 0; i < link.shape.length; i += 3) {
                         var lat = link.shape[i];
-                        var lng = link.shape[i+1];
-                        var dist_sq = (lat - gantry.latitude)**2 + (lng - gantry.longitude)**2;
+                        var lng = link.shape[i + 1];
+                        var dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                         if (dist_sq < max_dist_sq && (!best_gantry || best_gantry.chargeInCents < gantry.chargeInCents)) {
                             best_gantry = gantry;
                         }
@@ -525,11 +528,11 @@
                     var exit_link = toll_road.links[toll_road.links.length - 1];
                     var exit_lat = exit_link.shape[exit_link.shape.length - 3];
                     var exit_lng = exit_link.shape[exit_link.shape.length - 2];
-                    var dist_sq = 
-                        (entry_lat - entry_gantry.latitude)**2 +
-                        (entry_lng - entry_gantry.longitude)**2 +
-                        (exit_lat - exit_gantry.latitude)**2 + 
-                        (exit_lng - exit_gantry.longitude)**2;
+                    var dist_sq =
+                        (entry_lat - entry_gantry.latitude) ** 2 +
+                        (entry_lng - entry_gantry.longitude) ** 2 +
+                        (exit_lat - exit_gantry.latitude) ** 2 +
+                        (exit_lng - exit_gantry.longitude) ** 2;
                     if (!best_dist_sq || best_dist_sq > dist_sq) {
                         best_entry_gantry = entry_gantry;
                         best_exit_gantry = exit_gantry;
@@ -548,8 +551,8 @@
             for (link of toll_road.links) {
                 for (var i = 0; i < link.shape.length; i += 3) {
                     var lat = link.shape[i];
-                    var lng = link.shape[i+1];
-                    var dist_sq = (lat - motorway_toll_data.gantries[0].latitude)**2 + (lng - motorway_toll_data.gantries[0].longitude)**2;
+                    var lng = link.shape[i + 1];
+                    var dist_sq = (lat - motorway_toll_data.gantries[0].latitude) ** 2 + (lng - motorway_toll_data.gantries[0].longitude) ** 2;
                     if (dist_sq < max_dist_sq && (!best_dist_sq || best_dist_sq > dist_sq)) {
                         best_link = link;
                         best_dist_sq = dist_sq;
@@ -650,7 +653,7 @@
                     } else if (last_roadName) {
                         current_toll_road.entry = last_roadName;
                     }
-                    current_toll_road.start_time = new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime)*1000);
+                    current_toll_road.start_time = new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000);
                     mid_toll_split = false;
                 }
                 if (link.flags.includes("tollroad")) {
@@ -833,7 +836,7 @@
                     trkpt.append(ele);
                     if (write_time) {
                         var time = doc.createElement("time");
-                        time.append(new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime)*1000).toISOString());
+                        time.append(new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000).toISOString());
                         trkpt.append(time);
                         write_time = false;
                     }
@@ -841,7 +844,7 @@
                 });
             }
             var end_time = doc.createElement("time");
-            end_time.append(new Date(start_time.getTime() + route.summary.trafficTime*1000).toISOString());
+            end_time.append(new Date(start_time.getTime() + route.summary.trafficTime * 1000).toISOString());
             var trkpts = trkseg.lastChild.append(end_time);
             return new XMLSerializer().serializeToString(doc).replaceAll('<trkpt xmlns=""', '<trkpt');
         }
@@ -910,7 +913,7 @@
             li.style = `color: ${route.color}`;
             li.onclick = () => {
                 const gpx = to_gpx(route);
-                const blob = new Blob([gpx], {type: "application/gpx+xml"});
+                const blob = new Blob([gpx], { type: "application/gpx+xml" });
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.style.display = 'none';
@@ -922,7 +925,7 @@
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             }
-            li.innerHTML += 
+            li.innerHTML +=
                 `${(route.summary.trafficTime / 60).toFixed(0)}′ ` +
                 `(${route.summary.baseTime > route.summary.trafficTime ? "" : "+"}` +
                 `${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · ` +
@@ -932,7 +935,7 @@
                 `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
                     .map(x => `${is_fixed_rate_tollway(x.name) ? x.name : [x.entry, x.name, x.exit].join(" › ")} · ` +
-                `\$${x.toll.toFixed(2)}`).join("<br>")}</small>`
+                        `\$${x.toll.toFixed(2)}`).join("<br>")}</small>`
             document.getElementById("results").appendChild(li);
         }
 
