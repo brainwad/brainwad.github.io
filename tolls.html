@@ -852,8 +852,10 @@
         }
 
         function render_progress() {
-            document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${pending_requests.length - 1} combinations tried.<br>` +
-                `${routes.length} unique routes discovered.</b>`;
+            if (routes.length) {
+                document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${pending_requests.length - 1} combinations tried.<br>` +
+                    `${routes.length} unique routes discovered.</b>`;
+            }
         }
 
         function render_efficient_frontier() {
