@@ -194,6 +194,7 @@
         var routes = [];
         var frontier_routes = [];
         var tried_avoids = [];
+        var initiated_requests = 0;
         var pending_requests = [];
         var successful_requests = 0;
         var start_time;
@@ -212,6 +213,7 @@
                     request.cancel();
                 } catch (e) {}
             }
+            initiated_requests = 0;
             successful_requests = 0;
         }
 
@@ -253,6 +255,7 @@
         }
 
         async function calculateRoute(from, to, avoid_links, avoid_tolls, handle_route) {
+            initiated_requests += 1;
             var params = {
                 'alternatives': 0,
                 'avoidLinks': avoid_links,
@@ -386,6 +389,9 @@
                     {
                         'waypoint1': `street!!${to.position.lat},${to.position.lng}`
                     });
+            }
+            if (!pending_requests.length) {
+                throw new Error("about to send request but no pending requests");
             }
             return routingService.calculateRoute(params, (result) => {
                 if (result.response.route.length && pending_requests.length) {
@@ -862,7 +868,7 @@
 
         function render_progress() {
             if (routes.length) {
-                document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${pending_requests.length - 1} combinations tried.<br>` +
+                document.getElementById("progress").innerHTML = `<b>${successful_requests} / ${initiated_requests} combinations tried.<br>` +
                     `${routes.length} unique routes discovered.</b>`;
             }
         }
