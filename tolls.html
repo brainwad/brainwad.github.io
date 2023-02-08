@@ -788,7 +788,16 @@
                 console.log(route);
             }
             if (route.leg.length == 3) {
-                route.leg[0].link = route.leg[0].link.concat(route.leg[2].link);
+                route.leg[0].link = route.leg[0].link.concat([{
+                    roadName: "Westconnex",
+                    flags: [ "tollroad", "tunnel", "motorway"],
+                    shape: route.leg[0].shape.slice(route.leg[0].shape.length - 3).concat(route.leg[2].shape.slice(0,3)),
+                    length: m4_m8_tunnel_length,
+                    remainTime: m4_m8_tunnel_time + route.leg[2].travelTime,
+                    remainDistance: m4_m8_tunnel_length + route.leg[2].length,
+                    dynamicSpeedInfo: {},
+                    speedLimit: 80/3.6,
+                }]).concat(route.leg[2].link);
                 route.shape = route.leg[0].shape.concat(route.leg[2].shape);
                 route.summary.baseTime = route.leg[0].baseTime + m4_m8_tunnel_time + route.leg[2].baseTime
                 route.summary.trafficTime = route.leg[0].trafficTime + m4_m8_tunnel_time + route.leg[2].trafficTime
