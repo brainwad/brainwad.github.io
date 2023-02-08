@@ -598,6 +598,8 @@
                     link.roadName = "Westlink M7"
                 } else if (link.roadName == "Pennant Hills Rd" && link.flags.includes("tollroad")) {
                     link.roadName = "Northconnex"
+                } else if (link.roadName == "Gardeners Rd" && link.flags.includes("tollroad")) {
+                    link.roadName = ""
                 }
 
                 // Special case for M4 East - name continues for a single link after the toll ends
