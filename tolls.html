@@ -391,7 +391,6 @@
             var make_request = async () => {
                 if (retries > 0) {
                     console.log(`Sleeping before computing route for "${retries} seconds`)
-                    console.log(r);
                     await new Promise(resolve => {
                         setTimeout(resolve, retries * 1000)
                     });
