@@ -246,6 +246,7 @@
         }
 
         async function calculateRoute(from, to, avoid_links, avoid_tolls) {
+            initiated_requests += 1;
             var params = {
                 'alternatives': 0,
                 'avoidLinks': avoid_links,
@@ -381,7 +382,6 @@
                         'waypoint1': `street!!${to.position.lat},${to.position.lng}`
                     });
             }
-            initiated_requests += 1;
             var retries = 0;
             var make_request = async () => {
                 if (retries > 0) {
