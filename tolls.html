@@ -229,7 +229,6 @@
                         routes = [];
                         calculateRoute(from, to, [], true);
                         calculateRoute(from, to, ["M4M8"], false);
-                        console.log("m4m8: ", document.getElementById("m4-m8-tunnel-hack").checked)
                         if (document.getElementById("m4-m8-tunnel-hack").checked) {
                             calculateRoute(from, to, [], false);
                         }
@@ -336,7 +335,6 @@
                     while (!response || response.status == 429) {
                         if (sleep_time > 0) {
                             console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
-                            console.log(url.getQuery());
                         }
                         await new Promise(resolve => {
                             setTimeout(() => {
@@ -390,7 +388,7 @@
             var retries = 0;
             var make_request = async () => {
                 if (retries > 0) {
-                    console.log(`Sleeping before computing route for "${retries} seconds`)
+                    console.log(`Sleeping before computing route for ${retries} seconds`)
                     await new Promise(resolve => {
                         setTimeout(resolve, retries * 1000)
                     });
@@ -408,10 +406,8 @@
                     result.response.route[0].avoid_links = avoid_links;
                     handle_route(result.response.route[0])
                 }, async (error) => {
-                    console.log("calculateRoute error:", error)
                     if (start_time && start_time.getTime() < Date.now()) {
                         retries++;
-                        console.log("making retry request #" + retries)
                         make_request();
                     }
                 });
@@ -441,21 +437,21 @@
         function get_fixed_toll_at(motorway_toll_data, gantry_code) {
             console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
             filtered_gantries = motorway_toll_data.gantries.filter(x => x.gantryRef == gantry_code)
-            if (filtered_gantries.length != 1) return;
+            if (filtered_gantries.length != 1) throw new Error(`couldn't find gantry ${entry_gantry_code}`);
             filtered_charges = filtered_gantries[0].charges.filter(x => x.vehicleClass == "A");
-            if (filtered_charges.length != 1) return;
+            if (filtered_charges.length != 1) throw new Error("couldn't find class A charges");
             return filtered_charges[0].chargeInCents / 100;
         }
 
         function get_distance_toll_between(motorway_toll_data, entry_gantry_code, exit_gantry_code) {
             console.assert(motorway_toll_data.chargeType == "Distance", "not a distance tolled motorway!");
             filtered_gantries = motorway_toll_data.gantries.filter(x => x.gantryRef == entry_gantry_code);
-            if (filtered_gantries.length != 1) return;
-            if (!filtered_gantries[0].exitGantries) { console.log(filtered_gantries[0]) }
+            if (filtered_gantries.length != 1) throw new Error(`couldn't find gantry ${entry_gantry_code}`);
+            if (!filtered_gantries[0].exitGantries) throw new Error(`${entry_gantry_code} has no exit gantries`);
             filtered_exits = filtered_gantries[0].exitGantries.filter(x => x.gantryRef == exit_gantry_code);
-            if (filtered_exits.length != 1) return;
+            if (filtered_exits.length != 1) throw new Error(`couldn't find gantry ${exit_gantry_code}`);
             filtered_charges = filtered_exits[0].charge.filter(x => x.vehicleClass == "A");
-            if (filtered_charges.length != 1) return;
+            if (filtered_charges.length != 1) throw new Error("couldn't find class A charges");
             return filtered_charges[0].chargeInCents / 100;
         }
 
@@ -469,7 +465,7 @@
         }
 
         function infer_fixed_gantry(motorway_toll_data, toll_road) {
-            console.assert(motorway_toll_data.chargeType == "Fixed", "not a distance tolled motorway!");
+            console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
             var best_dist_sq;
             var best_gantry;
             for (gantry of motorway_toll_data.gantries) {
@@ -490,7 +486,7 @@
         }
 
         function infer_fixed_highest_toll_gantry(motorway_toll_data, toll_road, max_dist_sq) {
-            console.assert(motorway_toll_data.chargeType == "Fixed", "not a distance tolled motorway!");
+            console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
             var best_gantry;
             for (gantry of motorway_toll_data.gantries) {
                 for (link of toll_road.links) {
@@ -540,6 +536,7 @@
         }
 
         function infer_timed_gantry_time(motorway_toll_data, toll_road, max_dist_sq) {
+            console.assert(motorway_toll_data.chargeType == "TimeofDay", "not a time-of-day tolled motorway!");
             var best_link;
             var best_dist_sq;
             for (link of toll_road.links) {
@@ -779,7 +776,6 @@
             successful_requests += 1;
             if (route.note.length) {
                 console.error(route.note);
-                console.log(route);
             }
             if (route.leg.length == 3) {
                 route.leg[0].link = route.leg[0].link.concat([{
