@@ -577,6 +577,7 @@
                 if (!link.flags) {
                     link.flags = []
                 }
+
                 // fix broken names
                 if (link.roadName == "Light Horse Intr" || link.roadName == "M7 Cycleway") {
                     link.roadName = "Westlink M7";
@@ -596,12 +597,11 @@
                     link.roadName = ""
                 }
 
-                // Special case for M4 East - name continues for a single link after the toll ends
-                if (toll_roads.length && toll_roads[toll_roads.length - 1].name == "Westconnex" &&
-                    toll_roads[toll_roads.length - 1].exit == "Westconnex" &&
-                    last_roadName == "Westconnex" && link.roadName == "Dobroyd Pde") {
-                    toll_roads[toll_roads.length - 1].exit = link.roadName
+                // Fix toll-less segments of toll roads
+                if (!link.flags.includes("tollroad") && (link.roadName == "Westlink M7" || link.roadName == "Westconnex")) {
+                    link.flags.push("tollroad")
                 }
+
                 // fix blank exits
                 if (toll_roads.length && toll_roads[toll_roads.length - 1].exit == "" && link.roadName) {
                     toll_roads[toll_roads.length - 1].exit = link.roadName
