@@ -228,10 +228,7 @@
                         tried_avoids = [[]];
                         routes = [];
                         calculateRoute(from, to, [], true);
-                        calculateRoute(from, to, ["M4M8"], false);
-                        if (document.getElementById("m4-m8-tunnel-hack").checked) {
-                            calculateRoute(from, to, [], false);
-                        }
+                        calculateRoute(from, to, document.getElementById("m4-m8-tunnel-hack").checked ? [] : ["M4M8"], false);
                     }, alert);
                 }, alert);
             }
