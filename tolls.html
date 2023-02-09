@@ -105,7 +105,7 @@
                     onchange="render_efficient_frontier()">/hr
                 ⛽$<input id=fuel-cost value="1.90" min="0" type=number step="0.01" style="width:4.1em"
                     onchange="render_efficient_frontier()">/L
-                🔮<input id="m4-m8-tunnel-hack" type="checkbox" checked/>M4-M8
+                🔮<input id="m4-m8-tunnel-hack" type="checkbox" checked />M4-M8
             </form>
             <p id=progress></p>
             <div id=graph style="display:none"></div>
@@ -334,14 +334,16 @@
                             console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
                         }
                         await new Promise(resolve => {
+                            const expected_start_time = start_time;
                             setTimeout(() => {
-                                if (start_time && start_time.getTime() < Date.now()) {
+                                if (start_time && start_time == expected_start_time) {
                                     resolve()
                                 } else {
                                     throw new Error("matrix request is stale after sleep")
                                 }
                             }, (sleep_time++) * 1000)
                         });
+                        const expected_start_time = start_time;
                         try {
                             response = await fetch(url);
                         } catch (e) {
@@ -349,7 +351,7 @@
                                 break;
                             }
                         } finally {
-                            if (!(start_time && start_time.getTime() < Date.now())) {
+                            if (!start_time || start_time != expected_start_time) {
                                 throw new Error("matrix response is stale")
                             }
                         }
@@ -387,14 +389,19 @@
                 if (retries > 0) {
                     console.log(`Sleeping before computing route for ${retries} seconds`)
                     await new Promise(resolve => {
-                        setTimeout(resolve, retries * 1000)
+                        const expected_start_time = start_time;
+                        setTimeout(() => {
+                            if (start_time && start_time == expected_start_time) {
+                                resolve()
+                            } else {
+                                throw new Error("route request is stale after sleep")
+                            }
+                        }, retries * 1000)
                     });
                 }
-                if (!(start_time && start_time.getTime() < Date.now())) {
-                    throw new Error("route request is stale");
-                }
+                const expected_start_time = start_time;
                 routingService.calculateRoute(params, (result) => {
-                    if (!(start_time && start_time.getTime() < Date.now())) {
+                    if (!start_time || start_time != expected_start_time) {
                         throw new Error("route response is stale")
                     }
                     if (!result.response.route.length) {
@@ -891,8 +898,8 @@
             var background_polylines = []
             for (const route of routes) {
                 background_polylines.push(new H.map.Polyline(new H.geo.LineString(route.shape),
-                    { style: { strokeColor: "#afafaf", lineWidth: 1 } }));
-            }            
+                    { style: { strokeColor: "#ffffff", lineWidth: 1 } }));
+            }
             var frontier_polylines = []
             var bounding_box = null;
             for (const route of frontier_routes_sorted_by_cost.reverse()) {
