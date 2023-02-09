@@ -195,7 +195,6 @@
         var frontier_routes = [];
         var tried_avoids = [];
         var initiated_requests = 0;
-        var pending_requests = [];
         var successful_requests = 0;
         var start_time;
 
@@ -205,13 +204,6 @@
             to = null;
             bounding_box = null;
             tried_avoids = [];
-            var requests_to_cancel = pending_requests.slice()
-            pending_requests = []
-            for (request of requests_to_cancel) {
-                try {
-                    request.cancel();
-                } catch (e) {}
-            }
         }
 
         var go = function () {
@@ -234,9 +226,8 @@
                         document.getElementById("to").value = to.title;
                         tried_avoids = [[]];
                         routes = [];
-                        pending_requests = [undefined]
-                        calculateRoute(from, to, [], true, handle_route).then((r) => {pending_requests.push(r); render_progress()});
-                        calculateRoute(from, to, [], false, handle_route).then((r) => {pending_requests.push(r); render_progress()});
+                        calculateRoute(from, to, [], true);
+                        calculateRoute(from, to, [], false);
                     }, alert);
                 }, alert);
             }
@@ -254,8 +245,7 @@
             }
         }
 
-        async function calculateRoute(from, to, avoid_links, avoid_tolls, handle_route) {
-            initiated_requests += 1;
+        async function calculateRoute(from, to, avoid_links, avoid_tolls) {
             var params = {
                 'alternatives': 0,
                 'avoidLinks': avoid_links,
@@ -337,18 +327,17 @@
                 if (url.getQuery().hasOwnProperty('start1') && url.getQuery().hasOwnProperty('destination1')) {
                     var response;
                     var sleep_time = 0;
-                    while (pending_requests.length && (!response || response.status == 429)) {
+                    while (!response || response.status == 429) {
                         if (sleep_time > 0) {
                             console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
                             console.log(url.getQuery());
                         }
                         await new Promise(resolve => {
-                            const pre_sleep_start_time = start_time;
                             setTimeout(() => {
-                                if (start_time && start_time == pre_sleep_start_time) {
+                                if (start_time && start_time.getTime() < Date.now()) {
                                     resolve()
                                 } else {
-                                    throw new Error("timeout aborted")
+                                    throw new Error("matrix request is stale after sleep")
                                 }
                             }, (sleep_time++) * 1000)
                         });
@@ -358,20 +347,22 @@
                             if (!e.message.match(/NetworkError/)) {
                                 break;
                             }
+                        } finally {
+                            if (!(start_time && start_time.getTime() < Date.now())) {
+                                throw new Error("matrix response is stale")
+                            }
                         }
                     }
-                    if (response) {
-                        const matrix = (await response.json()).response.matrixEntry;
-                        var best_time = matrix[0].summary.travelTime;
-                        for (var first_leg of matrix.filter(x => x.startIndex == 0 && x.destinationIndex != 0)) {
-                            const is_south_bound = first_leg.destinationIndex < first_nb_destination_ix;
-                            for (var second_leg of matrix.filter(x => x.destinationIndex == 0 &&
-                                x.startIndex != 0 &&
-                                (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
-                                if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
-                                    best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
-                                    best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
-                                }
+                    const matrix = (await response.json()).response.matrixEntry;
+                    var best_time = matrix[0].summary.travelTime;
+                    for (var first_leg of matrix.filter(x => x.startIndex == 0 && x.destinationIndex != 0)) {
+                        const is_south_bound = first_leg.destinationIndex < first_nb_destination_ix;
+                        for (var second_leg of matrix.filter(x => x.destinationIndex == 0 &&
+                            x.startIndex != 0 &&
+                            (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
+                            if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
+                                best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
+                                best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
                             }
                         }
                     }
@@ -390,45 +381,38 @@
                         'waypoint1': `street!!${to.position.lat},${to.position.lng}`
                     });
             }
-            if (!pending_requests.length) {
-                throw new Error("about to send request but no pending requests");
-            }
-            return routingService.calculateRoute(params, (result) => {
-                if (result.response.route.length && pending_requests.length) {
+            initiated_requests += 1;
+            var retries = 0;
+            var make_request = async () => {
+                if (retries > 0) {
+                    console.log(`Sleeping before computing route for "${retries} seconds`)
+                    console.log(r);
+                    await new Promise(resolve => {
+                        setTimeout(resolve, retries * 1000)
+                    });
+                }
+                if (!(start_time && start_time.getTime() < Date.now())) {
+                    throw new Error("route request is stale");
+                }
+                routingService.calculateRoute(params, (result) => {
+                    if (!(start_time && start_time.getTime() < Date.now())) {
+                        throw new Error("route response is stale")
+                    }
+                    if (!result.response.route.length) {
+                        throw new Error("route response is empty", { cause: result })
+                    }
                     result.response.route[0].avoid_links = avoid_links;
                     handle_route(result.response.route[0])
-                } else {
-                    console.error(result)
-                }
-            }, async (error) => {
-                if (pending_requests.length) {
-                    var urls = error.message.match(/https?:\/\/[^ ]*/)
-                    if (urls) {
-                        for (var [i, r] of pending_requests.entries()) {
-                            if (r.data == urls[0]) {
-                                console.log(`Sleeping before computing route for "${r.retries + 1} seconds`)
-                                console.log(r);
-                                await new Promise(resolve => {
-                                    const pre_sleep_start_time = start_time;
-                                    setTimeout(() => {
-                                        if (start_time && start_time == pre_sleep_start_time) {
-                                            resolve()
-                                        } else {
-                                            throw new Error("timeout aborted")
-                                        }
-                                    }, (r.retries + 1) * 1000)
-                                });
-                                calculateRoute(from, to, pending_requests[i].avoid, avoid_tolls, handle_route).then((request) => {
-                                    request.retries = pending_requests[i].retries + 1;
-                                    request.avoid = pending_requests[i].avoid;
-                                    pending_requests[i] = request;
-                                });
-                                break;
-                            }
-                        }
+                }, async (error) => {
+                    console.log("calculateRoute error:", error)
+                    if (start_time && start_time.getTime() < Date.now()) {
+                        retries++;
+                        console.log("making retry request #" + retries)
+                        make_request();
                     }
-                }
-            });
+                });
+            };
+            make_request();
         }
 
         function is_fixed_rate_tollway(name) {
@@ -826,12 +810,7 @@
                         new_avoid.sort();
                         if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
                             tried_avoids.push(new_avoid);
-                            calculateRoute(from, to, new_avoid, false, handle_route).then((request) => {
-                                request.avoid = new_avoid;
-                                request.retries = 0;
-                                pending_requests.push(request);
-                                render_progress();
-                            })
+                            calculateRoute(from, to, new_avoid, false);
                         }
                     }
                 }
