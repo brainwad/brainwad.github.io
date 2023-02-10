@@ -323,26 +323,35 @@
                     url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
                 }
                 var response;
-                var sleep_time = 0;
+                let retries = 0;
                 while (!response || response.status == 429) {
-                    if (sleep_time > 0) {
-                        console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
-                    }
+                    if (retries > 0) {
                     await new Promise(resolve => {
                         const expected_start_time = start_time;
+                        const sleep_time = Math.log2(retries+1);
+                        console.log(`Sleeping before computing matrix for ${sleep_time} seconds`);
                         setTimeout(() => {
                             if (start_time && start_time == expected_start_time) {
                                 resolve()
                             } else {
                                 throw new Error("matrix request is stale after sleep")
                             }
-                        }, (sleep_time++) * 1000)
+                        }, sleep_time * 1000);
                     });
+                    }
                     const expected_start_time = start_time;
                     try {
                         response = await fetch(url);
+                        if (!response.ok) {
+                            if (response.status == 429) {
+                                retries++;
+                                continue;
+                            }
+                            throw new Error(response.statusText)
+                        }
                     } catch (e) {
                         if (e.message.match(/NetworkError/)) {
+                            retries++;
                             continue;
                         }
                         throw e;
@@ -384,16 +393,17 @@
             var retries = 0;
             var make_request = async () => {
                 if (retries > 0) {
-                    console.log(`Sleeping before computing route for ${retries} seconds`)
                     await new Promise(resolve => {
                         const expected_start_time = start_time;
+                        const sleep_time = Math.log2(retries+1);
+                        console.log(`Sleeping before computing matrix for ${sleep_time} seconds`);
                         setTimeout(() => {
                             if (start_time && start_time == expected_start_time) {
                                 resolve()
                             } else {
                                 throw new Error("route request is stale after sleep")
                             }
-                        }, retries * 1000)
+                        }, sleep_time * 1000)
                     });
                 }
                 const expected_start_time = start_time;
