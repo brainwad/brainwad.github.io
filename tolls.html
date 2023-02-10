@@ -958,10 +958,12 @@
                 document.getElementById("graph").style = "display:none";
                 return;
             }
+            const max_time = frontier_routes[frontier_routes.length - 1].summary.trafficTime;
+            const max_cost = frontier_routes[0].money_cost;
             document.getElementById("graph").style = "";
             all_routes = {
-                x: routes.map(x => x.summary.trafficTime),
-                y: routes.map(x => parseFloat((x.money_cost).toFixed(2))),
+                x: routes.map(x => x.summary.trafficTime < max_time ? x.summary.trafficTime : undefined),
+                y: routes.map(x => x.money_cost < max_cost ? ((x.money_cost).toFixed(2)) : undefined),
                 mode: 'markers',
                 marker: {
                     color: '#ffffff',
