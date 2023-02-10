@@ -198,6 +198,8 @@
         var initiated_requests = 0;
         var successful_requests = 0;
         var start_time;
+        var recent_matrix_responses = []
+        var recent_route_responses = [];
 
         var stop = function () {
             start_time = null;
@@ -205,6 +207,8 @@
             to = null;
             bounding_box = null;
             tried_avoids = [];
+            recent_matrix_responses = []
+            recent_route_responses = [];
         }
 
         var go = function () {
@@ -323,12 +327,12 @@
                     url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
                 }
                 var response;
-                let retries = 0;
                 while (!response || response.status == 429) {
-                    if (retries > 0) {
                     await new Promise(resolve => {
                         const expected_start_time = start_time;
-                        const sleep_time = Math.log2(retries+1);
+                        recent_matrix_responses = recent_matrix_responses.filter(x => Date.now() - x.time < 10000);
+                        const error_ratio = recent_matrix_responses.filter(x => !x.ok).length / Math.max(1, recent_matrix_responses.filter(x => x.ok).length);
+                        const sleep_time = 1 * error_ratio;
                         console.log(`Sleeping before computing matrix for ${sleep_time} seconds`);
                         setTimeout(() => {
                             if (start_time && start_time == expected_start_time) {
@@ -338,20 +342,19 @@
                             }
                         }, sleep_time * 1000);
                     });
-                    }
                     const expected_start_time = start_time;
                     try {
                         response = await fetch(url);
+                        recent_matrix_responses.push({time: Date.now(), ok: response.ok});
                         if (!response.ok) {
                             if (response.status == 429) {
-                                retries++;
                                 continue;
                             }
                             throw new Error(response.statusText)
                         }
                     } catch (e) {
+                        recent_matrix_responses.push({time: Date.now(), ok: false});
                         if (e.message.match(/(NetworkError|fetch)/)) {
-                            retries++;
                             continue;
                         }
                         throw e;
@@ -390,22 +393,21 @@
                         'waypoint1': `street!!${to.position.lat},${to.position.lng}`
                     });
             }
-            var retries = 0;
             var make_request = async () => {
-                if (retries > 0) {
-                    await new Promise(resolve => {
-                        const expected_start_time = start_time;
-                        const sleep_time = Math.log2(retries+1);
-                        console.log(`Sleeping before computing matrix for ${sleep_time} seconds`);
-                        setTimeout(() => {
-                            if (start_time && start_time == expected_start_time) {
-                                resolve()
-                            } else {
-                                throw new Error("route request is stale after sleep")
-                            }
-                        }, sleep_time * 1000)
-                    });
-                }
+                await new Promise(resolve => {
+                    const expected_start_time = start_time;
+                    recent_route_responses = recent_route_responses.filter(x => Date.now() - x.time < 10000);
+                    const error_ratio = recent_route_responses.filter(x => !x.ok).length / Math.max(1, recent_route_responses.filter(x => x.ok).length);
+                    const sleep_time = 1 / 10 * error_ratio;
+                    console.log(`Sleeping before computing route for ${sleep_time} seconds`);
+                    setTimeout(() => {
+                        if (start_time && start_time == expected_start_time) {
+                            resolve()
+                        } else {
+                            throw new Error("route request is stale after sleep")
+                        }
+                    }, sleep_time * 1000)
+                });
                 const expected_start_time = start_time;
                 routingService.calculateRoute(params, (result) => {
                     if (!start_time || start_time != expected_start_time) {
@@ -414,13 +416,14 @@
                     if (!result.response.route.length) {
                         throw new Error("route response is empty", { cause: result })
                     }
+                    recent_route_responses.push({time: Date.now(), ok: true});
                     result.response.route[0].start_time = start_time;
                     result.response.route[0].avoid_links = avoid_links;
                     result.response.route[0].tunnel_direction = best_tunnel_direction;
                     handle_route(result.response.route[0])
                 }, async (error) => {
                     if (start_time && start_time.getTime() < Date.now()) {
-                        retries++;
+                        recent_route_responses.push({time: Date.now(), ok: false});
                         make_request();
                     }
                 });
