@@ -279,89 +279,84 @@
                     'avoidLinks': avoid_links,
                     'metricSystem': 'metric',
                     'mode': 'fastest;car;traffic:enabled',
-                    'summaryAttributes': 'traveltime',
+                    'summaryAttributes': 'traveltime,costfactor',
                     'transportMode': 'car',
                     'start0': `street!!${from.position.lat},${from.position.lng}`,
                     'destination0': `street!!${to.position.lat},${to.position.lng}`
                 })
-                // Add tunnel start/destinations to request, but only if they aren't in avoid_links
-                // and there is at least one viable counterpart in the same direction (north/south).
+                // Add tunnel entry/exit points to matrix.
+                // Southbound
                 var start_ix = 1;
                 var destination_ix = 1;
-                // Southbound
                 const tunnel_sb_entrances = [
                     // "+839595129", // Wattle St
                     "-1276841567", // M4
-                ].filter(x => !avoid_links.includes(x));
+                ];
                 const tunnel_sb_exits = [
                     "-1330165350", // Gardeners Rd
                     "+1279334634", // Euston Rd
                     "-1276632917", // M8
-                ].filter(x => !avoid_links.includes(x));
-                if (tunnel_sb_entrances.length && tunnel_sb_exits.length) {
-                    for (link_id of tunnel_sb_entrances) {
-                        url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
-                    }
-                    for (link_id of tunnel_sb_exits) {
-                        url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
-                    }
+                ];
+                for (link_id of tunnel_sb_entrances) {
+                    url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
                 }
+                for (link_id of tunnel_sb_exits) {
+                    url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
+                }
+                // Northbound
                 var first_nb_start_ix = start_ix;
                 var first_nb_destination_ix = destination_ix;
-                // Northbound
                 const tunnel_nb_entrances = [
                     "+1285362605", // Gardeners Rd
                     "-1276621977", // Euston Rd
                     "+1276607539", // M8
-                ].filter(x => !avoid_links.includes(x));
+                ];
                 const tunnel_nb_exits = [
                     // "-1209767630", // Wattle St
                     "+1275494703", // M4
-                ].filter(x => !avoid_links.includes(x));
-                if (tunnel_nb_entrances.length && tunnel_nb_exits.length) {
-                    for (link_id of tunnel_nb_entrances) {
-                        url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
-                    }
-                    for (link_id of tunnel_nb_exits) {
-                        url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
-                    }
+                ];
+                for (link_id of tunnel_nb_entrances) {
+                    url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
                 }
-                if (url.getQuery().hasOwnProperty('start1') && url.getQuery().hasOwnProperty('destination1')) {
-                    var response;
-                    var sleep_time = 0;
-                    while (!response || response.status == 429) {
-                        if (sleep_time > 0) {
-                            console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
-                        }
-                        await new Promise(resolve => {
-                            const expected_start_time = start_time;
-                            setTimeout(() => {
-                                if (start_time && start_time == expected_start_time) {
-                                    resolve()
-                                } else {
-                                    throw new Error("matrix request is stale after sleep")
-                                }
-                            }, (sleep_time++) * 1000)
-                        });
+                for (link_id of tunnel_nb_exits) {
+                    url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
+                }
+                var response;
+                var sleep_time = 0;
+                while (!response || response.status == 429) {
+                    if (sleep_time > 0) {
+                        console.log(`Sleeping before computing matrix for ${sleep_time} seconds`)
+                    }
+                    await new Promise(resolve => {
                         const expected_start_time = start_time;
-                        try {
-                            response = await fetch(url);
-                        } catch (e) {
-                            if (!e.message.match(/NetworkError/)) {
-                                break;
+                        setTimeout(() => {
+                            if (start_time && start_time == expected_start_time) {
+                                resolve()
+                            } else {
+                                throw new Error("matrix request is stale after sleep")
                             }
-                        } finally {
-                            if (!start_time || start_time != expected_start_time) {
-                                throw new Error("matrix response is stale")
-                            }
+                        }, (sleep_time++) * 1000)
+                    });
+                    const expected_start_time = start_time;
+                    try {
+                        response = await fetch(url);
+                    } catch (e) {
+                        if (e.message.match(/NetworkError/)) {
+                            continue;
+                        }
+                        throw e;
+                    } finally {
+                        if (!start_time || start_time != expected_start_time) {
+                            throw new Error("matrix response is stale")
                         }
                     }
                     const matrix = (await response.json()).response.matrixEntry;
                     var best_time = matrix[0].summary.travelTime;
-                    for (var first_leg of matrix.filter(x => x.startIndex == 0 && x.destinationIndex != 0)) {
+                    for (var first_leg of matrix.filter(x => x.startIndex == 0 && x.destinationIndex != 0 &&
+                        x.summary.costFactor < x.summary.travelTime + 10000)) {
                         const is_south_bound = first_leg.destinationIndex < first_nb_destination_ix;
                         for (var second_leg of matrix.filter(x => x.destinationIndex == 0 &&
-                            x.startIndex != 0 &&
+                            x.startIndex != 0 && x.summary.costFactor < x.summary.travelTime + 10000 &&
                             (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
                             if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
                                 best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
