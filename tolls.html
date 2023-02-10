@@ -265,6 +265,7 @@
             };
             var best_tunnel_entrance;
             var best_tunnel_exit;
+            var best_tunnel_direction;
             if (avoid_tolls || avoid_links.includes("M4M8")) {
                 // Can skip tunnel hack when avoiding tolls, since we will never take the tunnel anyway.
                 params = Object.assign(params, {
@@ -361,6 +362,7 @@
                             if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
                                 best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
                                 best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
+                                best_tunnel_direction = is_south_bound ? "sb" : "nb";
                             }
                         }
                     }
@@ -403,6 +405,7 @@
                         throw new Error("route response is empty", { cause: result })
                     }
                     result.response.route[0].avoid_links = avoid_links;
+                    result.response.route[0].tunnel_direction = best_tunnel_direction;
                     handle_route(result.response.route[0])
                 }, async (error) => {
                     if (start_time && start_time.getTime() < Date.now()) {
@@ -777,17 +780,25 @@
                 console.error(route.note);
             }
             if (route.leg.length == 3) {
+                const tunnel_entry_point = route.leg[0].shape.slice(route.leg[0].shape.length - 3);
+                const tunnel_exit_point = route.leg[2].shape.slice(0, 3);
+                const tunnel_north = [-33.875576, 151.144253, route.tunnel_direction == "sb" ? tunnel_entry_point[2] : tunnel_exit_point[2]];
+                const tunnel_south = [-33.900171, 151.177963, route.tunnel_direction == "nb" ? tunnel_entry_point[2] : tunnel_exit_point[2]];
+                const tunnel_shape = tunnel_entry_point
+                    .concat(route.tunnel_direction == "sb" ? tunnel_north : tunnel_south)
+                    .concat(route.tunnel_direction == "nb" ? tunnel_north : tunnel_south)
+                    .concat(tunnel_exit_point)
                 route.leg[0].link = route.leg[0].link.concat([{
                     roadName: "Westconnex",
                     flags: ["tollroad", "tunnel", "motorway"],
-                    shape: route.leg[0].shape.slice(route.leg[0].shape.length - 3).concat(route.leg[2].shape.slice(0, 3)),
+                    shape: tunnel_shape,
                     length: m4_m8_tunnel_length,
                     remainTime: m4_m8_tunnel_time + route.leg[2].travelTime,
                     remainDistance: m4_m8_tunnel_length + route.leg[2].length,
                     dynamicSpeedInfo: {},
                     speedLimit: 80 / 3.6,
                 }]).concat(route.leg[2].link);
-                route.shape = route.leg[0].shape.concat(route.leg[2].shape);
+                route.shape = route.leg[0].shape.concat(tunnel_shape).concat(route.leg[2].shape);
                 route.summary.baseTime = route.leg[0].baseTime + m4_m8_tunnel_time + route.leg[2].baseTime
                 route.summary.trafficTime = route.leg[0].trafficTime + m4_m8_tunnel_time + route.leg[2].trafficTime
                 route.summary.travelTime = route.leg[0].travelTime + m4_m8_tunnel_time + route.leg[2].travelTime
