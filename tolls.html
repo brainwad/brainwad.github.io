@@ -1019,6 +1019,17 @@
                         width: 1,
                         dash: 'dot'
                     }
+                }, {
+                    type: 'line',
+                    x0: frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber,
+                    y0: frontier_routes[0].money_cost,
+                    x1: frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber,
+                    y1: frontier_routes[frontier_routes.length - 1].money_cost,
+                    line: {
+                        color: "#444",
+                        width: 2,
+                        dash: 'dot'
+                    }
                 }],
                 showlegend: false,
             }, { staticPlot: true });
