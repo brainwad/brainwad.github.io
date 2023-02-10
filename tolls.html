@@ -414,6 +414,7 @@
                     if (!result.response.route.length) {
                         throw new Error("route response is empty", { cause: result })
                     }
+                    result.response.route[0].start_time = start_time;
                     result.response.route[0].avoid_links = avoid_links;
                     result.response.route[0].tunnel_direction = best_tunnel_direction;
                     handle_route(result.response.route[0])
@@ -852,7 +853,7 @@
                     trkpt.append(ele);
                     if (write_time) {
                         var time = doc.createElement("time");
-                        time.append(new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000).toISOString());
+                        time.append(new Date(route.start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000).toISOString());
                         trkpt.append(time);
                         write_time = false;
                     }
@@ -860,7 +861,7 @@
                 });
             }
             var end_time = doc.createElement("time");
-            end_time.append(new Date(start_time.getTime() + route.summary.trafficTime * 1000).toISOString());
+            end_time.append(new Date(route.start_time.getTime() + route.summary.trafficTime * 1000).toISOString());
             var trkpts = trkseg.lastChild.append(end_time);
             return new XMLSerializer().serializeToString(doc).replaceAll('<trkpt xmlns=""', '<trkpt');
         }
@@ -942,7 +943,7 @@
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = `route-${start_time.toISOString().replaceAll(/[:-T]/g, '').slice(0, 14)}-` +
+                a.download = `route-${route.start_time.toISOString().replaceAll(/[:-T]/g, '').slice(0, 14)}-` +
                     `${Array.from(frontier_routes.entries()).filter(([i, r]) => r == route)[0][0]}.gpx`;
                 document.body.appendChild(a);
                 a.click();
