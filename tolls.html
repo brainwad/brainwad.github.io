@@ -122,6 +122,42 @@
         var toll_data;
         fetch("./tolls.json").then(async (r) => toll_data = await r.json());
 
+        // M4-M8 polylines
+        // Mainlines
+        var m4_m8_polylines = {};
+        fetch("./m4-m8/nb.geojson").then(async (r) => m4_m8_polylines["nb"] = (await r.json()).features[0]);
+        fetch("./m4-m8/sb.geojson").then(async (r) => m4_m8_polylines["sb"] = (await r.json()).features[0]);
+        // Entries
+        fetch("./m4-m8/m8 nb.geojson").then(async (r) => m4_m8_polylines["m8-nb"] = (await r.json()).features[0]);
+        fetch("./m4-m8/gar nb.geojson").then(async (r) => m4_m8_polylines["gar-nb"] = (await r.json()).features[0]);
+        fetch("./m4-m8/eus nb.geojson").then(async (r) => m4_m8_polylines["eus-nb"] = (await r.json()).features[0]);
+        fetch("./m4-m8/m4e sb.geojson").then(async (r) => m4_m8_polylines["m4e-sb"] = (await r.json()).features[0]);
+        fetch("./m4-m8/wat sb.geojson").then(async (r) => m4_m8_polylines["wat-sb"] = (await r.json()).features[0]);
+        // Exits
+        fetch("./m4-m8/sb m8.geojson").then(async (r) => m4_m8_polylines["sb-m8"] = (await r.json()).features[0]);
+        fetch("./m4-m8/sb gar.geojson").then(async (r) => m4_m8_polylines["sb-gar"] = (await r.json()).features[0]);
+        fetch("./m4-m8/sb eus.geojson").then(async (r) => m4_m8_polylines["sb-eus"] = (await r.json()).features[0]);
+        fetch("./m4-m8/nb m4e.geojson").then(async (r) => m4_m8_polylines["nb-m4e"] = (await r.json()).features[0]);
+        fetch("./m4-m8/nb wat.geojson").then(async (r) => m4_m8_polylines["nb-wat"] = (await r.json()).features[0]);
+        const tunnel_sb_entries = {
+            // "+839595129": "wat-sb", // Wattle St
+            "-1276841567": "m4e-sb" // M4
+        };
+        const tunnel_sb_exits = {
+            "-1330165350": "sb-gar", // Gardeners Rd
+            "+1279334634": "sb-eus", // Euston Rd
+            "-1276632917": "sb-m8", // M8
+        };
+        const tunnel_nb_entries = {
+            "+1285362605": "gar-nb", // Gardeners Rd
+            "-1276621977": "eus-nb", // Euston Rd
+            "+1276607539": "m8-nb", // M8
+        };
+        const tunnel_nb_exits = {
+            // "-1209767630": "nb-wat", // Wattle St
+            "+1275494703": "nb-m4e", // M4
+        };
+
         // Hard-coded values for M4-M8 tunnel
         const m4_m8_tunnel_time = 600;
         const m4_m8_tunnel_length = 9000;
@@ -267,7 +303,7 @@
                 'transportMode': 'car',
                 'waypoint0': `street!!${from.position.lat},${from.position.lng}`
             };
-            var best_tunnel_entrance;
+            var best_tunnel_entry;
             var best_tunnel_exit;
             var best_tunnel_direction;
             if (avoid_tolls || avoid_links.includes("M4M8")) {
@@ -277,7 +313,7 @@
                 });
             } else {
                 // Hack in the M4-M8 tunnel by doing a matrix call between 
-                // [route start, exits of M4-M8 tunnel] and [route end, entrances of M4-M8 tunnel],
+                // [route start, exits of M4-M8 tunnel] and [route end, entries of M4-M8 tunnel],
                 // and doing a 3-leg request if it would be quicker to go from route start to tunnel
                 // to route end (using fixed time estimate of 600 s for the tunnel).
                 var url = matrixUrl.clone().mergeQuery({
@@ -293,37 +329,19 @@
                 // Southbound
                 var start_ix = 1;
                 var destination_ix = 1;
-                const tunnel_sb_entrances = [
-                    // "+839595129", // Wattle St
-                    "-1276841567", // M4
-                ];
-                const tunnel_sb_exits = [
-                    "-1330165350", // Gardeners Rd
-                    "+1279334634", // Euston Rd
-                    "-1276632917", // M8
-                ];
-                for (link_id of tunnel_sb_entrances) {
+                for (link_id of Object.keys(tunnel_sb_entries)) {
                     url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
                 }
-                for (link_id of tunnel_sb_exits) {
+                for (link_id of Object.keys(tunnel_sb_exits)) {
                     url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
                 }
                 // Northbound
                 var first_nb_start_ix = start_ix;
                 var first_nb_destination_ix = destination_ix;
-                const tunnel_nb_entrances = [
-                    "+1285362605", // Gardeners Rd
-                    "-1276621977", // Euston Rd
-                    "+1276607539", // M8
-                ];
-                const tunnel_nb_exits = [
-                    // "-1209767630", // Wattle St
-                    "+1275494703", // M4
-                ];
-                for (link_id of tunnel_nb_entrances) {
+                for (link_id of Object.keys(tunnel_nb_entries)) {
                     url = url.mergeQuery(x = {}, x[`destination${destination_ix++}`] = `link!!${link_id},1`, x)
                 }
-                for (link_id of tunnel_nb_exits) {
+                for (link_id of Object.keys(tunnel_nb_exits)) {
                     url = url.mergeQuery(x = {}, x[`start${start_ix++}`] = `link!!${link_id},0`, x)
                 }
                 var response;
@@ -372,7 +390,7 @@
                             x.startIndex != 0 && x.summary.costFactor < x.summary.travelTime + 10000 &&
                             (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
                             if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
-                                best_tunnel_entrance = url.getQuery()['destination' + first_leg.destinationIndex];
+                                best_tunnel_entry = url.getQuery()['destination' + first_leg.destinationIndex];
                                 best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
                                 best_tunnel_direction = is_south_bound ? "sb" : "nb";
                             }
@@ -380,10 +398,10 @@
                     }
                 }
             }
-            if (best_tunnel_entrance && best_tunnel_exit) {
+            if (best_tunnel_entry && best_tunnel_exit) {
                 params = Object.assign(params,
                     {
-                        'waypoint1': best_tunnel_entrance,
+                        'waypoint1': best_tunnel_entry,
                         'waypoint2': best_tunnel_exit,
                         'waypoint3': `street!!${to.position.lat},${to.position.lng}`
                     });
@@ -788,35 +806,65 @@
             }
         }
 
+        function generate_tunnel_link(route) {
+            let tunnel_link = {
+                roadName: "Westconnex",
+                flags: ["tollroad", "tunnel", "motorway"],
+                shape: [],
+                length: m4_m8_tunnel_length,
+                remainTime: m4_m8_tunnel_time + route.leg[2].travelTime,
+                remainDistance: m4_m8_tunnel_length + route.leg[2].length,
+                dynamicSpeedInfo: {},
+                speedLimit: 80 / 3.6,
+            };
+            const add_polylines_to_tunnel_link = (entry_polyline, mainline_polyline, exit_polyline) => {
+                for (const point of entry_polyline.geometry.coordinates.concat(mainline_polyline.geometry.coordinates).concat(exit_polyline.geometry.coordinates)) {
+                    tunnel_link.shape = tunnel_link.shape.concat([point[1], point[0], point.length == 3 ? point[2] : 0]);
+                }
+                tunnel_link.length = parseInt(entry_polyline.properties["track-length"]) + parseInt(mainline_polyline.properties["track-length"]) + parseInt(exit_polyline.properties["track-length"]);
+                tunnel_link.remainDistance = tunnel_link.length + route.leg[2].length;
+                tunnel_link.remainTime = tunnel_link.length / tunnel_link.speedLimit + route.leg[2].travelTime;
+            }
+
+            const entry_link = route.leg[0].link[route.leg[0].link.length - 1].linkId;
+            const exit_link = route.leg[2].link[0].linkId;
+            if (tunnel_sb_entries.hasOwnProperty(entry_link)) {
+                const entry_polyline = m4_m8_polylines[tunnel_sb_entries[entry_link]];
+                const mainline_polyline = m4_m8_polylines["sb"];
+                if (tunnel_sb_exits.hasOwnProperty(exit_link)) {
+                    const exit_polyline = m4_m8_polylines[tunnel_sb_exits[exit_link]];
+                    add_polylines_to_tunnel_link(entry_polyline, mainline_polyline, exit_polyline);
+                } else {
+                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
+                }
+            } else if (tunnel_nb_entries.hasOwnProperty(entry_link)) {
+                const entry_polyline = m4_m8_polylines[tunnel_nb_entries[entry_link]];
+                const mainline_polyline = m4_m8_polylines["nb"];
+                if (tunnel_nb_exits.hasOwnProperty(exit_link)) {
+                    const exit_polyline = m4_m8_polylines[tunnel_nb_exits[exit_link]];
+                    add_polylines_to_tunnel_link(entry_polyline, mainline_polyline, exit_polyline);
+                } else {
+                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
+                }
+            } else {
+                console.error(`tunnel entry link "${entry_link}" not found in tunnel entries`)
+            }
+            return tunnel_link;
+        }
+
         function handle_route(route) {
             successful_requests += 1;
             if (route.note.length) {
                 console.error(route.note);
             }
             if (route.leg.length == 3) {
-                const tunnel_entry_point = route.leg[0].shape.slice(route.leg[0].shape.length - 3);
-                const tunnel_exit_point = route.leg[2].shape.slice(0, 3);
-                const tunnel_north = [-33.875576, 151.144253, route.tunnel_direction == "sb" ? tunnel_entry_point[2] : tunnel_exit_point[2]];
-                const tunnel_south = [-33.900171, 151.177963, route.tunnel_direction == "nb" ? tunnel_entry_point[2] : tunnel_exit_point[2]];
-                const tunnel_shape = tunnel_entry_point
-                    .concat(route.tunnel_direction == "sb" ? tunnel_north : tunnel_south)
-                    .concat(route.tunnel_direction == "nb" ? tunnel_north : tunnel_south)
-                    .concat(tunnel_exit_point)
-                route.leg[0].link = route.leg[0].link.concat([{
-                    roadName: "Westconnex",
-                    flags: ["tollroad", "tunnel", "motorway"],
-                    shape: tunnel_shape,
-                    length: m4_m8_tunnel_length,
-                    remainTime: m4_m8_tunnel_time + route.leg[2].travelTime,
-                    remainDistance: m4_m8_tunnel_length + route.leg[2].length,
-                    dynamicSpeedInfo: {},
-                    speedLimit: 80 / 3.6,
-                }]).concat(route.leg[2].link);
-                route.shape = route.leg[0].shape.concat(tunnel_shape).concat(route.leg[2].shape);
-                route.summary.baseTime = route.leg[0].baseTime + m4_m8_tunnel_time + route.leg[2].baseTime
-                route.summary.trafficTime = route.leg[0].trafficTime + m4_m8_tunnel_time + route.leg[2].trafficTime
-                route.summary.travelTime = route.leg[0].travelTime + m4_m8_tunnel_time + route.leg[2].travelTime
-                route.summary.distance = route.leg[0].length + m4_m8_tunnel_length + route.leg[2].length
+                const tunnel_link = generate_tunnel_link(route);
+                route.leg[0].link = route.leg[0].link.concat([tunnel_link]).concat(route.leg[2].link);
+                route.shape = route.leg[0].shape.concat(tunnel_link.shape).concat(route.leg[2].shape);
+                route.summary.baseTime = route.leg[0].baseTime + (tunnel_link.remainTime - route.leg[2].travelTime) + route.leg[2].baseTime;
+                route.summary.trafficTime = route.leg[0].trafficTime + (tunnel_link.remainTime - route.leg[2].travelTime) + route.leg[2].trafficTime;
+                route.summary.travelTime = route.leg[0].travelTime + tunnel_link.remainTime;
+                route.summary.distance = route.leg[0].length + tunnel_link.remainDistance;
             }
             // Skip results that have the exact polylines seen before
             if (routes.every((val, index) => !arrayEquals(val.shape, route.shape))) {
