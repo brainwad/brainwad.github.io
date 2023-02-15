@@ -865,6 +865,10 @@
                 route.summary.trafficTime = route.leg[0].trafficTime + (tunnel_link.remainTime - route.leg[2].travelTime) + route.leg[2].trafficTime;
                 route.summary.travelTime = route.leg[0].travelTime + tunnel_link.remainTime;
                 route.summary.distance = route.leg[0].length + tunnel_link.remainDistance;
+                route.label = route.label.filter(x => route.leg[0].link.some(l => l.roadName == x || l.roadNumber == x));
+                if (!route.label.includes("M8")) {
+                    route.label.push("M8")
+                }
             }
             // Skip results that have the exact polylines seen before
             if (routes.every((val, index) => !arrayEquals(val.shape, route.shape))) {
