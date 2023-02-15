@@ -157,8 +157,26 @@
             "-1209767633": "nb-wat", // Wattle St
             "+1275494703": "nb-m4e", // M4
         };
+        function get_tunnel_polylines(entry_link, exit_link) {
+            if (tunnel_sb_entries.hasOwnProperty(entry_link)) {
+                if (tunnel_sb_exits.hasOwnProperty(exit_link)) {
+                    return [m4_m8_polylines[tunnel_sb_entries[entry_link]], m4_m8_polylines["sb"], m4_m8_polylines[tunnel_sb_exits[exit_link]]];
+                } else {
+                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
+                }
+            } else if (tunnel_nb_entries.hasOwnProperty(entry_link)) {
+                if (tunnel_nb_exits.hasOwnProperty(exit_link)) {
+                    return [m4_m8_polylines[tunnel_nb_entries[entry_link]], m4_m8_polylines["nb"], m4_m8_polylines[tunnel_nb_exits[exit_link]]];
+                } else {
+                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
+                }
+            } else {
+                console.error(`tunnel entry link "${entry_link}" not found in tunnel entries`)
+            }
+            return [];
+        }
 
-        // Hard-coded values for M4-M8 tunnel
+        // Hard-coded values for M4-M8 tunnel. These are only used if the polylines above can't be read.
         const m4_m8_tunnel_time = 600;
         const m4_m8_tunnel_length = 9000;
 
@@ -389,7 +407,15 @@
                         for (var second_leg of matrix.filter(x => x.destinationIndex == 0 &&
                             x.startIndex != 0 && x.summary.costFactor < x.summary.travelTime + 10000 &&
                             (is_south_bound ? (x.startIndex < first_nb_start_ix) : (x.startIndex >= first_nb_start_ix)))) {
-                            if (first_leg.summary.travelTime + m4_m8_tunnel_time + second_leg.summary.travelTime < best_time) {
+                            const polylines = get_tunnel_polylines(
+                                url.getQuery()['destination' + first_leg.destinationIndex].match(/[-+0-9]+/),
+                                url.getQuery()['start' + second_leg.startIndex].match(/[-+0-9]+/));
+                            let tunnel_time = m4_m8_tunnel_time;
+                            if (polylines.length) {
+                                tunnel_time = polylines.map(x=>parseInt(x.properties["track-length"]) * 3.6 / 80).reduce((a, b) => a + b, 0);
+                                console.log(tunnel_time);
+                            }
+                            if (first_leg.summary.travelTime + tunnel_time + second_leg.summary.travelTime < best_time) {
                                 best_tunnel_entry = url.getQuery()['destination' + first_leg.destinationIndex];
                                 best_tunnel_exit = url.getQuery()['start' + second_leg.startIndex];
                                 best_tunnel_direction = is_south_bound ? "sb" : "nb";
@@ -828,26 +854,9 @@
 
             const entry_link = route.leg[0].link[route.leg[0].link.length - 1].linkId;
             const exit_link = route.leg[2].link[0].linkId;
-            if (tunnel_sb_entries.hasOwnProperty(entry_link)) {
-                const entry_polyline = m4_m8_polylines[tunnel_sb_entries[entry_link]];
-                const mainline_polyline = m4_m8_polylines["sb"];
-                if (tunnel_sb_exits.hasOwnProperty(exit_link)) {
-                    const exit_polyline = m4_m8_polylines[tunnel_sb_exits[exit_link]];
-                    add_polylines_to_tunnel_link(entry_polyline, mainline_polyline, exit_polyline);
-                } else {
-                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
-                }
-            } else if (tunnel_nb_entries.hasOwnProperty(entry_link)) {
-                const entry_polyline = m4_m8_polylines[tunnel_nb_entries[entry_link]];
-                const mainline_polyline = m4_m8_polylines["nb"];
-                if (tunnel_nb_exits.hasOwnProperty(exit_link)) {
-                    const exit_polyline = m4_m8_polylines[tunnel_nb_exits[exit_link]];
-                    add_polylines_to_tunnel_link(entry_polyline, mainline_polyline, exit_polyline);
-                } else {
-                    console.error(`tunnel exit link "${exit_link}" not found in tunnel exits`)
-                }
-            } else {
-                console.error(`tunnel entry link "${entry_link}" not found in tunnel entries`)
+            const polylines = get_tunnel_polylines(entry_link, exit_link);
+            if (polylines.length) {
+                add_polylines_to_tunnel_link(...polylines);
             }
             return tunnel_link;
         }
