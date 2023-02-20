@@ -888,11 +888,11 @@
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
                     for (links of road.key_links) {
-                        var new_avoid = route.avoid_links.slice();
+                        var new_avoid = new Set(route.avoid_links);
                         for (link of links) {
-                            new_avoid.push(link.linkId);
+                            new_avoid.add(link.linkId);
                         }
-                        new_avoid.sort();
+                        new_avoid = Array.from(new_avoid).sort();
                         if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
                             tried_avoids.push(new_avoid);
                             calculateRoute(from, to, new_avoid, false);
