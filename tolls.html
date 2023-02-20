@@ -285,8 +285,8 @@
                         document.getElementById("to").value = to.title;
                         tried_avoids = [[]];
                         routes = [];
-                        calculateRoute(from, to, [], true);
-                        calculateRoute(from, to, document.getElementById("m4-m8-tunnel-hack").checked ? [] : ["M4M8"], false);
+                        calculateRoute(from, to, ["tolls"]);
+                        calculateRoute(from, to, document.getElementById("m4-m8-tunnel-hack").checked ? [] : ["M4M8"]);
                     }, alert);
                 }, alert);
             }
@@ -304,18 +304,18 @@
             }
         }
 
-        async function calculateRoute(from, to, avoid_links, avoid_tolls) {
+        async function calculateRoute(from, to, avoid) {
             initiated_requests += 1;
             var params = {
                 'alternatives': 0,
-                'avoidLinks': avoid_links.filter(x => x != "M4M8"),
+                'avoidLinks': avoid.filter(x => !["M4M8", "tolls"].includes(x)),
                 'jsonAttributes': 73, //41,
                 'language': 'en_GB',
                 'legattributes': 'all',
                 'linkattributes': 'all',
                 'maneuverattributes': 'none',
                 'metricSystem': 'metric',
-                'mode': `fastest;car;traffic:enabled${avoid_tolls ? ";tollroad:-3" : ""}`,
+                'mode': `fastest;car;traffic:enabled${avoid.includes("tolls") ? ";tollroad:-3" : ""}`,
                 'routeattributes': 'all',
                 'returnelevation': true,
                 'transportMode': 'car',
@@ -324,7 +324,7 @@
             var best_tunnel_entry;
             var best_tunnel_exit;
             var best_tunnel_direction;
-            if (avoid_tolls || avoid_links.includes("M4M8")) {
+            if (avoid.includes("tolls") || avoid.includes("M4M8")) {
                 // Can skip tunnel hack when avoiding tolls, since we will never take the tunnel anyway.
                 params = Object.assign(params, {
                     'waypoint1': `street!!${to.position.lat},${to.position.lng}`
@@ -335,7 +335,7 @@
                 // and doing a 3-leg request if it would be quicker to go from route start to tunnel
                 // to route end (using fixed time estimate of 600 s for the tunnel).
                 var url = matrixUrl.clone().mergeQuery({
-                    'avoidLinks': avoid_links,
+                    'avoidLinks': avoid,
                     'metricSystem': 'metric',
                     'mode': 'fastest;car;traffic:enabled',
                     'summaryAttributes': 'traveltime,costfactor',
@@ -462,7 +462,7 @@
                     }
                     recent_route_responses.push({ time: Date.now(), ok: true });
                     result.response.route[0].start_time = start_time;
-                    result.response.route[0].avoid_links = avoid_links;
+                    result.response.route[0].avoid = avoid;
                     result.response.route[0].tunnel_direction = best_tunnel_direction;
                     handle_route(result.response.route[0])
                 }, async (error) => {
@@ -888,14 +888,14 @@
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
                     for (links of road.key_links) {
-                        var new_avoid = new Set(route.avoid_links);
+                        var new_avoid = new Set(route.avoid);
                         for (link of links) {
                             new_avoid.add(link.linkId);
                         }
                         new_avoid = Array.from(new_avoid).sort();
                         if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
                             tried_avoids.push(new_avoid);
-                            calculateRoute(from, to, new_avoid, false);
+                            calculateRoute(from, to, new_avoid);
                         }
                     }
                 }
