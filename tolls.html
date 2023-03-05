@@ -324,12 +324,7 @@
             var best_tunnel_entry;
             var best_tunnel_exit;
             var best_tunnel_direction;
-            if (avoid.includes("tolls") || avoid.includes("M4M8")) {
-                // Can skip tunnel hack when avoiding tolls, since we will never take the tunnel anyway.
-                params = Object.assign(params, {
-                    'waypoint1': `street!!${to.position.lat},${to.position.lng}`
-                });
-            } else {
+            if (!avoid.includes("tolls") && !avoid.includes("M4M8")) {
                 // Hack in the M4-M8 tunnel by doing a matrix call between 
                 // [route start, exits of M4-M8 tunnel] and [route end, entries of M4-M8 tunnel],
                 // and doing a 3-leg request if it would be quicker to go from route start to tunnel
