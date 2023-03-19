@@ -179,7 +179,7 @@
                 padding: { top: 20, left: 20, right: 20, bottom: 20 }
             });
         var searchService = platform.getSearchService();
-        var routingService = platform.getRoutingService();
+        var routingService = platform.getRoutingService(null, 8);
 
         var from;
         var to;
@@ -221,8 +221,8 @@
                         document.getElementById("to").value = to.title;
                         tried_avoids = [[]];
                         routes = [];
-                        calculateRoute(from, to, ["tolls"]);
-                        calculateRoute(from, to, []);
+                        calculateRoute(from, to, { features: ["tollRoad"] });
+                        calculateRoute(from, to, {});
                     }, alert);
                 }, alert);
             }
@@ -243,21 +243,22 @@
         async function calculateRoute(from, to, avoid) {
             initiated_requests += 1;
             var params = {
+                'origin': `${from.position.lat},${from.position.lng}`,
+                'destination': `${to.position.lat},${to.position.lng}`,
                 'alternatives': 0,
-                'avoidLinks': avoid.filter(x => !["tolls"].includes(x)),
-                'jsonAttributes': 73, //41,
-                'language': 'en_GB',
-                'legattributes': 'all',
-                'linkattributes': 'all',
-                'maneuverattributes': 'none',
-                'metricSystem': 'metric',
-                'mode': `fastest;car;traffic:enabled${avoid.includes("tolls") ? ";tollroad:-3" : ""}`,
-                'routeattributes': 'all',
-                'returnelevation': true,
+                'currency': 'aud',
+                'return': ["polyline", "elevation", "tolls", "summary", "travelSummary"],
+                'spans': ["segmentRef", "dynamicSpeedInfo", "functionalClass", "names", "routeNumbers", "length", "duration", "streetAttributes", "carAttributes"],
+                'tolls[summaries]': 'total',
                 'transportMode': 'car',
-                'waypoint0': `street!!${from.position.lat},${from.position.lng}`,
-                'waypoint1': `street!!${to.position.lat},${to.position.lng}`
+                'units': 'metric',
             };
+            if (avoid.hasOwnProperty("features")) {
+                params = Object.assign(params, { 'avoid[features]': avoid.features });
+            }
+            if (avoid.hasOwnProperty("segments")) {
+                params = Object.assign(params, { 'avoid[segments]': avoid.segments });
+            }
             var make_request = async () => {
                 await new Promise(resolve => {
                     const expected_start_time = start_time;
@@ -278,13 +279,14 @@
                     if (!start_time || start_time != expected_start_time) {
                         throw new Error("route response is stale")
                     }
-                    if (!result.response.route.length) {
+                    if (!result.routes.length) {
                         throw new Error("route response is empty", { cause: result })
                     }
                     recent_route_responses.push({ time: Date.now(), ok: true });
-                    result.response.route[0].start_time = start_time;
-                    result.response.route[0].avoid = avoid;
-                    handle_route(result.response.route[0])
+                    let route = result.routes[0].sections[0];
+                    route.start_time = start_time;
+                    route.avoid = avoid;
+                    handle_route(route)
                 }, async (error) => {
                     if (start_time && start_time.getTime() < Date.now()) {
                         recent_route_responses.push({ time: Date.now(), ok: false });
@@ -346,14 +348,14 @@
 
         function infer_fixed_gantry(motorway_toll_data, toll_road) {
             console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
-            var best_dist_sq;
-            var best_gantry;
-            for (gantry of motorway_toll_data.gantries) {
-                for (link of toll_road.links) {
-                    for (var i = 0; i < link.shape.length; i += 3) {
-                        var lat = link.shape[i];
-                        var lng = link.shape[i + 1];
-                        var dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
+            let best_dist_sq;
+            let best_gantry;
+            for (let gantry of motorway_toll_data.gantries) {
+                for (let span of toll_road.spans) {
+                    for (var i = 0; i < span.shape.length; i += 3) {
+                        let lat = span.shape[i];
+                        let lng = span.shape[i + 1];
+                        let dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                         if (!best_dist_sq || best_dist_sq > dist_sq) {
                             best_gantry = gantry;
                             best_dist_sq = dist_sq;
@@ -367,13 +369,13 @@
 
         function infer_fixed_highest_toll_gantry(motorway_toll_data, toll_road, max_dist_sq) {
             console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
-            var best_gantry;
-            for (gantry of motorway_toll_data.gantries) {
-                for (link of toll_road.links) {
-                    for (var i = 0; i < link.shape.length; i += 3) {
-                        var lat = link.shape[i];
-                        var lng = link.shape[i + 1];
-                        var dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
+            let best_gantry;
+            for (let gantry of motorway_toll_data.gantries) {
+                for (let span of toll_road.spans) {
+                    for (let i = 0; i < span.shape.length; i += 3) {
+                        let lat = span.shape[i];
+                        let lng = span.shape[i + 1];
+                        let dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                         if (dist_sq < max_dist_sq && (!best_gantry || best_gantry.chargeInCents < gantry.chargeInCents)) {
                             best_gantry = gantry;
                         }
@@ -386,19 +388,19 @@
 
         function infer_distance_gantries(motorway_toll_data, toll_road) {
             console.assert(motorway_toll_data.chargeType == "Distance", "not a distance tolled motorway!");
-            var entry_gantries = motorway_toll_data.gantries.filter(x => x.exitGantries);
-            var best_dist_sq;
-            var best_entry_gantry;
-            var best_exit_gantry;
-            for (entry_gantry of entry_gantries) {
-                var entry_lat = toll_road.links[0].shape[0];
-                var entry_lng = toll_road.links[0].shape[1];
-                var exit_gantries = motorway_toll_data.gantries.filter(x => entry_gantry.exitGantries.filter(y => y.gantryRef == x.gantryRef).some((x) => x));
-                for (exit_gantry of exit_gantries) {
-                    var exit_link = toll_road.links[toll_road.links.length - 1];
-                    var exit_lat = exit_link.shape[exit_link.shape.length - 3];
-                    var exit_lng = exit_link.shape[exit_link.shape.length - 2];
-                    var dist_sq =
+            let entry_gantries = motorway_toll_data.gantries.filter(x => x.exitGantries);
+            let best_dist_sq;
+            let best_entry_gantry;
+            let best_exit_gantry;
+            for (let entry_gantry of entry_gantries) {
+                let entry_lat = toll_road.spans[0].shape[0];
+                let entry_lng = toll_road.spans[0].shape[1];
+                let exit_gantries = motorway_toll_data.gantries.filter(x => entry_gantry.exitGantries.filter(y => y.gantryRef == x.gantryRef).some((x) => x));
+                for (let exit_gantry of exit_gantries) {
+                    let exit_span = toll_road.spans[toll_road.spans.length - 1];
+                    let exit_lat = exit_span.shape[exit_span.shape.length - 3];
+                    let exit_lng = exit_span.shape[exit_span.shape.length - 2];
+                    let dist_sq =
                         (entry_lat - entry_gantry.latitude) ** 2 +
                         (entry_lng - entry_gantry.longitude) ** 2 +
                         (exit_lat - exit_gantry.latitude) ** 2 +
@@ -417,26 +419,25 @@
 
         function infer_timed_gantry_time(motorway_toll_data, toll_road, max_dist_sq) {
             console.assert(motorway_toll_data.chargeType == "TimeofDay", "not a time-of-day tolled motorway!");
-            var best_link;
-            var best_dist_sq;
-            for (link of toll_road.links) {
-                for (var i = 0; i < link.shape.length; i += 3) {
-                    var lat = link.shape[i];
-                    var lng = link.shape[i + 1];
-                    var dist_sq = (lat - motorway_toll_data.gantries[0].latitude) ** 2 + (lng - motorway_toll_data.gantries[0].longitude) ** 2;
+            let best_span;
+            let best_dist_sq;
+            for (let span of toll_road.spans) {
+                for (let i = 0; i < span.shape.length; i += 3) {
+                    let lat = span.shape[i];
+                    let lng = span.shape[i + 1];
+                    let dist_sq = (lat - motorway_toll_data.gantries[0].latitude) ** 2 + (lng - motorway_toll_data.gantries[0].longitude) ** 2;
                     if (dist_sq < max_dist_sq && (!best_dist_sq || best_dist_sq > dist_sq)) {
-                        best_link = link;
+                        best_span = span;
                         best_dist_sq = dist_sq;
                     }
                 }
             }
-            if (best_link) {
+            if (best_span) {
                 toll_road.gantry = motorway_toll_data.gantries[0];
-                var time_of_toll = new Date(toll_road.start_time.getTime() + (toll_road.links[0].remainTime - best_link.remainTime) * 1000);
-                var time_str = String(time_of_toll.getHours()).padStart(2, '0') + String(time_of_toll.getMinutes()).padStart(2, '0')
-                switch (time_of_toll.getDay()) {
-                    case 0:
-                    case 6:
+                let time_str = best_span.startTime.toLocaleTimeString('en-AU', { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Australia/Sydney" }).replace(":","");
+                switch (new Date().toLocaleDateString('en-AU', { weekday: "long", timeZone: "Australia/Sydney" })) {
+                    case "Saturday":
+                    case "Sunday":
                         return [time_str, "WEEKEND"];
                         break;
                     default:
@@ -445,55 +446,97 @@
             }
         }
 
-        function calculate_tolls(route) {
-            var toll_roads = [];
-            var last_roadName;
-            var current_toll_road = null;
-            var mid_toll_split = false;
-            for (var link of route.leg[0].link) {
-                if (!link.flags) {
-                    link.flags = []
+        function decorate_spans(route) {
+            let span_start_time = new Date(start_time.getTime());
+            for (let span of route.spans) {
+                span.startTime = span_start_time;
+                span_start_time = new Date(span_start_time.getTime() + span.duration * 1000);
+                for (const k in route.refReplacements) {
+                    span.segmentRef = span.segmentRef.replace(`$${k}`, route.refReplacements[k]);
                 }
-
+                span.segmentRef = span.segmentRef.match(/here:cm:segment:\d+#./)[0]
+                span.flags = [];
+                if (span.hasOwnProperty("streetAttributes")) {
+                    span.flags = span.flags.concat(span.streetAttributes);
+                }
+                if (span.hasOwnProperty("carAttributes")) {
+                    span.flags = span.flags.concat(span.carAttributes);
+                }
+                span.roadName = "";
+                if (span.hasOwnProperty("names")) {
+                    for (let name of span.names) {
+                        if (name.language == "en") {
+                            span.roadName = name.value;
+                            break;
+                        }
+                    }
+                }
+                span.rooadNumber = ""
+                if (span.hasOwnProperty("routeNumbers")) {
+                    for (let name of span.routeNumbers) {
+                        if (name.language == "en") {
+                            span.roadNumber = name.value;
+                            break;
+                        }
+                    }
+                }
                 // fix broken names
-                if (link.roadName == "Light Horse Intr" || link.roadName == "M7 Cycleway") {
-                    link.roadName = "Westlink M7";
-                } else if (link.roadName == "M4 East" || (link.flags.includes("tollroad") && link.roadName == "Western Mtwy")) {
-                    link.roadName = "Westconnex";
-                } else if (link.roadName == "High St" && current_toll_road && current_toll_road.name == "Cahill Expy") {
-                    link.roadName = "Cahill Expy";
-                } else if (link.roadNumber == "M8") {
-                    link.roadName = "Westconnex"
-                } else if (link.roadName == "Edward Ln" && link.flags.includes("tollroad")) {
-                    link.roadName = "Westconnex"
-                } else if (link.roadName == "Norwest Blvd" && link.flags.includes("tollroad")) {
-                    link.roadName = "Westlink M7"
-                } else if (link.roadName == "Pennant Hills Rd" && link.flags.includes("tollroad")) {
-                    link.roadName = "Northconnex"
-                } else if (link.roadName == "Gardeners Rd" && link.flags.includes("tollroad")) {
-                    link.roadName = ""
+                if (span.roadName == "Light Horse Intr" || span.roadName == "M7 Cycleway") {
+                    span.roadName = "Westlink M7";
+                } else if (span.roadName == "M4 East" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
+                    span.roadName = "Westconnex";
+                } else if (span.roadName == "High St" && span.flags.includes("tollRoad")) {
+                    span.roadName = "Cahill Expy";
+                } else if (span.roadNumber == "M8") {
+                    span.roadName = "Westconnex"
+                } else if (span.roadName == "Edward Ln" && span.flags.includes("tollRoad")) {
+                    span.roadName = "Westconnex"
+                } else if (span.roadName == "Norwest Blvd" && span.flags.includes("tollRoad")) {
+                    span.roadName = "Westlink M7"
+                } else if (span.roadName == "Pennant Hills Rd" && span.flags.includes("tollRoad")) {
+                    span.roadName = "Northconnex"
+                } else if (span.roadName == "Gardeners Rd" && span.flags.includes("tollRoad")) {
+                    span.roadName = ""
                 }
 
                 // Fix toll-less segments of toll roads
-                if (!link.flags.includes("tollroad") && (link.roadName == "Westlink M7" || link.roadName == "Westconnex")) {
-                    link.flags.push("tollroad")
+                if (!span.flags.includes("tollRoad") && (span.roadName == "Westlink M7" || span.roadName == "Westconnex")) {
+                    span.flags.push("tollRoad")
                 }
+            }
+            let shape = H.geo.LineString.fromFlexiblePolyline(route.polyline).getLatLngAltArray();
+            for (let i = 0, j = 0; i < shape.length / 3; i++) {
+                if (j + 1 < route.spans.length && i == route.spans[j + 1].offset) {
+                    j++;
+                }
+                if (!route.spans[j].shape) {
+                    route.spans[j].shape = []
+                }
+                route.spans[j].shape = route.spans[j].shape.concat(shape.slice(i * 3, (i + 1) * 3));
+            }
+        }
 
+        function calculate_tolls(route) {
+            let toll_roads = [];
+            let last_roadName;
+            let current_toll_road = null;
+            let mid_toll_split = false;
+            for (let span of route.spans) {
                 // fix blank exits
-                if (toll_roads.length && toll_roads[toll_roads.length - 1].exit == "" && link.roadName) {
-                    toll_roads[toll_roads.length - 1].exit = link.roadName
+                if (toll_roads.length && toll_roads[toll_roads.length - 1].exit == "" && span.roadName) {
+                    toll_roads[toll_roads.length - 1].exit = span.roadName
                 }
-                if (current_toll_road && (!link.flags.includes("tollroad") || (link.roadName && current_toll_road.name && link.roadName != current_toll_road.name))) {
-                    mid_toll_split = link.flags.includes("tollroad");
+                if (current_toll_road && (!span.flags.includes("tollRoad") || (span.roadName && current_toll_road.name && span.roadName != current_toll_road.name))) {
+                    mid_toll_split = span.flags.includes("tollRoad");
 
-                    current_toll_road.exit = link.roadName;
+                    current_toll_road.exit = span.roadName;
                     // Special case for Falcon St southbound e-ramp, which has no name at all
                     if ((current_toll_road.name == "Warringah Fwy" && current_toll_road.exit == "Falcon St") ||
                         (!current_toll_road.name && current_toll_road.entry == "Falcon St" && current_toll_road.exit == "Warringah Fwy")) {
                         current_toll_road.name = "Falcon St (ramp)"
                     }
                     // Special case for M4 East Parramatta Rd - there are 2 exits, the old one and the new one.
-                    if (current_toll_road.name == "Westconnex" && current_toll_road.links.filter(x => x.flags.includes("tunnel")).length) {
+                    if (current_toll_road.name == "Westconnex" && current_toll_road.spans.filter(x => x.flags.includes("tunnel")).length) {
                         if (current_toll_road.exit == "Parramatta Rd") {
                             current_toll_road.exit += " (tunnel)"
                         }
@@ -505,9 +548,9 @@
                     // fixed rate toll roads have an optimisation to block the whole road at once.
                     // variable rate ones block just the start or end link.
                     if (is_fixed_rate_tollway(current_toll_road.name)) {
-                        current_toll_road.key_links = [current_toll_road.links]
+                        current_toll_road.key_spans = [current_toll_road.spans]
                     } else {
-                        current_toll_road.key_links = [current_toll_road.links.slice(0, 1), current_toll_road.links.slice(current_toll_road.links.length - 1)]
+                        current_toll_road.key_spans = [current_toll_road.spans.slice(0, 1), current_toll_road.spans.slice(current_toll_road.spans.length - 1)]
                     }
 
                     // Special cases for short sections of M5 East just after M8 and M2 just before Lane Cove Tunnel
@@ -517,28 +560,28 @@
                     }
                     current_toll_road = null;
                 }
-                if (!current_toll_road && link.flags.includes("tollroad")) {
+                if (!current_toll_road && span.flags.includes("tollRoad")) {
                     current_toll_road = new Object();
                     current_toll_road.distance = 0;
-                    current_toll_road.links = []
+                    current_toll_road.spans = []
                     if (mid_toll_split && toll_roads.length) {
                         current_toll_road.entry = toll_roads[toll_roads.length - 1].name;
                     } else if (last_roadName) {
                         current_toll_road.entry = last_roadName;
                     }
-                    current_toll_road.start_time = new Date(start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000);
+                    current_toll_road.start_time = span.startTime;
                     mid_toll_split = false;
                 }
-                if (link.flags.includes("tollroad")) {
-                    current_toll_road.links.push(link);
-                    current_toll_road.distance += link.length;
+                if (span.flags.includes("tollRoad")) {
+                    current_toll_road.spans.push(span);
+                    current_toll_road.distance += span.length;
                     // fill road name if not yet seen (because prior links had no name)
-                    if (link.roadName && !current_toll_road.name) {
-                        current_toll_road.name = link.roadName;
+                    if (span.roadName && !current_toll_road.name) {
+                        current_toll_road.name = span.roadName;
                     }
                 }
-                if (link.roadName) {
-                    last_roadName = link.roadName;
+                if (span.roadName) {
+                    last_roadName = span.roadName;
                 }
             }
             if (current_toll_road) {
@@ -547,58 +590,59 @@
             route.toll_roads = toll_roads;
             route.toll = 0;
             for (var road of toll_roads) {
-                switch (road.name) {
-                    case "Bradfield Hwy":
-                    case "Cahill Expy":
-                        var time = infer_timed_gantry_time(get_toll_data_for("SHB"), road, 1e-5);
-                        if (time) {
-                            road.toll = get_timed_toll_at(get_toll_data_for("SHB"), time[0], time[1]);
-                        }
-                        break;
-                    case "Cross City Tunnel":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("CCT"), infer_fixed_gantry(get_toll_data_for("CCT"), road).gantryRef);
-                        break;
-                    case "Eastern Distributor":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("ED"), infer_fixed_gantry(get_toll_data_for("ED"), road).gantryRef);
-                        break;
-                    case "Falcon St (ramp)":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("LCT"), infer_fixed_gantry(get_toll_data_for("LCT"), road).gantryRef);
-                        break;
-                    case "Lane Cove Tunnel":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("LCT"), infer_fixed_gantry(get_toll_data_for("LCT"), road).gantryRef);
-                        break;
-                    case "M2 Hills Mtwy":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("M2"), infer_fixed_highest_toll_gantry(get_toll_data_for("M2"), road, 1e-5).gantryRef);
-                        break;
-                    case "Northconnex":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("NCX"), infer_fixed_gantry(get_toll_data_for("NCX"), road).gantryRef);
-                        break;
-                    case "South Western Mtwy":
-                        road.toll = get_fixed_toll_at(get_toll_data_for("M5"), infer_fixed_gantry(get_toll_data_for("M5"), road).gantryRef);
-                        break;
-                    case "Sydney Harbour Tunnel":
-                        var time = infer_timed_gantry_time(get_toll_data_for("SHT"), road, 1e-5);
-                        if (time) {
-                            road.toll = get_timed_toll_at(get_toll_data_for("SHT"), time[0], time[1]);
-                        }
-                        break;
-                    case "M5 East Fwy":
-                    case "Westconnex":
-                        var gantries = infer_distance_gantries(get_toll_data_for("WCX"), road);
-                        road.toll = get_distance_toll_between(get_toll_data_for("WCX"), gantries[0].gantryRef, gantries[1].gantryRef);
-                        break;
-                    case "Westlink M7":
-                        var gantries = infer_distance_gantries(get_toll_data_for("M7"), road);
-                        road.toll = get_distance_toll_between(get_toll_data_for("M7"), gantries[0].gantryRef, gantries[1].gantryRef);
-                        break;
-                }
+                try {
+                    switch (road.name) {
+                        case "Bradfield Hwy":
+                        case "Cahill Expy":
+                            var time = infer_timed_gantry_time(get_toll_data_for("SHB"), road, 1e-5);
+                            if (time) {
+                                road.toll = get_timed_toll_at(get_toll_data_for("SHB"), time[0], time[1]);
+                            }
+                            break;
+                        case "Cross City Tunnel":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("CCT"), infer_fixed_gantry(get_toll_data_for("CCT"), road).gantryRef);
+                            break;
+                        case "Eastern Distributor":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("ED"), infer_fixed_gantry(get_toll_data_for("ED"), road).gantryRef);
+                            break;
+                        case "Falcon St (ramp)":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("LCT"), infer_fixed_gantry(get_toll_data_for("LCT"), road).gantryRef);
+                            break;
+                        case "Lane Cove Tunnel":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("LCT"), infer_fixed_gantry(get_toll_data_for("LCT"), road).gantryRef);
+                            break;
+                        case "M2 Hills Mtwy":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("M2"), infer_fixed_highest_toll_gantry(get_toll_data_for("M2"), road, 1e-5).gantryRef);
+                            break;
+                        case "Northconnex":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("NCX"), infer_fixed_gantry(get_toll_data_for("NCX"), road).gantryRef);
+                            break;
+                        case "South Western Mtwy":
+                            road.toll = get_fixed_toll_at(get_toll_data_for("M5"), infer_fixed_gantry(get_toll_data_for("M5"), road).gantryRef);
+                            break;
+                        case "Sydney Harbour Tunnel":
+                            var time = infer_timed_gantry_time(get_toll_data_for("SHT"), road, 1e-5);
+                            if (time) {
+                                road.toll = get_timed_toll_at(get_toll_data_for("SHT"), time[0], time[1]);
+                            }
+                            break;
+                        case "M5 East Fwy":
+                        case "Westconnex":
+                            var gantries = infer_distance_gantries(get_toll_data_for("WCX"), road);
+                            road.toll = get_distance_toll_between(get_toll_data_for("WCX"), gantries[0].gantryRef, gantries[1].gantryRef);
+                            break;
+                        case "Westlink M7":
+                            var gantries = infer_distance_gantries(get_toll_data_for("M7"), road);
+                            road.toll = get_distance_toll_between(get_toll_data_for("M7"), gantries[0].gantryRef, gantries[1].gantryRef);
+                            break;
+                    }
+                } catch { }
                 if (road.toll) {
                     route.toll += road.toll;
                 }
             }
-            if (route.summary.flags && route.summary.flags.includes("tollroad") && !route.toll) {
-                console.error("missing toll!")
-                console.error(route)
+            if (route.summary.tolls.total.value.toFixed(2) != route.toll.toFixed(2)) {
+                console.error(`toll disagreement: HERE says $${route.summary.tolls.total.value}, I say $${route.toll}`)
             }
         }
 
@@ -622,9 +666,9 @@
         function interpolate_curve(curve, x) {
             var keys = Object.keys(curve).sort();
             if (keys[0] >= x) return curve[keys[0]];
-            for (var [i, k] of keys.entries()) {
+            for (const [i, k] of keys.entries()) {
                 if (k >= x) {
-                    var k_ = keys[i - 1];
+                    const k_ = keys[i - 1];
                     return curve[k_] + (curve[k] - curve[k_]) * (x - parseFloat(k_)) / (parseFloat(k) - parseFloat(k_));
                 }
             }
@@ -633,10 +677,10 @@
 
         function calculate_fuel(route) {
             route.fuel = 0;
-            for (var link of route.leg[0].link) {
-                if (!link.length) continue;
-                var altitude_diff = link.shape.length ? link.shape[link.shape.length - 1] - link.shape[2] : 0;
-                var gradient = altitude_diff / link.length;
+            for (let span of route.spans) {
+                if (!span.length) continue;
+                var altitude_diff = span.shape.length ? span.shape[span.shape.length - 1] - span.shape[2] : 0;
+                var gradient = altitude_diff / span.length;
                 var gradient_class =
                     gradient < -0.025 ? 0 :
                         gradient < -0.005 ? 1 :
@@ -647,31 +691,33 @@
                                             gradient < 0.065 ? 6 :
                                                 gradient < 0.085 ? 7 : 8;
                 var mpg = interpolate_curve(fuel_efficiency_curves[gradient_class],
-                    2.23694 * (link.dynamicSpeedInfo.trafficSpeed ? link.dynamicSpeedInfo.trafficSpeed : link.dynamicSpeedInfo.baseSpeed ? link.dynamicSpeedInfo.baseSpeed : link.speedLimit))
-                route.fuel += 2.35215 / mpg * link.length / 1000;
+                    2.23694 * (span.dynamicSpeedInfo.trafficSpeed ? span.dynamicSpeedInfo.trafficSpeed : span.dynamicSpeedInfo.baseSpeed));
+                route.fuel += 2.35215 / mpg * span.length / 1000;
             }
         }
 
         function handle_route(route) {
             successful_requests += 1;
-            if (route.note.length) {
-                console.error(route.note);
-            }
             // Skip results that have the exact polylines seen before
-            if (routes.every((val, index) => !arrayEquals(val.shape, route.shape))) {
+            if (routes.every(r => r.polyline != route.polyline)) {
+                decorate_spans(route);
                 calculate_tolls(route);
                 calculate_fuel(route);
                 routes.push(route);
                 render_efficient_frontier();
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
-                    for (links of road.key_links) {
-                        var new_avoid = new Set(route.avoid);
-                        for (link of links) {
-                            new_avoid.add(link.linkId);
+                    for (spans of road.key_spans) {
+                        var new_avoid = Object.assign({}, route.avoid);
+                        if (!new_avoid.hasOwnProperty("segments")) {
+                            new_avoid = Object.assign(new_avoid, { 'segments': [] });
                         }
-                        new_avoid = Array.from(new_avoid).sort();
-                        if (tried_avoids.every((val, index) => !arrayEquals(val, new_avoid))) {
+                        new_avoid.segments = new Set(new_avoid.segments);
+                        for (span of spans) {
+                            new_avoid.segments.add(span.segmentRef);
+                        }
+                        new_avoid.segments = Array.from(new_avoid.segments).sort();
+                        if (tried_avoids.every(a => !a || !arrayEquals(a.segments, new_avoid.segments))) {
                             tried_avoids.push(new_avoid);
                             calculateRoute(from, to, new_avoid);
                         }
@@ -681,6 +727,7 @@
             render_progress();
         }
 
+        /* TODO
         function to_gpx(route) {
             var doc = new DOMParser().parseFromString('<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1"><metadata/><trk><name></name><desc></desc><trkseg></trkseg></trk></gpx>', "application/xml");
             var trkseg = doc.getElementsByTagName("trkseg")[0];
@@ -695,7 +742,7 @@
                     trkpt.append(ele);
                     if (write_time) {
                         var time = doc.createElement("time");
-                        time.append(new Date(route.start_time.getTime() + (route.summary.trafficTime - link.remainTime) * 1000).toISOString());
+                        time.append(new Date(route.start_time.getTime() + (route.summary.duration - link.remainTime) * 1000).toISOString());
                         trkpt.append(time);
                         write_time = false;
                     }
@@ -703,10 +750,11 @@
                 });
             }
             var end_time = doc.createElement("time");
-            end_time.append(new Date(route.start_time.getTime() + route.summary.trafficTime * 1000).toISOString());
+            end_time.append(new Date(route.start_time.getTime() + route.summary.duration * 1000).toISOString());
             var trkpts = trkseg.lastChild.append(end_time);
             return new XMLSerializer().serializeToString(doc).replaceAll('<trkpt xmlns=""', '<trkpt');
         }
+        */
 
         function render_progress() {
             if (routes.length) {
@@ -721,14 +769,14 @@
             frontier_routes = []
             for (route of routes) {
                 route.fuel_cost = route.fuel * document.getElementById("fuel-cost").valueAsNumber;
-                route.time_cost = route.summary.trafficTime / 3600 * document.getElementById("hour-cost").valueAsNumber;
+                route.time_cost = route.summary.duration / 3600 * document.getElementById("hour-cost").valueAsNumber;
                 route.money_cost = route.fuel_cost + route.toll;
                 route.cost = route.money_cost + route.time_cost;
             }
             while (max_money_cost > 0) {
                 var best_route = null;
                 for (route of routes) {
-                    if (route.money_cost < max_money_cost && (!best_route || route.summary.trafficTime < best_route.summary.trafficTime)) {
+                    if (route.money_cost < max_money_cost && (!best_route || route.summary.duration < best_route.summary.duration)) {
                         best_route = route;
                     }
                 }
@@ -756,22 +804,20 @@
 
             var background_polylines = []
             for (const route of routes) {
-                let polyline = new H.map.Polyline(new H.geo.LineString(route.shape), { style: { strokeColor: "#ffffff", lineWidth: 1 } });
-                polyline.shape = route.shape;
+                let polyline = new H.map.Polyline(H.geo.LineString.fromFlexiblePolyline(route.polyline), { style: { strokeColor: "#ffffff", lineWidth: 1 } });
                 background_polylines.push(polyline);
             }
             var frontier_polylines = []
             var bounding_box = null;
             for (const route of frontier_routes_sorted_by_cost.reverse()) {
-                let polyline = new H.map.Polyline(new H.geo.LineString(route.shape),
+                let polyline = new H.map.Polyline(H.geo.LineString.fromFlexiblePolyline(route.polyline),
                     { style: { strokeColor: route.color, lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2 } });
-                polyline.shape = route.shape;
                 frontier_polylines.push(polyline);
                 bounding_box = bounding_box ? bounding_box.mergeRect(polyline.getBoundingBox()) : polyline.getBoundingBox();
             }
 
-            map.removeObjects(map.getObjects().filter(x => frontier_polylines.some(y => arrayEquals(x.shape, y.shape))));
-            map.addObjects(background_polylines.filter(x => map.getObjects().every(y => !arrayEquals(x.shape, y.shape))).filter(x => frontier_polylines.every(y => !arrayEquals(x.shape, y.shape))));
+            map.removeObjects(map.getObjects().filter(x => x.style.strokeColor != "#ffffff" || frontier_polylines.some(y => x.getGeometry().equals(y.getGeometry()))));
+            map.addObjects(background_polylines.filter(x => map.getObjects().every(y => !x.getGeometry().equals(y.getGeometry()))).filter(x => frontier_polylines.every(y => !x.getGeometry().equals(y.getGeometry()))));
             map.addObjects(frontier_polylines);
             map.getViewModel().setLookAtData({ bounds: bounding_box });
         }
@@ -781,7 +827,7 @@
             li.className = `rank${route.cost_rank}`;
             li.style = `color: ${route.color}`;
             li.onclick = () => {
-                const gpx = to_gpx(route);
+                const gpx = ""; // TODO = to_gpx(route);
                 const blob = new Blob([gpx], { type: "application/gpx+xml" });
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -795,12 +841,13 @@
                 document.body.removeChild(a);
             }
             li.innerHTML +=
-                `${(route.summary.trafficTime / 60).toFixed(0)}′ ` +
-                `(${route.summary.baseTime > route.summary.trafficTime ? "" : "+"}` +
-                `${((route.summary.trafficTime - route.summary.baseTime) / 60).toFixed(0)}) · ` +
+                `${(route.summary.duration / 60).toFixed(0)}′ ` +
+                `(${route.summary.baseDuration > route.summary.duration ? "" : "+"}` +
+                `${((route.summary.duration - route.summary.baseDuration) / 60).toFixed(0)}) · ` +
                 `$${(route.money_cost).toFixed(2)} · ` +
-                `${(route.summary.distance / 1000).toFixed(1)}km · ` +
-                `${route.fuel.toFixed(2)}L<br>via ${route.label.join(", ")}` +
+                `${(route.summary.length / 1000).toFixed(1)}km · ` +
+                `${route.fuel.toFixed(2)}L` +
+                // TODO `<br>via ${route.label.join(", ")}` +
                 `<br><small>${(route.toll ? route.toll_roads : [])
                     .filter(x => !!x.toll)
                     .map(x => `${is_fixed_rate_tollway(x.name) ? x.name : [x.entry, x.name, x.exit].join(" › ")} · ` +
@@ -813,11 +860,11 @@
                 document.getElementById("graph").style = "display:none";
                 return;
             }
-            const max_time = frontier_routes[frontier_routes.length - 1].summary.trafficTime;
+            const max_time = frontier_routes[frontier_routes.length - 1].summary.duration;
             const max_cost = frontier_routes[0].money_cost;
             document.getElementById("graph").style = "";
             all_routes = {
-                x: routes.map(x => x.summary.trafficTime < max_time ? x.summary.trafficTime : undefined),
+                x: routes.map(x => x.summary.duration < max_time ? x.summary.duration : undefined),
                 y: routes.map(x => x.money_cost < max_cost ? ((x.money_cost).toFixed(2)) : undefined),
                 mode: 'markers',
                 marker: {
@@ -827,7 +874,7 @@
 
             }
             frontier_line = {
-                x: frontier_routes.map(x => x.summary.trafficTime),
+                x: frontier_routes.map(x => x.summary.duration),
                 y: frontier_routes.map(x => x.money_cost),
                 mode: 'lines',
                 line: {
@@ -837,7 +884,7 @@
             }
             frontier_points = frontier_routes.map(r => {
                 return {
-                    x: [r.summary.trafficTime],
+                    x: [r.summary.duration],
                     y: [r.money_cost],
                     mode: 'markers',
                     marker: { color: r.color, size: r.cost_rank == 0 ? 10 : 5 }
@@ -845,9 +892,9 @@
             });
             let shapes = [{
                 type: 'line',
-                x0: frontier_routes[0].summary.trafficTime,
-                y0: best_route.money_cost + (best_route.summary.trafficTime - frontier_routes[0].summary.trafficTime) * document.getElementById("hour-cost").valueAsNumber / 3600,
-                x1: best_route.summary.trafficTime + (best_route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) / document.getElementById("hour-cost").valueAsNumber * 3600,
+                x0: frontier_routes[0].summary.duration,
+                y0: best_route.money_cost + (best_route.summary.duration - frontier_routes[0].summary.duration) * document.getElementById("hour-cost").valueAsNumber / 3600,
+                x1: best_route.summary.duration + (best_route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) / document.getElementById("hour-cost").valueAsNumber * 3600,
                 y1: frontier_routes[frontier_routes.length - 1].money_cost,
                 line: {
                     color: "white",
@@ -855,7 +902,7 @@
                     dash: 'dot'
                 }
             }];
-            if (frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber <= frontier_routes[frontier_routes.length - 1].summary.trafficTime) {
+            if (frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber <= frontier_routes[frontier_routes.length - 1].summary.duration) {
                 shapes.push({
                     type: 'line',
                     x0: frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber,
