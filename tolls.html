@@ -434,7 +434,7 @@
             }
             if (best_span) {
                 toll_road.gantry = motorway_toll_data.gantries[0];
-                let time_str = best_span.startTime.toLocaleTimeString('en-AU', { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Australia/Sydney" }).replace(":","");
+                let time_str = best_span.start_time.toLocaleTimeString('en-AU', { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Australia/Sydney" }).replace(":","");
                 switch (new Date().toLocaleDateString('en-AU', { weekday: "long", timeZone: "Australia/Sydney" })) {
                     case "Saturday":
                     case "Sunday":
@@ -449,7 +449,7 @@
         function decorate_spans(route) {
             let span_start_time = new Date(start_time.getTime());
             for (let span of route.spans) {
-                span.startTime = span_start_time;
+                span.start_time = span_start_time;
                 span_start_time = new Date(span_start_time.getTime() + span.duration * 1000);
                 for (const k in route.refReplacements) {
                     span.segmentRef = span.segmentRef.replace(`$${k}`, route.refReplacements[k]);
@@ -569,7 +569,7 @@
                     } else if (last_roadName) {
                         current_toll_road.entry = last_roadName;
                     }
-                    current_toll_road.start_time = span.startTime;
+                    current_toll_road.start_time = span.start_time;
                     mid_toll_split = false;
                 }
                 if (span.flags.includes("tollRoad")) {
@@ -727,13 +727,12 @@
             render_progress();
         }
 
-        /* TODO
         function to_gpx(route) {
-            var doc = new DOMParser().parseFromString('<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1"><metadata/><trk><name></name><desc></desc><trkseg></trkseg></trk></gpx>', "application/xml");
-            var trkseg = doc.getElementsByTagName("trkseg")[0];
-            for (link of route.leg[0].link) {
-                var write_time = true;
-                new H.geo.LineString(link.shape).eachLatLngAlt((lat, lng, alt) => {
+            let doc = new DOMParser().parseFromString('<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1"><metadata/><trk><name></name><desc></desc><trkseg></trkseg></trk></gpx>', "application/xml");
+            let trkseg = doc.getElementsByTagName("trkseg")[0];
+            for (let span of route.spans) {
+                let write_time = true;
+                new H.geo.LineString(span.shape).eachLatLngAlt((lat, lng, alt) => {
                     var trkpt = doc.createElement("trkpt");
                     trkpt.setAttribute("lat", lat.toFixed(6));
                     trkpt.setAttribute("lon", lng.toFixed(6));
@@ -742,7 +741,7 @@
                     trkpt.append(ele);
                     if (write_time) {
                         var time = doc.createElement("time");
-                        time.append(new Date(route.start_time.getTime() + (route.summary.duration - link.remainTime) * 1000).toISOString());
+                        time.append(span.start_time.toISOString());
                         trkpt.append(time);
                         write_time = false;
                     }
@@ -754,7 +753,6 @@
             var trkpts = trkseg.lastChild.append(end_time);
             return new XMLSerializer().serializeToString(doc).replaceAll('<trkpt xmlns=""', '<trkpt');
         }
-        */
 
         function render_progress() {
             if (routes.length) {
@@ -827,7 +825,7 @@
             li.className = `rank${route.cost_rank}`;
             li.style = `color: ${route.color}`;
             li.onclick = () => {
-                const gpx = ""; // TODO = to_gpx(route);
+                const gpx = to_gpx(route);
                 const blob = new Blob([gpx], { type: "application/gpx+xml" });
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
