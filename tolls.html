@@ -178,6 +178,9 @@
                 center: { lng: 151, lat: -33.85 },
                 padding: { top: 20, left: 20, right: 20, bottom: 20 }
             });
+        var background_polylines = new H.map.Group();
+        var frontier_polylines = new H.map.Group();
+        map.addObjects([background_polylines, frontier_polylines]);
         var searchService = platform.getSearchService();
         var routingService = platform.getRoutingService(null, 8);
 
@@ -205,7 +208,8 @@
             document.getElementById("progress").innerHTML = "";
             document.getElementById("results").innerHTML = "";
             document.getElementById("graph").style = "display: none";
-            map.removeObjects(map.getObjects());
+            background_polylines.removeAll();
+            frontier_polylines.removeAll();
             bounding_box = null;
             routes = [];
             initiated_requests = 0;
@@ -703,7 +707,9 @@
                 decorate_spans(route);
                 calculate_tolls(route);
                 calculate_fuel(route);
+                route.background_polyline = new H.map.Polyline(H.geo.LineString.fromFlexiblePolyline(route.polyline), { style: { strokeColor: "#ffffff", lineWidth: 1 } });
                 routes.push(route);
+                background_polylines.addObject(route.background_polyline);
                 render_efficient_frontier();
                 for (road of route.toll_roads) {
                     if (!road.toll) continue;
@@ -762,35 +768,32 @@
         }
 
         function render_efficient_frontier() {
-            var fastest_time = 0;
-            var max_money_cost = 1000000;
-            frontier_routes = []
-            for (route of routes) {
-                route.fuel_cost = route.fuel * document.getElementById("fuel-cost").valueAsNumber;
-                route.time_cost = route.summary.duration / 3600 * document.getElementById("hour-cost").valueAsNumber;
+            const fuel_cost = document.getElementById("fuel-cost").valueAsNumber;
+            const time_cost = document.getElementById("hour-cost").valueAsNumber / 3600;
+            for (let route of routes) {
+                route.fuel_cost = route.fuel * fuel_cost;
+                route.time_cost = route.summary.duration * time_cost;
                 route.money_cost = route.fuel_cost + route.toll;
                 route.cost = route.money_cost + route.time_cost;
             }
-            while (max_money_cost > 0) {
-                var best_route = null;
-                for (route of routes) {
-                    if (route.money_cost < max_money_cost && (!best_route || route.summary.duration < best_route.summary.duration)) {
-                        best_route = route;
-                    }
+            frontier_routes = []
+            for (const route of [...routes].sort((a, b) => a.summary.duration - b.summary.duration)) {
+                if (!frontier_routes.length || route.money_cost < frontier_routes[frontier_routes.length - 1].money_cost) {
+                    frontier_routes.push(route);
                 }
-                if (!best_route) break;
-                frontier_routes.push(best_route);
-                max_money_cost = best_route.money_cost;
             }
 
-            var frontier_routes_sorted_by_cost = frontier_routes.slice()
-            frontier_routes_sorted_by_cost.sort((a, b) => a.cost - b.cost)
-            for (const [rank, route] of frontier_routes_sorted_by_cost.entries()) {
+            let best_route;
+            const frontier_routes_sorted_by_cost = [...frontier_routes].sort((a, b) => a.cost - b.cost);
+            for (let [rank, route] of frontier_routes_sorted_by_cost.entries()) {
                 route.cost_rank = rank;
+                if (rank == 0) {
+                    best_route = route;
+                }
             }
 
             document.getElementById("results").innerHTML = "";
-            for (route of frontier_routes) {
+            for (let route of frontier_routes) {
                 route.color = rgbToHex(evaluate_cmap(0.9 * (
                     (route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) /
                     Math.max(frontier_routes[0].money_cost - frontier_routes[frontier_routes.length - 1].money_cost, 2)
@@ -798,25 +801,16 @@
                 render_result(route);
             }
 
-            render_graph(frontier_routes, frontier_routes_sorted_by_cost[0]);
+            render_graph(frontier_routes, best_route, time_cost);
 
-            var background_polylines = []
-            for (const route of routes) {
-                let polyline = new H.map.Polyline(H.geo.LineString.fromFlexiblePolyline(route.polyline), { style: { strokeColor: "#ffffff", lineWidth: 1 } });
-                background_polylines.push(polyline);
-            }
-            var frontier_polylines = []
-            var bounding_box = null;
+            let bounding_box;
+            frontier_polylines.removeAll();
             for (const route of frontier_routes_sorted_by_cost.reverse()) {
-                let polyline = new H.map.Polyline(H.geo.LineString.fromFlexiblePolyline(route.polyline),
+                let polyline = new H.map.Polyline(route.background_polyline.getGeometry(),
                     { style: { strokeColor: route.color, lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2 } });
-                frontier_polylines.push(polyline);
+                frontier_polylines.addObject(polyline);
                 bounding_box = bounding_box ? bounding_box.mergeRect(polyline.getBoundingBox()) : polyline.getBoundingBox();
             }
-
-            map.removeObjects(map.getObjects().filter(x => x.style.strokeColor != "#ffffff" || frontier_polylines.some(y => x.getGeometry().equals(y.getGeometry()))));
-            map.addObjects(background_polylines.filter(x => map.getObjects().every(y => !x.getGeometry().equals(y.getGeometry()))).filter(x => frontier_polylines.every(y => !x.getGeometry().equals(y.getGeometry()))));
-            map.addObjects(frontier_polylines);
             map.getViewModel().setLookAtData({ bounds: bounding_box });
         }
 
@@ -853,7 +847,7 @@
             document.getElementById("results").appendChild(li);
         }
 
-        function render_graph(frontier_routes, best_route) {
+        function render_graph(frontier_routes, best_route, time_cost) {
             if (frontier_routes.length < 2) {
                 document.getElementById("graph").style = "display:none";
                 return;
@@ -891,8 +885,8 @@
             let shapes = [{
                 type: 'line',
                 x0: frontier_routes[0].summary.duration,
-                y0: best_route.money_cost + (best_route.summary.duration - frontier_routes[0].summary.duration) * document.getElementById("hour-cost").valueAsNumber / 3600,
-                x1: best_route.summary.duration + (best_route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) / document.getElementById("hour-cost").valueAsNumber * 3600,
+                y0: best_route.money_cost + (best_route.summary.duration - frontier_routes[0].summary.duration) * time_cost,
+                x1: best_route.summary.duration + (best_route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) / time_cost,
                 y1: frontier_routes[frontier_routes.length - 1].money_cost,
                 line: {
                     color: "white",
@@ -900,12 +894,12 @@
                     dash: 'dot'
                 }
             }];
-            if (frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber <= frontier_routes[frontier_routes.length - 1].summary.duration) {
+            if (frontier_routes[0].cost / time_cost <= frontier_routes[frontier_routes.length - 1].summary.duration) {
                 shapes.push({
                     type: 'line',
-                    x0: frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber,
+                    x0: frontier_routes[0].cost / time_cost,
                     y0: frontier_routes[0].money_cost,
-                    x1: frontier_routes[0].cost * 3600 / document.getElementById("hour-cost").valueAsNumber,
+                    x1: frontier_routes[0].cost / time_cost,
                     y1: frontier_routes[frontier_routes.length - 1].money_cost,
                     line: {
                         color: "#444",
