@@ -800,10 +800,10 @@
 
             document.getElementById("results").innerHTML = "";
             for (let route of frontier_routes) {
-                route.color = rgbToHex(evaluate_cmap(0.9 * (
+                route.color = rgbToHex(evaluate_cmap(0.9 - 0.75 * (
                     (route.money_cost - frontier_routes[frontier_routes.length - 1].money_cost) /
                     Math.max(frontier_routes[0].money_cost - frontier_routes[frontier_routes.length - 1].money_cost, 2)
-                ), 'gist_rainbow', false));
+                ), 'turbo', false));
                 render_result(route);
             }
 
