@@ -469,13 +469,13 @@
                 span.roadName = "";
                 if (span.hasOwnProperty("names")) {
                     for (let name of span.names) {
-                        if (name.language == "en") {
+                        if (name.language == "en" && name.value != "Light Horse Intr") {
                             span.roadName = name.value;
                             break;
                         }
                     }
                 }
-                span.rooadNumber = ""
+                span.roadNumber = ""
                 if (span.hasOwnProperty("routeNumbers")) {
                     for (let name of span.routeNumbers) {
                         if (name.language == "en") {
@@ -485,7 +485,7 @@
                     }
                 }
                 // fix broken names
-                if (span.roadName == "Light Horse Intr" || span.roadName == "M7 Cycleway") {
+                if (span.roadName == "M7 Cycleway") {
                     span.roadName = "Westlink M7";
                 } else if (span.roadName == "M4 East" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
                     span.roadName = "Westconnex";
