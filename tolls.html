@@ -355,15 +355,14 @@
             let best_dist_sq;
             let best_gantry;
             for (let gantry of motorway_toll_data.gantries) {
-                for (let span of toll_road.spans) {
-                    for (var i = 0; i < span.shape.length; i += 3) {
-                        let lat = span.shape[i];
-                        let lng = span.shape[i + 1];
-                        let dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
-                        if (!best_dist_sq || best_dist_sq > dist_sq) {
-                            best_gantry = gantry;
-                            best_dist_sq = dist_sq;
-                        }
+                for (var i = 3; i < toll_road.shape.length; i += 3) {
+                    const a = [toll_road.shape[i-3], toll_road.shape[i-2]];
+                    const b = [toll_road.shape[i], toll_road.shape[i+1]];
+                    const [lat, lng] = closestPointBetween2D([gantry.latitude, gantry.longitude], a, b);
+                    const dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
+                    if (!best_dist_sq || best_dist_sq > dist_sq) {
+                        best_gantry = gantry;
+                        best_dist_sq = dist_sq;
                     }
                 }
             }
@@ -375,14 +374,13 @@
             console.assert(motorway_toll_data.chargeType == "Fixed", "not a fixed tolled motorway!");
             let best_gantry;
             for (let gantry of motorway_toll_data.gantries) {
-                for (let span of toll_road.spans) {
-                    for (let i = 0; i < span.shape.length; i += 3) {
-                        let lat = span.shape[i];
-                        let lng = span.shape[i + 1];
-                        let dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
-                        if (dist_sq < max_dist_sq && (!best_gantry || best_gantry.chargeInCents < gantry.chargeInCents)) {
-                            best_gantry = gantry;
-                        }
+                for (var i = 3; i < toll_road.shape.length; i += 3) {
+                    const a = [toll_road.shape[i-3], toll_road.shape[i-2]];
+                    const b = [toll_road.shape[i], toll_road.shape[i+1]];
+                    const [lat, lng] = closestPointBetween2D([gantry.latitude, gantry.longitude], a, b);
+                    const dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
+                    if (dist_sq < max_dist_sq && (!best_gantry || best_gantry.chargeInCents < gantry.chargeInCents)) {
+                        best_gantry = gantry;
                     }
                 }
             }
@@ -392,19 +390,18 @@
 
         function infer_distance_gantries(motorway_toll_data, toll_road) {
             console.assert(motorway_toll_data.chargeType == "Distance", "not a distance tolled motorway!");
-            let entry_gantries = motorway_toll_data.gantries.filter(x => x.exitGantries);
+            const entry_gantries = motorway_toll_data.gantries.filter(x => x.exitGantries);
             let best_dist_sq;
             let best_entry_gantry;
             let best_exit_gantry;
-            for (let entry_gantry of entry_gantries) {
-                let entry_lat = toll_road.spans[0].shape[0];
-                let entry_lng = toll_road.spans[0].shape[1];
-                let exit_gantries = motorway_toll_data.gantries.filter(x => entry_gantry.exitGantries.filter(y => y.gantryRef == x.gantryRef).some((x) => x));
-                for (let exit_gantry of exit_gantries) {
-                    let exit_span = toll_road.spans[toll_road.spans.length - 1];
-                    let exit_lat = exit_span.shape[exit_span.shape.length - 3];
-                    let exit_lng = exit_span.shape[exit_span.shape.length - 2];
-                    let dist_sq =
+            for (const entry_gantry of entry_gantries) {
+                const entry_lat = toll_road.shape[0];
+                const entry_lng = toll_road.shape[1];
+                const exit_gantries = motorway_toll_data.gantries.filter(x => entry_gantry.exitGantries.filter(y => y.gantryRef == x.gantryRef).some((x) => x));
+                for (const exit_gantry of exit_gantries) {
+                    const exit_lat = toll_road.shape[toll_road.shape.length - 3];
+                    const exit_lng = toll_road.shape[toll_road.shape.length - 2];
+                    const dist_sq =
                         (entry_lat - entry_gantry.latitude) ** 2 +
                         (entry_lng - entry_gantry.longitude) ** 2 +
                         (exit_lat - exit_gantry.latitude) ** 2 +
@@ -557,6 +554,8 @@
                         current_toll_road.key_spans = [current_toll_road.spans.slice(0, 1), current_toll_road.spans.slice(current_toll_road.spans.length - 1)]
                     }
 
+                    current_toll_road.shape = current_toll_road.spans.flatMap(s=>s.shape)
+
                     // Special cases for short sections of M5 East just after M8 and M2 just before Lane Cove Tunnel
                     if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
                         !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd")) {
@@ -616,7 +615,7 @@
                             road.toll = get_fixed_toll_at(get_toll_data_for("LCT"), infer_fixed_gantry(get_toll_data_for("LCT"), road).gantryRef);
                             break;
                         case "M2 Hills Mtwy":
-                            road.toll = get_fixed_toll_at(get_toll_data_for("M2"), infer_fixed_highest_toll_gantry(get_toll_data_for("M2"), road, 1e-5).gantryRef);
+                            road.toll = get_fixed_toll_at(get_toll_data_for("M2"), infer_fixed_highest_toll_gantry(get_toll_data_for("M2"), road, 2e-4).gantryRef);
                             break;
                         case "Northconnex":
                             road.toll = get_fixed_toll_at(get_toll_data_for("NCX"), infer_fixed_gantry(get_toll_data_for("NCX"), road).gantryRef);
@@ -946,6 +945,20 @@
             const hex = x.toString(16);
             return hex.length === 1 ? '0' + hex : hex
         }).join('')
+
+        const _zero2D = [0, 0]
+
+        function closestPointBetween2D(p, a, b) {
+            const v = [b[0] - a[0], b[1] - a[1]];;
+            const u = [a[0] - p[0], a[1] - p[1]];
+            const vu = v[0] * u[0] + v[1] * u[1];
+            const vv = v[0] ** 2 + v[1] ** 2;
+            const t = -vu / vv
+            return t < 0 ? a : t > 1 ? b : [
+                (1 - t) * a[0] + t * b[0] - p[0],
+                (1 - t) * a[1] + t * b[1] - p[1],
+            ];
+        }
     </script>
 </body>
 
