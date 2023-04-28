@@ -17,6 +17,11 @@
             color: lightgrey;
             font-family: 'Anonymous Pro', 'Consolas', 'Courier New', 'Courier', monospace;
         }
+        
+        input[type=text], input[type=number] {
+            color: black;
+            background-colour: white;
+        }
 
         input {
             font-family: inherit;
@@ -93,10 +98,10 @@
                 <datalist id="to_address">
                     <option>from contacts...</option>
                 </datalist>
-                <label>from: <input id="from" list="from_address" autocomplete="on"
+                <label>from: <input id="from" list="from_address" autocomplete="on" type=text
                         placeholder="current location"><input type="button" value="✕"
                         onclick="document.getElementById('from').value='';"></label>
-                <label>to: <input id="to" list="to_address" autocomplete="on"><input type="button" value="✕"
+                <label>to: <input id="to" list="to_address" autocomplete="on" type=text><input type="button" value="✕"
                         onclick="document.getElementById('to').value='';"></label>
                 <input type="button" value="▶" onclick="stop(); go()">
                 <input type="button" value="⇅" onclick="stop(); reverse(); go()">
