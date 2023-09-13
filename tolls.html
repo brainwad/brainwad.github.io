@@ -853,12 +853,12 @@
                 document.body.removeChild(a);
             }
             li.onmouseenter = () => {
-                route.foreground_polyline.setStyle({strokeColor: "#ff00ff", lineWidth: 5});
+                route.foreground_polyline.setStyle({lineWidth: 5});
                 route.foreground_polyline.setZIndex(100);
             }
             li.onmouseleave = () => {
                 route.foreground_polyline.setZIndex(0);
-                route.foreground_polyline.setStyle({strokeColor: route.color, lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2});
+                route.foreground_polyline.setStyle({lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2});
             }
             li.innerHTML +=
                 `${(route.summary.duration / 60).toFixed(0)}′ ` +
