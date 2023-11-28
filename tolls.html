@@ -497,6 +497,8 @@
                 // fix broken names
                 if (span.roadName == "M7 Cycleway") {
                     span.roadName = "Westlink M7";
+                } else if (span.roadName == "Rozelle Intr" && span.flags.includes("tollRoad")) {
+                    span.roadName = "Westconnex";
                 } else if (span.roadName == "M4 East" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
                     span.roadName = "Westconnex";
                 } else if (span.roadName == "High St" && span.flags.includes("tollRoad")) {
