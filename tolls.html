@@ -497,7 +497,9 @@
                 // fix broken names
                 if (span.roadName == "M7 Cycleway") {
                     span.roadName = "Westlink M7";
-                } else if (span.roadName == "Rozelle Intr" && span.flags.includes("tollRoad")) {
+                } else if (span.roadName == "Rozelle Intr") {
+                    span.roadName = "Westconnex";
+                } else if (span.roadName == "Rozelle" && span.flags.includes("tollRoad")) {
                     span.roadName = "Westconnex";
                 } else if (span.roadName == "M4 East" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
                     span.roadName = "Westconnex";
@@ -571,9 +573,11 @@
 
                     current_toll_road.shape = current_toll_road.spans.flatMap(s=>s.shape)
 
-                    // Special cases for short sections of M5 East just after M8 and M2 just before Lane Cove Tunnel
+                    // Special cases for short sections of M5 East just after M8; M2 just before Lane Cove Tunnel; free part of Rozelle Interchange
                     if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
-                        !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd")) {
+                        !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd") &&
+                        !(current_toll_road.name == "Westconnex" && current_toll_road.entry == "Victoria Rd" && current_toll_road.exit == "Anzac Brg") &&
+                        !(current_toll_road.name == "Westconnex" && current_toll_road.entry == "Anzac Brg" && current_toll_road.exit == "Victoria Rd")) {
                         toll_roads.push(current_toll_road);
                     }
                     current_toll_road = null;
