@@ -576,8 +576,7 @@
                     // Special cases for short sections of M5 East just after M8; M2 just before Lane Cove Tunnel; free part of Rozelle Interchange
                     if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
                         !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd") &&
-                        !(current_toll_road.name == "Westconnex" && current_toll_road.entry == "Victoria Rd" && current_toll_road.exit == "Anzac Brg") &&
-                        !(current_toll_road.name == "Westconnex" && current_toll_road.entry == "Anzac Brg" && current_toll_road.exit == "Victoria Rd")) {
+                        !(current_toll_road.name == "Westconnex" && (current_toll_road.entry == "Iron Cove Link Tunnel" || current_toll_road.exit == "Iron Cove Link Tunnel"))) {
                         toll_roads.push(current_toll_road);
                     }
                     current_toll_road = null;
