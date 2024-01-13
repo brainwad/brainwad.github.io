@@ -501,7 +501,7 @@
                     span.roadName = "Westconnex";
                 } else if (span.roadName == "Rozelle" && span.flags.includes("tollRoad")) {
                     span.roadName = "Westconnex";
-                } else if (span.roadName == "M4 East" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
+                } else if (span.roadName == "M4 East" || span.roadName == "M4 East Mtwy" || (span.flags.includes("tollRoad") && span.roadName == "Western Mtwy")) {
                     span.roadName = "Westconnex";
                 } else if (span.roadName == "High St" && span.flags.includes("tollRoad")) {
                     span.roadName = "Cahill Expy";
