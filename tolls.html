@@ -240,65 +240,7 @@
                         tried_avoids = [[]];
                         routes = [];
                         calculateRoute(from, to, { features: ["tollRoad"] });
-                        // This should be just one call, with no avoids. But since Rozelle Interchange is broken in
-                        // Here Maps, this is split into 4 calls, that each block all but one path through the
-                        // interchange (bi-directionally).
-                        // Allowed path: M4 East to Anzac Bridge.
-                        calculateRoute(from, to, {
-                            segments: [
-                                // City West Link ramps
-                                "here:cm:segment:886790628#+",
-                                "here:cm:segment:884511313#+",
-                                // Iron Cove Bridge ramps
-                                "here:cm:segment:884347494#-",
-                                "here:cm:segment:884347489#+",
-                                // M8
-                                "here:cm:segment:879599910#-",
-                                "here:cm:segment:863180379#+",
-                            ]
-                        });
-                        // Allowed path: Iron Cove Bridge to M8
-                        calculateRoute(from, to, {
-                            segments: [
-                                // Anzac Bridge
-                                "here:cm:segment:880422607#+",
-                                "here:cm:segment:880422214#+",
-                                // M4 East
-                                "here:cm:segment:880422111#+",
-                                "here:cm:segment:879600639#-",
-                                // City West Link ramps
-                                "here:cm:segment:886790628#+",
-                                "here:cm:segment:884511313#+",
-                            ]
-                        });
-                        // Allowed path: City West Link to M8
-                        calculateRoute(from, to, {
-                            segments: [
-                                // Anzac Bridge
-                                "here:cm:segment:880422607#+",
-                                "here:cm:segment:880422214#+",
-                                // M4 East
-                                "here:cm:segment:880422111#+",
-                                "here:cm:segment:879600639#-",
-                                // Iron Cove Bridge ramps
-                                "here:cm:segment:884347494#-",
-                                "here:cm:segment:884347489#+",
-                            ]
-                        });
-                        // Allowed path: M4 to M8
-                        calculateRoute(from, to, {
-                            segments: [
-                                // Anzac Bridge
-                                "here:cm:segment:880422607#+",
-                                "here:cm:segment:880422214#+",
-                                // Iron Cove Bridge ramps
-                                "here:cm:segment:884347494#-",
-                                "here:cm:segment:884347489#+",
-                                // City West Link ramps
-                                "here:cm:segment:886790628#+",
-                                "here:cm:segment:884511313#+",
-                            ]
-                        });
+                        calculateRoute(from, to, {});
                     }, alert);
                 }, alert);
             }
