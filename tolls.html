@@ -17,8 +17,9 @@
             color: lightgrey;
             font-family: 'Anonymous Pro', 'Consolas', 'Courier New', 'Courier', monospace;
         }
-        
-        input[type=text], input[type=number] {
+
+        input[type=text],
+        input[type=number] {
             color: black;
             background-color: white;
         }
@@ -427,8 +428,8 @@
             let best_gantry;
             for (let gantry of motorway_toll_data.gantries) {
                 for (var i = 3; i < toll_road.shape.length; i += 3) {
-                    const a = [toll_road.shape[i-3], toll_road.shape[i-2]];
-                    const b = [toll_road.shape[i], toll_road.shape[i+1]];
+                    const a = [toll_road.shape[i - 3], toll_road.shape[i - 2]];
+                    const b = [toll_road.shape[i], toll_road.shape[i + 1]];
                     const [lat, lng] = closestPointBetween2D([gantry.latitude, gantry.longitude], a, b);
                     const dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                     if (!best_dist_sq || best_dist_sq > dist_sq) {
@@ -446,8 +447,8 @@
             let best_gantry;
             for (let gantry of motorway_toll_data.gantries) {
                 for (var i = 3; i < toll_road.shape.length; i += 3) {
-                    const a = [toll_road.shape[i-3], toll_road.shape[i-2]];
-                    const b = [toll_road.shape[i], toll_road.shape[i+1]];
+                    const a = [toll_road.shape[i - 3], toll_road.shape[i - 2]];
+                    const b = [toll_road.shape[i], toll_road.shape[i + 1]];
                     const [lat, lng] = closestPointBetween2D([gantry.latitude, gantry.longitude], a, b);
                     const dist_sq = (lat - gantry.latitude) ** 2 + (lng - gantry.longitude) ** 2;
                     if (dist_sq < max_dist_sq && (!best_gantry || best_gantry.chargeInCents < gantry.chargeInCents)) {
@@ -506,7 +507,7 @@
             }
             if (best_span) {
                 toll_road.gantry = motorway_toll_data.gantries[0];
-                let time_str = best_span.start_time.toLocaleTimeString('en-AU', { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Australia/Sydney" }).replace(":","");
+                let time_str = best_span.start_time.toLocaleTimeString('en-AU', { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Australia/Sydney" }).replace(":", "");
                 switch (new Date().toLocaleDateString('en-AU', { weekday: "long", timeZone: "Australia/Sydney" })) {
                     case "Saturday":
                     case "Sunday":
@@ -629,7 +630,7 @@
                         current_toll_road.key_spans = [current_toll_road.spans.slice(0, 1), current_toll_road.spans.slice(current_toll_road.spans.length - 1)]
                     }
 
-                    current_toll_road.shape = current_toll_road.spans.flatMap(s=>s.shape)
+                    current_toll_road.shape = current_toll_road.spans.flatMap(s => s.shape)
 
                     // Special cases for short sections of M5 East just after M8; M2 just before Lane Cove Tunnel; free part of Rozelle Interchange
                     if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
@@ -890,7 +891,7 @@
                 route.foreground_polyline = new H.map.Polyline(route.background_polyline.getGeometry(),
                     { style: { strokeColor: route.color, lineWidth: route.cost_rank == 0 ? 5 : route.cost_rank < 3 ? 3 : 2 } });
                 frontier_polylines.addObject(route.foreground_polyline);
-                bounding_box = bounding_box ? 
+                bounding_box = bounding_box ?
                     bounding_box.mergeRect(route.foreground_polyline.getBoundingBox()) :
                     route.foreground_polyline.getBoundingBox();
             }
