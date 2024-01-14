@@ -18,11 +18,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 945
+              "chargeInCents": 956
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 2834
+              "chargeInCents": 2868
             }
           ]
         },
@@ -38,11 +38,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 945
+              "chargeInCents": 956
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 2834
+              "chargeInCents": 2868
             }
           ]
         },
@@ -58,11 +58,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 945
+              "chargeInCents": 956
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 2834
+              "chargeInCents": 2868
             }
           ]
         },
@@ -78,11 +78,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 945
+              "chargeInCents": 956
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 2834
+              "chargeInCents": 2868
             }
           ]
         }
@@ -106,11 +106,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 196
+              "chargeInCents": 199
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 664
+              "chargeInCents": 672
             }
           ]
         },
@@ -126,11 +126,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 196
+              "chargeInCents": 199
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 664
+              "chargeInCents": 672
             }
           ]
         },
@@ -146,11 +146,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 393
+              "chargeInCents": 397
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1327
+              "chargeInCents": 1343
             }
           ]
         }
@@ -174,11 +174,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 677
+              "chargeInCents": 685
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1353
+              "chargeInCents": 1369
             }
           ]
         },
@@ -194,11 +194,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 319
+              "chargeInCents": 323
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 638
+              "chargeInCents": 646
             }
           ]
         }
@@ -222,11 +222,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 929
+              "chargeInCents": 938
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1857
+              "chargeInCents": 1876
             }
           ]
         },
@@ -242,11 +242,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 929
+              "chargeInCents": 938
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1857
+              "chargeInCents": 1876
             }
           ]
         }
@@ -270,11 +270,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 945
+              "chargeInCents": 956
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 2835
+              "chargeInCents": 2868
             }
           ]
         },
@@ -290,11 +290,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 472
+              "chargeInCents": 479
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1417
+              "chargeInCents": 1434
             }
           ]
         },
@@ -310,11 +310,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 472
+              "chargeInCents": 477
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1416
+              "chargeInCents": 1433
             }
           ]
         },
@@ -330,11 +330,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 472
+              "chargeInCents": 477
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1416
+              "chargeInCents": 1433
             }
           ]
         },
@@ -350,11 +350,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 334
+              "chargeInCents": 339
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1003
+              "chargeInCents": 1015
             }
           ]
         },
@@ -370,11 +370,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 279
+              "chargeInCents": 283
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 838
+              "chargeInCents": 848
             }
           ]
         }
@@ -398,11 +398,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 554
+              "chargeInCents": 562
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1662
+              "chargeInCents": 1685
             }
           ]
         },
@@ -418,11 +418,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 554
+              "chargeInCents": 562
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1662
+              "chargeInCents": 1685
             }
           ]
         },
@@ -438,11 +438,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 554
+              "chargeInCents": 562
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1662
+              "chargeInCents": 1685
             }
           ]
         },
@@ -458,11 +458,11 @@
           "charges": [
             {
               "vehicleClass": "A",
-              "chargeInCents": 554
+              "chargeInCents": 562
             },
             {
               "vehicleClass": "B",
-              "chargeInCents": 1662
+              "chargeInCents": 1685
             }
           ]
         }
@@ -489,11 +489,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -502,11 +502,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -515,11 +515,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -528,11 +528,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -541,11 +541,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -554,11 +554,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 962
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2886
                 }
               ]
             },
@@ -567,11 +567,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 886
+                  "chargeInCents": 896
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2658
+                  "chargeInCents": 2688
                 }
               ]
             },
@@ -580,11 +580,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 712
+                  "chargeInCents": 721
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2136
+                  "chargeInCents": 2163
                 }
               ]
             },
@@ -593,11 +593,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 517
+                  "chargeInCents": 523
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1551
+                  "chargeInCents": 1569
                 }
               ]
             },
@@ -606,11 +606,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 259
+                  "chargeInCents": 263
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 777
+                  "chargeInCents": 789
                 }
               ]
             },
@@ -619,11 +619,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 151
+                  "chargeInCents": 153
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 453
+                  "chargeInCents": 459
                 }
               ]
             }
@@ -644,11 +644,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -657,11 +657,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -670,11 +670,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -683,11 +683,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -696,11 +696,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -709,11 +709,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 799
+                  "chargeInCents": 809
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2397
+                  "chargeInCents": 2427
                 }
               ]
             },
@@ -722,11 +722,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 735
+                  "chargeInCents": 743
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2205
+                  "chargeInCents": 2229
                 }
               ]
             },
@@ -735,11 +735,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 561
+                  "chargeInCents": 568
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1683
+                  "chargeInCents": 1704
                 }
               ]
             },
@@ -748,11 +748,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 365
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1095
+                  "chargeInCents": 1110
                 }
               ]
             },
@@ -761,11 +761,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 108
+                  "chargeInCents": 110
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 324
+                  "chargeInCents": 330
                 }
               ]
             },
@@ -774,11 +774,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 151
+                  "chargeInCents": 153
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 453
+                  "chargeInCents": 459
                 }
               ]
             }
@@ -799,11 +799,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -812,11 +812,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -825,11 +825,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -838,11 +838,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -851,11 +851,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 914
+                  "chargeInCents": 924
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2742
+                  "chargeInCents": 2772
                 }
               ]
             },
@@ -864,11 +864,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 691
+                  "chargeInCents": 699
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2073
+                  "chargeInCents": 2097
                 }
               ]
             },
@@ -877,11 +877,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 626
+                  "chargeInCents": 634
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1878
+                  "chargeInCents": 1902
                 }
               ]
             },
@@ -890,11 +890,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 453
+                  "chargeInCents": 458
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1359
+                  "chargeInCents": 1374
                 }
               ]
             },
@@ -903,11 +903,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 257
+                  "chargeInCents": 260
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 771
+                  "chargeInCents": 780
                 }
               ]
             },
@@ -916,11 +916,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 108
+                  "chargeInCents": 110
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 324
+                  "chargeInCents": 330
                 }
               ]
             },
@@ -929,11 +929,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 259
+                  "chargeInCents": 263
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 777
+                  "chargeInCents": 789
                 }
               ]
             }
@@ -954,11 +954,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 257
+                  "chargeInCents": 260
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 771
+                  "chargeInCents": 780
                 }
               ]
             },
@@ -967,11 +967,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 365
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1095
+                  "chargeInCents": 1110
                 }
               ]
             },
@@ -980,11 +980,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 517
+                  "chargeInCents": 523
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1551
+                  "chargeInCents": 1569
                 }
               ]
             }
@@ -1005,11 +1005,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1018,11 +1018,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1031,11 +1031,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1044,11 +1044,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 743
+                  "chargeInCents": 752
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2229
+                  "chargeInCents": 2256
                 }
               ]
             },
@@ -1057,11 +1057,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 596
+                  "chargeInCents": 603
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1788
+                  "chargeInCents": 1809
                 }
               ]
             },
@@ -1070,11 +1070,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 373
+                  "chargeInCents": 378
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1119
+                  "chargeInCents": 1134
                 }
               ]
             },
@@ -1083,11 +1083,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 308
+                  "chargeInCents": 312
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 924
+                  "chargeInCents": 936
                 }
               ]
             },
@@ -1096,11 +1096,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 135
+                  "chargeInCents": 136
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 405
+                  "chargeInCents": 408
                 }
               ]
             }
@@ -1121,11 +1121,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1134,11 +1134,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1147,11 +1147,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 926
+                  "chargeInCents": 937
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2778
+                  "chargeInCents": 2811
                 }
               ]
             },
@@ -1160,11 +1160,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 608
+                  "chargeInCents": 615
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1824
+                  "chargeInCents": 1845
                 }
               ]
             },
@@ -1173,11 +1173,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 461
+                  "chargeInCents": 466
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1383
+                  "chargeInCents": 1398
                 }
               ]
             },
@@ -1186,11 +1186,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 238
+                  "chargeInCents": 241
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 714
+                  "chargeInCents": 723
                 }
               ]
             },
@@ -1199,11 +1199,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 174
+                  "chargeInCents": 176
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 522
+                  "chargeInCents": 528
                 }
               ]
             },
@@ -1212,11 +1212,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 196
+                  "chargeInCents": 198
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 588
+                  "chargeInCents": 594
                 }
               ]
             },
@@ -1225,11 +1225,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 453
+                  "chargeInCents": 458
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1359
+                  "chargeInCents": 1374
                 }
               ]
             },
@@ -1238,11 +1238,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 561
+                  "chargeInCents": 568
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1683
+                  "chargeInCents": 1704
                 }
               ]
             },
@@ -1251,11 +1251,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 712
+                  "chargeInCents": 721
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2136
+                  "chargeInCents": 2163
                 }
               ]
             }
@@ -1276,11 +1276,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1289,11 +1289,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 855
+                  "chargeInCents": 865
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2565
+                  "chargeInCents": 2595
                 }
               ]
             },
@@ -1302,11 +1302,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 752
+                  "chargeInCents": 761
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2256
+                  "chargeInCents": 2283
                 }
               ]
             },
@@ -1315,11 +1315,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 435
+                  "chargeInCents": 440
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1305
+                  "chargeInCents": 1320
                 }
               ]
             },
@@ -1328,11 +1328,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 287
+                  "chargeInCents": 291
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 861
+                  "chargeInCents": 873
                 }
               ]
             },
@@ -1341,11 +1341,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 65
+                  "chargeInCents": 66
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 195
+                  "chargeInCents": 198
                 }
               ]
             },
@@ -1354,11 +1354,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 174
+                  "chargeInCents": 176
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 522
+                  "chargeInCents": 528
                 }
               ]
             },
@@ -1367,11 +1367,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 369
+                  "chargeInCents": 374
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1107
+                  "chargeInCents": 1122
                 }
               ]
             },
@@ -1380,11 +1380,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 626
+                  "chargeInCents": 634
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1878
+                  "chargeInCents": 1902
                 }
               ]
             },
@@ -1393,11 +1393,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 735
+                  "chargeInCents": 743
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2205
+                  "chargeInCents": 2229
                 }
               ]
             },
@@ -1406,11 +1406,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 886
+                  "chargeInCents": 896
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2658
+                  "chargeInCents": 2688
                 }
               ]
             }
@@ -1431,11 +1431,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 943
+                  "chargeInCents": 955
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2829
+                  "chargeInCents": 2865
                 }
               ]
             },
@@ -1444,11 +1444,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 790
+                  "chargeInCents": 800
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2370
+                  "chargeInCents": 2400
                 }
               ]
             },
@@ -1457,11 +1457,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 688
+                  "chargeInCents": 696
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2064
+                  "chargeInCents": 2088
                 }
               ]
             },
@@ -1470,11 +1470,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 370
+                  "chargeInCents": 374
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1110
+                  "chargeInCents": 1122
                 }
               ]
             },
@@ -1483,11 +1483,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 223
+                  "chargeInCents": 225
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 669
+                  "chargeInCents": 675
                 }
               ]
             },
@@ -1496,11 +1496,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 65
+                  "chargeInCents": 66
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 195
+                  "chargeInCents": 198
                 }
               ]
             },
@@ -1509,11 +1509,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 238
+                  "chargeInCents": 241
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 714
+                  "chargeInCents": 723
                 }
               ]
             },
@@ -1522,11 +1522,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 434
+                  "chargeInCents": 439
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1302
+                  "chargeInCents": 1317
                 }
               ]
             },
@@ -1535,11 +1535,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 691
+                  "chargeInCents": 699
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2073
+                  "chargeInCents": 2097
                 }
               ]
             },
@@ -1548,11 +1548,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 799
+                  "chargeInCents": 809
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2397
+                  "chargeInCents": 2427
                 }
               ]
             },
@@ -1561,11 +1561,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 962
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2886
                 }
               ]
             }
@@ -1586,11 +1586,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 896
+                  "chargeInCents": 907
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2688
+                  "chargeInCents": 2721
                 }
               ]
             },
@@ -1599,11 +1599,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 743
+                  "chargeInCents": 752
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2229
+                  "chargeInCents": 2256
                 }
               ]
             },
@@ -1612,11 +1612,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 640
+                  "chargeInCents": 648
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1920
+                  "chargeInCents": 1944
                 }
               ]
             },
@@ -1625,11 +1625,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 322
+                  "chargeInCents": 326
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 966
+                  "chargeInCents": 978
                 }
               ]
             },
@@ -1638,11 +1638,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 175
+                  "chargeInCents": 177
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 525
+                  "chargeInCents": 531
                 }
               ]
             }
@@ -1663,11 +1663,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 175
+                  "chargeInCents": 177
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 525
+                  "chargeInCents": 531
                 }
               ]
             },
@@ -1676,11 +1676,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 223
+                  "chargeInCents": 225
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 669
+                  "chargeInCents": 675
                 }
               ]
             },
@@ -1689,11 +1689,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 287
+                  "chargeInCents": 291
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 861
+                  "chargeInCents": 873
                 }
               ]
             },
@@ -1702,11 +1702,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 461
+                  "chargeInCents": 466
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1383
+                  "chargeInCents": 1398
                 }
               ]
             },
@@ -1715,11 +1715,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 657
+                  "chargeInCents": 664
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1971
+                  "chargeInCents": 1992
                 }
               ]
             },
@@ -1728,11 +1728,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 914
+                  "chargeInCents": 924
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2742
+                  "chargeInCents": 2772
                 }
               ]
             },
@@ -1741,11 +1741,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1754,11 +1754,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             }
@@ -1779,11 +1779,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 675
+                  "chargeInCents": 683
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2025
+                  "chargeInCents": 2049
                 }
               ]
             },
@@ -1792,11 +1792,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 522
+                  "chargeInCents": 528
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1566
+                  "chargeInCents": 1584
                 }
               ]
             },
@@ -1805,11 +1805,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 420
+                  "chargeInCents": 425
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1260
+                  "chargeInCents": 1275
                 }
               ]
             },
@@ -1818,11 +1818,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 102
+                  "chargeInCents": 103
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 306
+                  "chargeInCents": 309
                 }
               ]
             }
@@ -1843,11 +1843,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 574
+                  "chargeInCents": 580
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1722
+                  "chargeInCents": 1740
                 }
               ]
             },
@@ -1856,42 +1856,16 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 421
+                  "chargeInCents": 426
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1263
+                  "chargeInCents": 1278
                 }
               ]
             },
             {
               "gantryRef": "M7-12A/B",
-              "charge": [
-                {
-                  "vehicleClass": "A",
-                  "chargeInCents": 318
-                },
-                {
-                  "vehicleClass": "B",
-                  "chargeInCents": 954
-                }
-              ]
-            },
-            {
-              "gantryRef": "M7-9B/C",
-              "charge": [
-                {
-                  "vehicleClass": "A",
-                  "chargeInCents": 102
-                },
-                {
-                  "vehicleClass": "B",
-                  "chargeInCents": 306
-                }
-              ]
-            },
-            {
-              "gantryRef": "M7-8A/B",
               "charge": [
                 {
                   "vehicleClass": "A",
@@ -1904,15 +1878,41 @@
               ]
             },
             {
+              "gantryRef": "M7-9B/C",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 103
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 309
+                }
+              ]
+            },
+            {
+              "gantryRef": "M7-8A/B",
+              "charge": [
+                {
+                  "vehicleClass": "A",
+                  "chargeInCents": 326
+                },
+                {
+                  "vehicleClass": "B",
+                  "chargeInCents": 978
+                }
+              ]
+            },
+            {
               "gantryRef": "M7-7A/B/C/D",
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 370
+                  "chargeInCents": 374
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1110
+                  "chargeInCents": 1122
                 }
               ]
             },
@@ -1921,11 +1921,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 435
+                  "chargeInCents": 440
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1305
+                  "chargeInCents": 1320
                 }
               ]
             },
@@ -1934,11 +1934,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 608
+                  "chargeInCents": 615
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1824
+                  "chargeInCents": 1845
                 }
               ]
             },
@@ -1947,11 +1947,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 804
+                  "chargeInCents": 813
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2412
+                  "chargeInCents": 2439
                 }
               ]
             },
@@ -1960,11 +1960,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1973,11 +1973,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -1986,11 +1986,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             }
@@ -2011,11 +2011,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 451
+                  "chargeInCents": 457
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1353
+                  "chargeInCents": 1371
                 }
               ]
             },
@@ -2024,11 +2024,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 298
+                  "chargeInCents": 302
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 894
+                  "chargeInCents": 906
                 }
               ]
             },
@@ -2037,11 +2037,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 196
+                  "chargeInCents": 198
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 588
+                  "chargeInCents": 594
                 }
               ]
             }
@@ -2062,11 +2062,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 256
+                  "chargeInCents": 259
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 768
+                  "chargeInCents": 777
                 }
               ]
             },
@@ -2075,11 +2075,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 103
+                  "chargeInCents": 104
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 309
+                  "chargeInCents": 312
                 }
               ]
             },
@@ -2088,11 +2088,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 196
+                  "chargeInCents": 198
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 588
+                  "chargeInCents": 594
                 }
               ]
             },
@@ -2101,11 +2101,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 318
+                  "chargeInCents": 322
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 954
+                  "chargeInCents": 966
                 }
               ]
             },
@@ -2114,11 +2114,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 420
+                  "chargeInCents": 425
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1260
+                  "chargeInCents": 1275
                 }
               ]
             },
@@ -2127,11 +2127,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 640
+                  "chargeInCents": 648
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1920
+                  "chargeInCents": 1944
                 }
               ]
             },
@@ -2140,11 +2140,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 688
+                  "chargeInCents": 696
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2064
+                  "chargeInCents": 2088
                 }
               ]
             },
@@ -2153,11 +2153,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 752
+                  "chargeInCents": 761
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2256
+                  "chargeInCents": 2283
                 }
               ]
             },
@@ -2166,11 +2166,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 926
+                  "chargeInCents": 937
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2778
+                  "chargeInCents": 2811
                 }
               ]
             },
@@ -2179,11 +2179,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2192,11 +2192,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2205,11 +2205,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2218,11 +2218,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             }
@@ -2243,11 +2243,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 103
+                  "chargeInCents": 104
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 309
+                  "chargeInCents": 312
                 }
               ]
             },
@@ -2256,11 +2256,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 298
+                  "chargeInCents": 302
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 894
+                  "chargeInCents": 906
                 }
               ]
             },
@@ -2269,11 +2269,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 421
+                  "chargeInCents": 426
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1263
+                  "chargeInCents": 1278
                 }
               ]
             },
@@ -2282,11 +2282,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 522
+                  "chargeInCents": 528
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1566
+                  "chargeInCents": 1584
                 }
               ]
             },
@@ -2295,11 +2295,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 743
+                  "chargeInCents": 752
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2229
+                  "chargeInCents": 2256
                 }
               ]
             },
@@ -2308,11 +2308,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 790
+                  "chargeInCents": 800
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2370
+                  "chargeInCents": 2400
                 }
               ]
             },
@@ -2321,11 +2321,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 855
+                  "chargeInCents": 865
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2565
+                  "chargeInCents": 2595
                 }
               ]
             },
@@ -2334,11 +2334,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2347,11 +2347,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2360,11 +2360,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2373,11 +2373,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2386,11 +2386,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             }
@@ -2411,11 +2411,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 82
+                  "chargeInCents": 83
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 246
+                  "chargeInCents": 249
                 }
               ]
             }
@@ -2436,11 +2436,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 82
+                  "chargeInCents": 83
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 246
+                  "chargeInCents": 249
                 }
               ]
             },
@@ -2449,11 +2449,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 256
+                  "chargeInCents": 259
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 768
+                  "chargeInCents": 777
                 }
               ]
             },
@@ -2462,11 +2462,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 451
+                  "chargeInCents": 457
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1353
+                  "chargeInCents": 1371
                 }
               ]
             },
@@ -2475,11 +2475,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 574
+                  "chargeInCents": 580
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1722
+                  "chargeInCents": 1740
                 }
               ]
             },
@@ -2488,11 +2488,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 675
+                  "chargeInCents": 683
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2025
+                  "chargeInCents": 2049
                 }
               ]
             },
@@ -2501,11 +2501,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 896
+                  "chargeInCents": 907
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2688
+                  "chargeInCents": 2721
                 }
               ]
             },
@@ -2514,11 +2514,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 943
+                  "chargeInCents": 955
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2829
+                  "chargeInCents": 2865
                 }
               ]
             },
@@ -2527,11 +2527,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2540,11 +2540,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2553,11 +2553,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2566,11 +2566,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2579,11 +2579,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             },
@@ -2592,11 +2592,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 951
+                  "chargeInCents": 971
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2853
+                  "chargeInCents": 2913
                 }
               ]
             }
@@ -2692,49 +2692,49 @@
               "startTime": "0000",
               "endTime": "0630",
               "dayOfWeek": "WEEKDAY",
-              "chargeInCents": 250
+              "chargeInCents": 267
             },
             {
               "startTime": "0630",
               "endTime": "0930",
               "dayOfWeek": "WEEKDAY",
-              "chargeInCents": 400
+              "chargeInCents": 427
             },
             {
               "startTime": "0930",
               "endTime": "1600",
               "dayOfWeek": "WEEKDAY",
-              "chargeInCents": 300
+              "chargeInCents": 320
             },
             {
               "startTime": "1600",
               "endTime": "1900",
               "dayOfWeek": "WEEKDAY",
-              "chargeInCents": 400
+              "chargeInCents": 427
             },
             {
               "startTime": "1900",
               "endTime": "2400",
               "dayOfWeek": "WEEKDAY",
-              "chargeInCents": 250
+              "chargeInCents": 267
             },
             {
               "startTime": "0000",
               "endTime": "0800",
               "dayOfWeek": "WEEKEND",
-              "chargeInCents": 250
+              "chargeInCents": 267
             },
             {
               "startTime": "0800",
               "endTime": "2000",
               "dayOfWeek": "WEEKEND",
-              "chargeInCents": 300
+              "chargeInCents": 320
             },
             {
               "startTime": "2000",
               "endTime": "2400",
               "dayOfWeek": "WEEKEND",
-              "chargeInCents": 250
+              "chargeInCents": 267
             }
           ]
         }
@@ -2771,11 +2771,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2784,11 +2784,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2797,11 +2797,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1431
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2810,11 +2810,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1272
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2823,11 +2823,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 941
+                  "chargeInCents": 999
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2824
+                  "chargeInCents": 2995
                 }
               ]
             },
@@ -2836,11 +2836,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 941
+                  "chargeInCents": 999
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2824
+                  "chargeInCents": 2995
                 }
               ]
             },
@@ -2849,11 +2849,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 726
+                  "chargeInCents": 770
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2179
+                  "chargeInCents": 2310
                 }
               ]
             },
@@ -2862,11 +2862,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 588
+                  "chargeInCents": 624
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1765
+                  "chargeInCents": 1872
                 }
               ]
             },
@@ -2875,11 +2875,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 487
+                  "chargeInCents": 516
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1460
+                  "chargeInCents": 1548
                 }
               ]
             },
@@ -2888,11 +2888,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 416
+                  "chargeInCents": 441
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1247
+                  "chargeInCents": 1323
                 }
               ]
             },
@@ -2901,11 +2901,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 266
+                  "chargeInCents": 282
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 797
+                  "chargeInCents": 846
                 }
               ]
             }
@@ -2926,11 +2926,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 266
+                  "chargeInCents": 282
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 797
+                  "chargeInCents": 846
                 }
               ]
             }
@@ -2961,11 +2961,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2974,11 +2974,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -2987,11 +2987,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1316
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3000,11 +3000,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1090
+                  "chargeInCents": 1156
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3270
+                  "chargeInCents": 3468
                 }
               ]
             },
@@ -3013,11 +3013,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 833
+                  "chargeInCents": 883
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2498
+                  "chargeInCents": 2649
                 }
               ]
             },
@@ -3026,11 +3026,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 833
+                  "chargeInCents": 883
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2498
+                  "chargeInCents": 2649
                 }
               ]
             },
@@ -3039,11 +3039,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 617
+                  "chargeInCents": 655
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1852
+                  "chargeInCents": 1965
                 }
               ]
             },
@@ -3052,11 +3052,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 480
+                  "chargeInCents": 509
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1439
+                  "chargeInCents": 1526
                 }
               ]
             },
@@ -3065,11 +3065,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 378
+                  "chargeInCents": 401
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1134
+                  "chargeInCents": 1203
                 }
               ]
             },
@@ -3078,11 +3078,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 307
+                  "chargeInCents": 326
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 921
+                  "chargeInCents": 977
                 }
               ]
             }
@@ -3123,11 +3123,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 307
+                  "chargeInCents": 326
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 921
+                  "chargeInCents": 977
                 }
               ]
             },
@@ -3136,11 +3136,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 416
+                  "chargeInCents": 441
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1247
+                  "chargeInCents": 1323
                 }
               ]
             }
@@ -3161,11 +3161,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3174,11 +3174,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3187,11 +3187,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1091
+                  "chargeInCents": 1157
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3272
+                  "chargeInCents": 3470
                 }
               ]
             },
@@ -3200,11 +3200,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 940
+                  "chargeInCents": 997
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2820
+                  "chargeInCents": 2991
                 }
               ]
             },
@@ -3213,11 +3213,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 683
+                  "chargeInCents": 724
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2048
+                  "chargeInCents": 2172
                 }
               ]
             },
@@ -3226,11 +3226,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 683
+                  "chargeInCents": 724
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2048
+                  "chargeInCents": 2172
                 }
               ]
             },
@@ -3239,11 +3239,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 467
+                  "chargeInCents": 496
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1402
+                  "chargeInCents": 1487
                 }
               ]
             },
@@ -3252,11 +3252,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 330
+                  "chargeInCents": 350
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 989
+                  "chargeInCents": 1049
                 }
               ]
             },
@@ -3265,11 +3265,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 228
+                  "chargeInCents": 242
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 684
+                  "chargeInCents": 726
                 }
               ]
             }
@@ -3310,11 +3310,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1762
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3323,11 +3323,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1762
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3336,11 +3336,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1020
+                  "chargeInCents": 1082
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3059
+                  "chargeInCents": 3244
                 }
               ]
             },
@@ -3349,11 +3349,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 869
+                  "chargeInCents": 922
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2608
+                  "chargeInCents": 2765
                 }
               ]
             },
@@ -3362,11 +3362,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 612
+                  "chargeInCents": 649
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1835
+                  "chargeInCents": 1946
                 }
               ]
             },
@@ -3375,11 +3375,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 612
+                  "chargeInCents": 649
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1835
+                  "chargeInCents": 1946
                 }
               ]
             },
@@ -3388,11 +3388,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 397
+                  "chargeInCents": 421
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1190
+                  "chargeInCents": 1262
                 }
               ]
             },
@@ -3401,11 +3401,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 259
+                  "chargeInCents": 275
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 776
+                  "chargeInCents": 824
                 }
               ]
             }
@@ -3426,11 +3426,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 228
+                  "chargeInCents": 242
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 684
+                  "chargeInCents": 726
                 }
               ]
             },
@@ -3439,11 +3439,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 378
+                  "chargeInCents": 401
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1134
+                  "chargeInCents": 1203
                 }
               ]
             },
@@ -3452,11 +3452,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 487
+                  "chargeInCents": 516
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1460
+                  "chargeInCents": 1548
                 }
               ]
             }
@@ -3487,11 +3487,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 330
+                  "chargeInCents": 350
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 989
+                  "chargeInCents": 1049
                 }
               ]
             },
@@ -3500,11 +3500,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 480
+                  "chargeInCents": 509
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1439
+                  "chargeInCents": 1526
                 }
               ]
             },
@@ -3513,11 +3513,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 588
+                  "chargeInCents": 624
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1765
+                  "chargeInCents": 1872
                 }
               ]
             }
@@ -3538,11 +3538,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 330
+                  "chargeInCents": 350
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 989
+                  "chargeInCents": 1049
                 }
               ]
             },
@@ -3551,11 +3551,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 480
+                  "chargeInCents": 509
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1439
+                  "chargeInCents": 1526
                 }
               ]
             },
@@ -3564,11 +3564,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 588
+                  "chargeInCents": 624
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1765
+                  "chargeInCents": 1872
                 }
               ]
             }
@@ -3589,11 +3589,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1654
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3602,11 +3602,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1654
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3615,11 +3615,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 918
+                  "chargeInCents": 974
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2754
+                  "chargeInCents": 2921
                 }
               ]
             },
@@ -3628,11 +3628,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 767
+                  "chargeInCents": 814
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2302
+                  "chargeInCents": 2442
                 }
               ]
             },
@@ -3641,11 +3641,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 510
+                  "chargeInCents": 541
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1530
+                  "chargeInCents": 1622
                 }
               ]
             },
@@ -3654,11 +3654,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 510
+                  "chargeInCents": 541
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1530
+                  "chargeInCents": 1622
                 }
               ]
             },
@@ -3667,11 +3667,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 295
+                  "chargeInCents": 313
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 884
+                  "chargeInCents": 938
                 }
               ]
             }
@@ -3702,11 +3702,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 295
+                  "chargeInCents": 313
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 884
+                  "chargeInCents": 938
                 }
               ]
             },
@@ -3715,11 +3715,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 467
+                  "chargeInCents": 496
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1402
+                  "chargeInCents": 1487
                 }
               ]
             },
@@ -3728,11 +3728,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 617
+                  "chargeInCents": 655
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1852
+                  "chargeInCents": 1965
                 }
               ]
             },
@@ -3741,11 +3741,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 726
+                  "chargeInCents": 770
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2179
+                  "chargeInCents": 2310
                 }
               ]
             }
@@ -3786,11 +3786,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1508
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3799,11 +3799,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1508
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -3812,11 +3812,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 780
+                  "chargeInCents": 828
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2341
+                  "chargeInCents": 2482
                 }
               ]
             },
@@ -3825,11 +3825,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 630
+                  "chargeInCents": 668
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1889
+                  "chargeInCents": 2003
                 }
               ]
             },
@@ -3838,11 +3838,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 372
+                  "chargeInCents": 395
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1116
+                  "chargeInCents": 1184
                 }
               ]
             },
@@ -3851,11 +3851,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 372
+                  "chargeInCents": 395
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1116
+                  "chargeInCents": 1184
                 }
               ]
             }
@@ -3876,11 +3876,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 372
+                  "chargeInCents": 395
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1116
+                  "chargeInCents": 1184
                 }
               ]
             },
@@ -3889,11 +3889,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 510
+                  "chargeInCents": 541
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1530
+                  "chargeInCents": 1622
                 }
               ]
             },
@@ -3902,11 +3902,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 683
+                  "chargeInCents": 724
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2048
+                  "chargeInCents": 2172
                 }
               ]
             },
@@ -3915,11 +3915,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 833
+                  "chargeInCents": 883
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2498
+                  "chargeInCents": 2649
                 }
               ]
             },
@@ -3928,11 +3928,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 941
+                  "chargeInCents": 999
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2824
+                  "chargeInCents": 2995
                 }
               ]
             }
@@ -3963,11 +3963,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 372
+                  "chargeInCents": 395
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1116
+                  "chargeInCents": 1184
                 }
               ]
             },
@@ -3976,11 +3976,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 510
+                  "chargeInCents": 541
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1530
+                  "chargeInCents": 1622
                 }
               ]
             },
@@ -3989,11 +3989,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 683
+                  "chargeInCents": 724
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2048
+                  "chargeInCents": 2172
                 }
               ]
             },
@@ -4002,11 +4002,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 833
+                  "chargeInCents": 883
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2498
+                  "chargeInCents": 2649
                 }
               ]
             },
@@ -4015,11 +4015,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 941
+                  "chargeInCents": 999
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2824
+                  "chargeInCents": 2995
                 }
               ]
             }
@@ -4050,11 +4050,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1280
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4063,11 +4063,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1280
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4076,11 +4076,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 565
+                  "chargeInCents": 600
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1695
+                  "chargeInCents": 1798
                 }
               ]
             },
@@ -4089,11 +4089,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 415
+                  "chargeInCents": 440
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1244
+                  "chargeInCents": 1319
                 }
               ]
             }
@@ -4134,11 +4134,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 415
+                  "chargeInCents": 440
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1244
+                  "chargeInCents": 1319
                 }
               ]
             },
@@ -4147,11 +4147,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 630
+                  "chargeInCents": 668
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1889
+                  "chargeInCents": 2003
                 }
               ]
             },
@@ -4160,11 +4160,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 767
+                  "chargeInCents": 814
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2302
+                  "chargeInCents": 2442
                 }
               ]
             },
@@ -4173,11 +4173,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 940
+                  "chargeInCents": 997
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2820
+                  "chargeInCents": 2991
                 }
               ]
             },
@@ -4186,11 +4186,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1090
+                  "chargeInCents": 1156
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3270
+                  "chargeInCents": 3468
                 }
               ]
             },
@@ -4199,11 +4199,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1272
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             }
@@ -4234,11 +4234,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1094
+                  "chargeInCents": 1160
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3281
+                  "chargeInCents": 3479
                 }
               ]
             },
@@ -4247,11 +4247,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1094
+                  "chargeInCents": 1160
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3281
+                  "chargeInCents": 3479
                 }
               ]
             },
@@ -4260,11 +4260,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 452
+                  "chargeInCents": 480
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1357
+                  "chargeInCents": 1439
                 }
               ]
             }
@@ -4295,11 +4295,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 452
+                  "chargeInCents": 480
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1357
+                  "chargeInCents": 1439
                 }
               ]
             },
@@ -4308,11 +4308,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 565
+                  "chargeInCents": 600
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1695
+                  "chargeInCents": 1798
                 }
               ]
             },
@@ -4321,11 +4321,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 780
+                  "chargeInCents": 828
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2341
+                  "chargeInCents": 2482
                 }
               ]
             },
@@ -4334,11 +4334,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 918
+                  "chargeInCents": 974
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2754
+                  "chargeInCents": 2921
                 }
               ]
             },
@@ -4347,11 +4347,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1091
+                  "chargeInCents": 1157
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3272
+                  "chargeInCents": 3470
                 }
               ]
             },
@@ -4360,11 +4360,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1316
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4373,11 +4373,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1431
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             }
@@ -4398,11 +4398,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 349
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1047
+                  "chargeInCents": 1110
                 }
               ]
             },
@@ -4411,11 +4411,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 659
+                  "chargeInCents": 699
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1978
+                  "chargeInCents": 2097
                 }
               ]
             },
@@ -4424,11 +4424,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 677
+                  "chargeInCents": 718
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2030
+                  "chargeInCents": 2153
                 }
               ]
             },
@@ -4437,11 +4437,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4450,11 +4450,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4463,11 +4463,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1094
+                  "chargeInCents": 1160
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3281
+                  "chargeInCents": 3479
                 }
               ]
             },
@@ -4476,11 +4476,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1280
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4489,11 +4489,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1508
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4502,11 +4502,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1654
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4515,11 +4515,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4528,11 +4528,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4541,11 +4541,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             }
@@ -4566,11 +4566,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 349
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1047
+                  "chargeInCents": 1110
                 }
               ]
             },
@@ -4579,11 +4579,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 659
+                  "chargeInCents": 699
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1978
+                  "chargeInCents": 2097
                 }
               ]
             },
@@ -4592,11 +4592,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 677
+                  "chargeInCents": 718
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2030
+                  "chargeInCents": 2153
                 }
               ]
             },
@@ -4605,11 +4605,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4618,11 +4618,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4631,11 +4631,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1094
+                  "chargeInCents": 1160
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3281
+                  "chargeInCents": 3479
                 }
               ]
             },
@@ -4644,11 +4644,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1280
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4657,11 +4657,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1508
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4670,11 +4670,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1654
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4683,11 +4683,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4696,11 +4696,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             },
@@ -4709,11 +4709,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 1111
+                  "chargeInCents": 1778
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 3332
+                  "chargeInCents": 3533
                 }
               ]
             }
@@ -4754,11 +4754,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 527
+                  "chargeInCents": 559
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1581
+                  "chargeInCents": 1677
                 }
               ]
             },
@@ -4767,11 +4767,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 545
+                  "chargeInCents": 578
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1635
+                  "chargeInCents": 1734
                 }
               ]
             },
@@ -4780,11 +4780,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 669
+                  "chargeInCents": 710
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2007
+                  "chargeInCents": 2128
                 }
               ]
             }
@@ -4815,11 +4815,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 349
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1047
+                  "chargeInCents": 1110
                 }
               ]
             },
@@ -4828,11 +4828,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 349
+                  "chargeInCents": 370
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1047
+                  "chargeInCents": 1110
                 }
               ]
             }
@@ -4883,11 +4883,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4896,11 +4896,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -4909,11 +4909,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 669
+                  "chargeInCents": 710
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2007
+                  "chargeInCents": 2128
                 }
               ]
             }
@@ -4944,11 +4944,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 677
+                  "chargeInCents": 718
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2030
+                  "chargeInCents": 2153
                 }
               ]
             },
@@ -4957,11 +4957,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 677
+                  "chargeInCents": 718
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2030
+                  "chargeInCents": 2153
                 }
               ]
             },
@@ -4970,11 +4970,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 545
+                  "chargeInCents": 578
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 1635
+                  "chargeInCents": 1734
                 }
               ]
             }
@@ -5005,11 +5005,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             },
@@ -5018,11 +5018,11 @@
               "charge": [
                 {
                   "vehicleClass": "A",
-                  "chargeInCents": 798
+                  "chargeInCents": 847
                 },
                 {
                   "vehicleClass": "B",
-                  "chargeInCents": 2395
+                  "chargeInCents": 2540
                 }
               ]
             }
