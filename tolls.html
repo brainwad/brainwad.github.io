@@ -121,6 +121,7 @@
 
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-harp.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js-colormaps.js"></script>
     <script>
@@ -183,11 +184,13 @@
             api_key_prompt();
         }
         var platform = new H.service.Platform({ 'apikey': localStorage.getItem("HERE_API_KEY") });
-        var maptypes = platform.createDefaultLayers();
+        const engineType = H.Map.EngineType['HARP'];
+        const maptypes = platform.createDefaultLayers({engineType});
         var map = new H.Map(
             document.getElementById('map'),
-            maptypes.raster.normal.mapnight,
+            maptypes.vector.normal.mapnight,
             {
+                engineType,
                 zoom: 11,
                 center: { lng: 151, lat: -33.85 },
                 padding: { top: 20, left: 20, right: 20, bottom: 20 }
