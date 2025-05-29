@@ -125,7 +125,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="js-colormaps.js"></script>
     <script>
-        // From https://opendata.transport.nsw.gov.au/node/7407/exploreapi#!/pricing/getData. Cannot be loaded on the fly due to CORS :(
+        // From https://opendata.transport.nsw.gov.au/data/dataset/toll-calculator-api/resource/31b8e2c2-0189-4742-9aa4-da162afca2ee. Cannot be loaded on the fly due to CORS :(
         var toll_data;
         fetch("./tolls.json").then(async (r) => toll_data = await r.json());
 
