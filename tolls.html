@@ -578,7 +578,7 @@
                     current_toll_road.shape = current_toll_road.spans.flatMap(s => s.shape)
 
                     // Special cases for short sections of M5 East just after M8; M2 just before Lane Cove Tunnel; free part of Rozelle Interchange
-                    if (!(current_toll_road.name == "M5 East Fwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
+                    if (!(current_toll_road.name == "M5 East Mtwy" && (current_toll_road.entry == "Westconnex" || current_toll_road.exit == "Westconnex")) &&
                         !(current_toll_road.name == "M2 Hills Mtwy" && current_toll_road.entry == "Epping Rd") &&
                         !(current_toll_road.name == "Westconnex" && (current_toll_road.entry == "Iron Cove Link Tunnel" || current_toll_road.exit == "Iron Cove Link Tunnel"))) {
                         toll_roads.push(current_toll_road);
@@ -651,7 +651,7 @@
                                 road.toll = get_timed_toll_at(get_toll_data_for("SHT"), time[0], time[1]);
                             }
                             break;
-                        case "M5 East Fwy":
+                        case "M5 East Mtwy":
                         case "Westconnex":
                             var gantries = infer_distance_gantries(get_toll_data_for("WCX"), road);
                             road.toll = get_distance_toll_between(get_toll_data_for("WCX"), gantries[0].gantryRef, gantries[1].gantryRef);
