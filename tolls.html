@@ -566,11 +566,11 @@
                     }
 
                     // fixed rate toll roads have an optimisation to block the whole road at once.
-                    // variable rate ones block just the start or end link.
+                    // variable rate ones try that, plus just blocking the start or end link.
                     if (is_fixed_rate_tollway(current_toll_road.name)) {
                         current_toll_road.key_spans = [current_toll_road.spans]
                     } else {
-                        current_toll_road.key_spans = [current_toll_road.spans.slice(0, 1), current_toll_road.spans.slice(current_toll_road.spans.length - 1)]
+                        current_toll_road.key_spans = [current_toll_road.spans, current_toll_road.spans.slice(0, 1), current_toll_road.spans.slice(current_toll_road.spans.length - 1)]
                     }
 
                     current_toll_road.shape = current_toll_road.spans.flatMap(s => s.shape)
