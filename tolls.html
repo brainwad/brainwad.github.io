@@ -664,9 +664,6 @@
                     route.toll += road.toll;
                 }
             }
-            if (route.summary.tolls.total.value.toFixed(2) != route.toll.toFixed(2)) {
-                console.error(`toll disagreement: HERE says $${route.summary.tolls.total.value}, I say $${route.toll}`)
-            }
         }
 
         // Fuel efficiency curves (mph => mpg) for various road slopes for a compact (gasoline) car.
