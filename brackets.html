@@ -100,7 +100,7 @@ footer{margin-top:6px}
     Estimates apply each schedule to the mean taxable income of 4,970 representative taxpayer groups, with no behavioural response.
     Change in tax take and surplus/deficit are measured against modelled revenue under current law 2025-26, which is within $0.02B of the dataset's actual net tax paid. Non-residents are approximated by each group's "Unknown or overseas" share.
     Existing tax credits are the gap between 2025-26 statutory tax (rates, LITO, Medicare levy with singles low-income reduction) and each group's actual net tax.
-    Those credits are always subtracted in the budget figures (floored at $0 per taxpayer). Negative credits, where a group actually paid more than modelled current law, are kept for current law itself but dropped for any scenario that differs from it; the rate and comparison lines on the graph exclude them.
+    Thresholds given as multiples of the median or as milliles use resident taxpayers' taxable income (a millile's value is the mean income of that 1/1000 of residents). Those credits are always subtracted in the budget figures (floored at $0 per taxpayer). Negative credits, where a group actually paid more than modelled current law, are kept for current law itself but dropped for any scenario that differs from it; the rate and comparison lines on the graph exclude them.
   </footer>
 </div>
 <div id="menu"></div>
@@ -223,6 +223,44 @@ function pctile(y) {
   while (lo < hi) { const m = (lo + hi) >> 1; if (gs[m][0] <= y) lo = m + 1; else hi = m; }
   return lo ? cum[lo - 1] / cum[cum.length - 1] * 100 : 0;
 }
+/* thresholds as multiples of the resident median, or as resident income milliles */
+const DIST = (() => {
+  const gs = DATA.groups;
+  let tot = 0; for (const r of gs) tot += r[1];
+  let c = 0, median = 0;
+  for (const r of gs) { c += r[1]; if (c >= tot / 2) { median = r[0]; break; } }
+  const step = tot / 1000, mil = [];  // mil[k-1] = mean taxable income of resident millile k
+  let i = 0, rem = gs[0][1];
+  for (let k = 0; k < 1000; k++) {
+    let need = step, si = 0, sw = 0;
+    while (need > 1e-9 && i < gs.length) {
+      const take = Math.min(need, rem);
+      si += take * gs[i][0]; sw += take; rem -= take; need -= take;
+      if (rem <= 1e-9) { i++; if (i < gs.length) rem = gs[i][1]; }
+    }
+    mil.push(sw ? si / sw : gs[gs.length - 1][0]);
+  }
+  return {median, mil};
+})();
+const UNITS = {usd: '$', median: 'x median', millile: 'millile'};
+const unitOf = t => t.unit && t.unit !== 'usd' ? t.unit : null;
+function valToUsd(t, v) {
+  if (t.unit === 'median') return Math.round(v * DIST.median * 100) / 100;
+  return Math.max(0, Math.round(DIST.mil[Math.min(1000, Math.max(1, Math.round(v))) - 1] * 100) / 100);
+}
+function usdToVal(t, usd, dp) {
+  if (t.unit === 'median') { const p = Math.pow(10, dp); return Math.round(usd / DIST.median * p) / p; }
+  let best = 0;
+  for (let i = 1; i < 1000; i++) if (Math.abs(DIST.mil[i] - usd) < Math.abs(DIST.mil[best] - usd)) best = i;
+  return best + 1;
+}
+const normVal = (t, v) => t.unit === 'millile' ? Math.min(1000, Math.max(1, Math.round(v))) : Math.max(0, Math.round(v * 1e4) / 1e4);
+function normTax(t) {
+  if (!unitOf(t)) { for (const k of t.brackets) delete k.val; return; }
+  for (const k of t.brackets) { if (k.val == null) k.val = usdToVal(t, k.from, 2); k.val = normVal(t, k.val); k.from = valToUsd(t, k.val); }
+  sortBr(t);
+}
+function normAll() { for (const t of scenario.taxes) normTax(t); }
 function sortBr(t) { t.brackets.sort((a, b) => a.from - b.from); }
 function persist() { LS.set(K_WORK, scenario); }
 
@@ -430,7 +468,7 @@ function closeMenu() { el('menu').style.display = 'none'; }
 function openMenu(taxId, i, cx, cy) {
   const t = taxById(taxId); if (!t || !t.brackets[i]) return;
   const m = el('menu'), k = t.brackets[i];
-  m.innerHTML = `<div class="t"><span style="color:${t.color}">&#9632;</span> ${esc(t.name)}: threshold ${fmtInc(k.from)}, ${+k.rate.toFixed(2)}% above</div>` +
+  m.innerHTML = `<div class="t"><span style="color:${t.color}">&#9632;</span> ${esc(t.name)}: threshold ${unitOf(t) ? (t.unit === 'median' ? k.val + ' x median' : 'millile ' + k.val) + ' = ' : ''}${fmtInc(k.from)}, ${+k.rate.toFixed(2)}% above</div>` +
     `<button data-a="l" ${k.from <= 0 ? 'disabled' : ''}>Add bracket to the left</button><button data-a="r">Add bracket to the right</button><button data-a="d">Delete this bracket</button>`;
   m.onclick = e => {
     const a = e.target.dataset.a; if (!a) return;
@@ -469,7 +507,7 @@ function renderTables() {
   let h = '';
   for (const t of viewTaxes()) {
     const key = (f, i) => `data-tax="${t.id}" data-f="${f}"` + (i == null ? '' : ` data-i="${i}"`) + ` data-key="${t.id}|${f}|${i == null ? '' : i}"`;
-    const b = t.brackets;
+    const b = t.brackets, un = unitOf(t), to = i => i + 1 < b.length ? (un ? fmtInc(b[i + 1].from) : Math.round(b[i + 1].from * 100) / 100) : 'and over';
     h += `<div class="tax ${t.id === ui.active ? 'act' : ''} ${t.enabled ? '' : 'dis'}" data-card="${t.id}" style="border-left-color:${t.color}">` +
       `<div class="row"><input type="color" value="${t.color}" ${key('color')} title="Line colour"><input class="name" value="${esc(t.name)}" ${key('name')}>` +
       `<label><input type="checkbox" ${t.enabled ? 'checked' : ''} ${key('enabled')}> Enabled</label>` +
@@ -479,11 +517,14 @@ function renderTables() {
       [['res', 'Residents'], ['nonres', 'Non-residents'], ['both', 'Everyone']].map(o => `<option value="${o[0]}" ${t.applies === o[0] ? 'selected' : ''}>${o[1]}</option>`).join('') + `</select></label>` +
       `<label title="Fixed amount at $0 of income. Negative = an offset such as LITO.">Lump sum ($) <input type="number" step="any" value="${t.base || 0}" ${key('base')} style="width:90px"></label>` +
       `<label title="This schedule is added to the chosen tax and the combined amount cannot go below $0">Non-refundable offset against <select ${key('offsets')}><option value="">(none)</option>` +
-      all.filter(o => o.id !== t.id && !o.offsets).map(o => `<option value="${o.id}" ${t.offsets === o.id ? 'selected' : ''}>${esc(o.name)}</option>`).join('') + `</select></label></div>` +
-      `<table><tr><th>From ($)</th><th>To ($)</th><th>Marginal rate (%)</th><th></th></tr>`;
-    if (!b.length || b[0].from > 0) h += `<tr><td class="ro">0</td><td class="ro">${b.length ? Math.round(b[0].from * 100) / 100 : 'and over'}</td><td class="ro">0</td><td></td></tr>`;
+      all.filter(o => o.id !== t.id && !o.offsets).map(o => `<option value="${o.id}" ${t.offsets === o.id ? 'selected' : ''}>${esc(o.name)}</option>`).join('') + `</select></label>` +
+      `<label title="Median and milliles are those of resident taxpayers' taxable income in 2025-26. A millile's $ value is the mean income of that 1/1000 of resident taxpayers (1 = lowest, 1000 = highest).">Thresholds in <select ${key('unit')} style="max-width:210px">` +
+      [['usd', '$'], ['median', `multiples of median income (${fmtInc(DIST.median)})`], ['millile', 'income milliles (1-1000)']].map(o => `<option value="${o[0]}" ${(t.unit || 'usd') === o[0] ? 'selected' : ''}>${o[1]}</option>`).join('') + `</select></label></div>` +
+      `<table><tr><th>From (${un ? UNITS[un] : '$'})</th>${un ? '<th>= $</th>' : ''}<th>To ($)</th><th>Marginal rate (%)</th><th></th></tr>`;
+    if (!b.length || b[0].from > 0) h += `<tr><td class="ro">${un ? '' : 0}</td>${un ? '<td class="ro">$0</td>' : ''}<td class="ro">${to(-1)}</td><td class="ro">0</td><td></td></tr>`;
     b.forEach((k, i) => {
-      h += `<tr><td><input type="number" step="any" min="0" value="${k.from}" ${key('from', i)}></td><td class="ro">${i + 1 < b.length ? Math.round(b[i + 1].from * 100) / 100 : 'and over'}</td>` +
+      h += `<tr><td>` + (un ? `<input type="number" step="${un === 'millile' ? 1 : 'any'}" min="${un === 'millile' ? 1 : 0}" value="${k.val}" ${key('val', i)}></td><td class="ro">${fmtInc(k.from)}</td>`
+        : `<input type="number" step="any" min="0" value="${k.from}" ${key('from', i)}></td>`) + `<td class="ro">${to(i)}</td>` +
         `<td><input type="number" step="any" value="${k.rate}" ${key('rate', i)} style="width:80px"></td><td><button class="x" data-act="delrow" data-tax="${t.id}" data-i="${i}" title="Delete bracket">x</button></td></tr>`;
     });
     h += `</table><button data-act="addrow" data-tax="${t.id}">+ Add bracket</button></div>`;
@@ -516,10 +557,10 @@ function renderScenarioList() {
   el('scnName').value = scenario.name || '';
 }
 function renderAll() { renderControls(); renderBudget(); renderLegend(); renderChart(); renderTables(); }
-function commit() { persist(); renderBudget(); renderLegend(); renderChart(); setTimeout(renderTablesKeepFocus, 0); }
+function commit() { normAll(); persist(); renderBudget(); renderLegend(); renderChart(); setTimeout(renderTablesKeepFocus, 0); }
 function loadScenario(sc) {
   scenario = JSON.parse(JSON.stringify(sc));
-  ui.active = null; persist(); renderScenarioList(); renderAll();
+  normAll(); ui.active = null; persist(); renderScenarioList(); renderAll();
 }
 
 /* ---------- events ---------- */
@@ -536,8 +577,14 @@ window.addEventListener('pointermove', e => {
   const t = taxById(drag.tax), b = t && t.brackets, k = b && b[drag.i]; if (!k) return;
   const p = svgPoint(e);
   if (drag.kind === 'edge') {
-    const lo = drag.i > 0 ? b[drag.i - 1].from + 100 : 0, hi = drag.i + 1 < b.length ? b[drag.i + 1].from - 100 : Infinity;
-    k.from = Math.min(Math.max(snapInc(S.inv(p.x)), lo), hi);
+    if (unitOf(t)) {
+      const st = t.unit === 'millile' ? 1 : 0.01, lo = drag.i > 0 ? b[drag.i - 1].val + st : 0, hi = Math.max(lo, drag.i + 1 < b.length ? b[drag.i + 1].val - st : Infinity);
+      k.val = normVal(t, Math.min(Math.max(usdToVal(t, S.inv(p.x), 2), lo), hi)); k.from = valToUsd(t, k.val);
+    } else {
+      const lo = drag.i > 0 ? b[drag.i - 1].from + 100 : 0, hi = drag.i + 1 < b.length ? b[drag.i + 1].from - 100 : Infinity;
+      k.from = Math.min(Math.max(snapInc(S.inv(p.x)), lo), hi);
+    }
+    k.o = unitOf(t) ? {u: t.unit, v: k.val} : {u: 'usd', v: k.from};
   } else {
     k.rate = Math.min(Math.max(Math.round(YF.inv(p.y) * 2) / 2, -100), 100);
   }
@@ -579,7 +626,18 @@ el('tables').addEventListener('change', e => {
     case 'applies': t.applies = e.target.value; break;
     case 'offsets': t.offsets = e.target.value || null; break;
     case 'base': if (!isNaN(num)) t.base = num; break;
-    case 'from': if (!isNaN(num) && num >= 0) { t.brackets[+d.i].from = num; sortBr(t); } break;
+    case 'unit':
+      { const old = t.unit || 'usd', nu = e.target.value;
+        for (const k of t.brackets) {
+          const o = k.o || (k.o = {u: old, v: old === 'usd' ? k.from : k.val});
+          const usd = o.u === 'usd' ? o.v : valToUsd({unit: o.u}, o.v);
+          if (nu === 'usd') { k.from = usd; delete k.val; }
+          else { k.val = o.u === nu ? o.v : usdToVal({unit: nu}, usd, 4); k.from = valToUsd({unit: nu}, k.val); }
+        }
+        t.unit = nu; }
+      break;
+    case 'val': if (!isNaN(num) && num >= 0) { const k = t.brackets[+d.i]; k.val = normVal(t, num); k.from = valToUsd(t, k.val); k.o = {u: t.unit, v: k.val}; sortBr(t); } break;
+    case 'from': if (!isNaN(num) && num >= 0) { const k = t.brackets[+d.i]; k.from = num; k.o = {u: 'usd', v: num}; sortBr(t); } break;
     case 'rate': if (!isNaN(num)) t.brackets[+d.i].rate = Math.min(Math.max(num, -100), 100); break;
   }
   commit();
@@ -630,6 +688,7 @@ el('btnDel').addEventListener('click', () => {
   delete saved[name]; LS.set(K_SAVED, saved); renderScenarioList(); msg('Deleted "' + name + '"');
 });
 
+normAll();
 renderScenarioList();
 renderAll();
 </script>
